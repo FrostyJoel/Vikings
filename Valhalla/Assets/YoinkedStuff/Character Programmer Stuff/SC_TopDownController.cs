@@ -29,8 +29,15 @@ public class SC_TopDownController : MonoBehaviour
     //Plane that represents imaginary floor that will be used to calculate Aim target position
     Plane surfacePlane = new Plane();
 
+    //Animator and AttackManager
+    SC_AttackManager aMan;
+    SC_CharacterAnimation cA;
+    public float turnSpeed = 90;
+
     void Awake()
     {
+        cA = GetComponent<SC_CharacterAnimation>();
+        aMan = GetComponent<SC_AttackManager>();
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
         r.useGravity = false;
@@ -58,17 +65,22 @@ public class SC_TopDownController : MonoBehaviour
             cameraOffset = new Vector3(0, cameraHeight, cameraDistance);
         }
 
-        if (grounded)
+        if (grounded && !aMan.isAttacking)
         {
+            
             Vector3 targetVelocity = Vector3.zero;
             // Calculate how fast we should be moving
             if (cameraDirection == CameraDirection.x)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? 1 : -1));
+                cA.SetVerticalAnime(Input.GetAxis("Vertical"));
+                cA.SetHorizontalAnime(Input.GetAxis("Horizontal"));
             }
             else if (cameraDirection == CameraDirection.z)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1));
+                cA.SetHorizontalAnime(Input.GetAxis("Horizontal"));
+                cA.SetVerticalAnime(Input.GetAxis("Vertical"));
             }
             targetVelocity *= speed;
 
@@ -106,10 +118,24 @@ public class SC_TopDownController : MonoBehaviour
         targetObject.transform.LookAt(new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z));
 
         //Player rotation
-        transform.LookAt(new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
+        if (!aMan.isAttacking)
+        {
+            Vector3 dir = targetObject.transform.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            //transform.LookAt(new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
+        }
+        else
+        {
+            Vector3 dir = aMan.attackPos - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
     }
 
-    Vector3 GetAimTargetPos()
+    public Vector3 GetAimTargetPos()
     {
         //Update surface plane
         surfacePlane.SetNormalAndPosition(Vector3.up, transform.position);
