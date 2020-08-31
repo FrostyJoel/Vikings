@@ -19,6 +19,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8568588796553509405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435806408877832375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0833348289f1dc44094160698952d7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageOverTimeAmount: 3
+  duration: 5
+  delay: 1
+  lightningCircleVisual: {fileID: 159196, guid: 37e803394624a5c48ae5f13fd212ac0b,
+    type: 3}
+  hammerDamageAmount: 0
+  maxForce: 0
+  hammer: {fileID: 0}
 --- !u!1 &778316035282277540
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,8 +141,10 @@ MonoBehaviour:
   maxVelocityChange: 10
   canJump: 1
   jumpHeight: 2
+  walking: 0
   turnSpeed: 7.5
   cameraXYOffset: 2
+  charAnimator: {fileID: 0}
 --- !u!114 &778316035282277566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,10 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1927566a8f8dd40a4f3e352aa8cc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackList:
-  - {fileID: 11400000, guid: 2edd3119bc2fba34083b35da606e2a7b, type: 2}
-  - {fileID: 11400000, guid: 83ae344c2cd8f284fbe79ca1706f2e83, type: 2}
-  curAttack: {fileID: 0}
+  playerAttacks: {fileID: 0}
   player: {fileID: 0}
   isAttacking: 0
   attackPos: {x: 0, y: 0, z: 0}

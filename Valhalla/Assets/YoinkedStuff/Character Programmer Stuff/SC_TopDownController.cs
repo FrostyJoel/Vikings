@@ -32,15 +32,16 @@ public class SC_TopDownController : MonoBehaviour
 
     //Animator and AttackManager
     SC_AttackManager attackManager;
-    SC_CharacterAnimation charAnimator;
     public float turnSpeed = 90;
     public float cameraXYOffset = 2;
     Vector3 targetVelocity;
+    [HideInInspector]
+    public SC_CharacterAnimation charAnimator;
 
     void Awake()
     {
         charAnimator = GetComponent<SC_CharacterAnimation>();
-        attackManager = GetComponent<SC_AttackManager>();
+        attackManager = FindObjectOfType<SC_AttackManager>();
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
         r.useGravity = false;
