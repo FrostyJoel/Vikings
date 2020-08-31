@@ -20,7 +20,7 @@ public class SC_CharacterAnimation : MonoBehaviour
     public void SetVerticalAnime(float dir)
     {
         zDir = dir;
-        anime.SetFloat("MovingZ", zDir);
+        anime.SetFloat("MovingY", zDir);
     }
 
     public void Update()

@@ -20,6 +20,7 @@ public class SC_TopDownController : MonoBehaviour
     public float jumpHeight = 2.0f;
     //Private variables
     bool grounded = false;
+    [SerializeField]bool walking = false;
     Rigidbody r;
     GameObject targetObject;
     //Mouse cursor Camera offset effect
@@ -30,14 +31,16 @@ public class SC_TopDownController : MonoBehaviour
     Plane surfacePlane = new Plane();
 
     //Animator and AttackManager
-    SC_AttackManager aMan;
-    SC_CharacterAnimation cA;
+    SC_AttackManager attackManager;
+    SC_CharacterAnimation charAnimator;
     public float turnSpeed = 90;
+    public float cameraXYOffset = 2;
+    Vector3 targetVelocity;
 
     void Awake()
     {
-        cA = GetComponent<SC_CharacterAnimation>();
-        aMan = GetComponent<SC_AttackManager>();
+        charAnimator = GetComponent<SC_CharacterAnimation>();
+        attackManager = GetComponent<SC_AttackManager>();
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
         r.useGravity = false;
@@ -65,24 +68,26 @@ public class SC_TopDownController : MonoBehaviour
             cameraOffset = new Vector3(0, cameraHeight, cameraDistance);
         }
 
-        if (grounded && !aMan.isAttacking)
+        if (grounded && !attackManager.isAttacking)
         {
-            
-            Vector3 targetVelocity = Vector3.zero;
+            walking = false;
+            targetVelocity = Vector3.zero;
             // Calculate how fast we should be moving
             if (cameraDirection == CameraDirection.x)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? 1 : -1));
-                cA.SetVerticalAnime(Input.GetAxis("Vertical"));
-                cA.SetHorizontalAnime(Input.GetAxis("Horizontal"));
             }
             else if (cameraDirection == CameraDirection.z)
             {
                 targetVelocity = new Vector3(Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1));
-                cA.SetHorizontalAnime(Input.GetAxis("Horizontal"));
-                cA.SetVerticalAnime(Input.GetAxis("Vertical"));
             }
             targetVelocity *= speed;
+            if(targetVelocity != Vector3.zero)
+            {
+                walking = true;
+                charAnimator.SetHorizontalAnime(Input.GetAxis("Horizontal"));
+                charAnimator.SetVerticalAnime(Input.GetAxis("Vertical"));
+            }
 
             // Apply a force that attempts to reach our target velocity
             Vector3 velocity = r.velocity;
@@ -111,28 +116,42 @@ public class SC_TopDownController : MonoBehaviour
 
         //Camera follow
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraOffset, Time.deltaTime * 7.4f);
-        playerCamera.transform.LookAt(transform.position + new Vector3(-offsetVector.y * 2, 0, offsetVector.x * 2));
+        playerCamera.transform.LookAt(transform.position + new Vector3(-offsetVector.y * cameraXYOffset, 0, offsetVector.x * cameraXYOffset));
 
         //Aim target position and rotation
         targetObject.transform.position = GetAimTargetPos();
         targetObject.transform.LookAt(new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z));
 
         //Player rotation
-        if (!aMan.isAttacking)
+        if (attackManager.isAttacking)
         {
-            Vector3 dir = targetObject.transform.position - transform.position;
+            ResetMovement();
+            Vector3 dir = attackManager.attackPos - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             //transform.LookAt(new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
         }
-        else
+        else if (walking == false)
         {
-            Vector3 dir = aMan.attackPos - transform.position;
+            Vector3 dir = targetObject.transform.position - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
+        else
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(targetVelocity);
+            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f); ;
+        }
+    }
+
+    private void ResetMovement()
+    {
+        charAnimator.SetHorizontalAnime(0);
+        charAnimator.SetVerticalAnime(0);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public Vector3 GetAimTargetPos()
