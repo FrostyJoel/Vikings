@@ -10,11 +10,11 @@ public class SC_CharacterAnimation : MonoBehaviour
     {
         anime = GetComponentInChildren<Animator>();
     }
+
     public void SetHorizontalAnime(float dir)
     {
         xDir = dir;
         anime.SetFloat("MovingX",xDir);
-        
     }
 
     public void SetVerticalAnime(float dir)
@@ -23,20 +23,21 @@ public class SC_CharacterAnimation : MonoBehaviour
         anime.SetFloat("MovingY", zDir);
     }
 
-    public void Update()
-    {
-        if(xDir > -0.1 && xDir < 0.1 && zDir > -0.1 && zDir < 0.1)
-        {
-            anime.SetTrigger("Reset");
-        }
-    }
-
     public void Attack1()
     {
+        anime.ResetTrigger("Attack0");
         anime.SetTrigger("Attack0");
     }
+
+    public void PullBack()
+    {
+        anime.ResetTrigger("HammerPull");
+        anime.SetTrigger("HammerPull");
+    }
+
     public void Attack2()
     {
+        anime.ResetTrigger("Attack1");
         anime.SetTrigger("Attack1");
     }
 }

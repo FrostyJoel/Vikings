@@ -128,24 +128,25 @@ public class SC_TopDownController : MonoBehaviour
         {
             ResetMovement();
             Vector3 dir = attackManager.attackPos - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            DetermineRotation(dir);
             //transform.LookAt(new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
         }
         else if (walking == false)
         {
             Vector3 dir = targetObject.transform.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            DetermineRotation(dir);
         }
         else
         {
-            Quaternion lookRotation = Quaternion.LookRotation(targetVelocity);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f); ;
+            DetermineRotation(targetVelocity);
         }
+    }
+
+    private void DetermineRotation(Vector3 dir)
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     private void ResetMovement()

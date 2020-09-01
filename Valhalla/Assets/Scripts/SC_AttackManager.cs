@@ -13,24 +13,41 @@ public class SC_AttackManager : MonoBehaviour
     private void Update()
     {
         ButtonSelect();
+        player.charAnimator.anime.SetBool("InHand", playerAttacks.inHand);
     }
 
     public void ButtonSelect()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonUp("Fire1"))
         {
-            player.charAnimator.Attack1();
             attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
             isAttacking = true;
+            if (playerAttacks.inHand)
+            {
+                player.charAnimator.Attack1();
+                playerAttacks.inHand = false;
+            }
+        }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (playerAttacks.hitObject && !playerAttacks.inHand)
+            {
+                player.charAnimator.PullBack();
+                isAttacking = true;
+            }
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            if (!IsInvoking())
+            if (playerAttacks.inHand)
             {
-                player.charAnimator.Attack2();
-                attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-                isAttacking = true;
+                if (!IsInvoking())
+                {
+                    player.charAnimator.Attack2();
+                    attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
+                    isAttacking = true;
+                }
             }
+            else { return; }
         }
     }
 }

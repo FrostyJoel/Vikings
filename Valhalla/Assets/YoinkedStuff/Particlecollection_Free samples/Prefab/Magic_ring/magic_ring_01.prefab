@@ -14188,6 +14188,8 @@ GameObject:
   - component: {fileID: 428174}
   - component: {fileID: 19857428}
   - component: {fileID: 19960340}
+  - component: {fileID: 311637630}
+  - component: {fileID: 311637629}
   m_Layer: 0
   m_Name: magic_ring_01
   m_TagString: Untagged
@@ -18935,6 +18937,31 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &311637630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da75b23b3bfffaf47a4bdc04231039e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &311637629
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.0644107, y: 6.4522495, z: 9.035162}
+  m_Center: {x: 0.03949094, y: -0.07991862, z: 3.80758}
 --- !u!1 &178332
 GameObject:
   m_ObjectHideFlags: 0
