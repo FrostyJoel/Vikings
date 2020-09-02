@@ -22,26 +22,29 @@ public class SC_Attacks : MonoBehaviour
     public Rigidbody hammerRB;
     public Transform targetHand, curvePoint;
 
-    [Range(5f, 20f)]
-    public float hammerDamageAmount = 5f;
+    [Range(5f, 40f)]
+    public float maxhammerDamageAmount;
     [Range(20f, 40f)]
     public float maxForce = 20f;
-    public float forceAmount = 0f;
-    [Range(1f,5f)]
-    [SerializeField] float minforceAmount = 1f;
     [Range(15f,40f)]
     public float minFlyingForceReq = 20f;
 
+    [HideInInspector]
+    public float hammerDamageAmount = 0f;
+    [HideInInspector]
+    public float forceAmount = 0f;
+
     public bool hitObject = false;
     public bool inHand = true;
+
+    [Range(1f,5f)]
+    [SerializeField] float minforceAmount = 1f;
 
     [Range(5f, 20f)]
     [SerializeField] float hammerRangeOfFloating = 30f;
 
     private Vector3 oldPos;
-
     private bool isReturning = false;
-
     private float time = 0.0f;
 
     private void Awake()

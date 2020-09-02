@@ -42,6 +42,7 @@ public class SC_AttackManager : MonoBehaviour
         {
             isAttacking = true;
             attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
+            playerAttacks.hammerRB.GetComponent<Animator>().enabled = false;
             player.charAnimator.HammerThrow();
         }
 
@@ -59,13 +60,16 @@ public class SC_AttackManager : MonoBehaviour
             else { return; }
         }
     }
+
     IEnumerator HammerCharge()
     {
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
+        float speedIncrease = 1.0f;
+
         while (Input.GetButton("Fire1"))
         {
-            //Todo HammerSpin
+            playerAttacks.hammerRB.GetComponent<Animator>().enabled = true;
             playerAttacks.forceAmount += forceAdd;
             if(forceAdd <= 7.5f)
             {
@@ -73,6 +77,16 @@ public class SC_AttackManager : MonoBehaviour
             }
             if(playerAttacks.forceAmount <= playerAttacks.maxForce)
             {
+                if (playerAttacks.hammerDamageAmount <= playerAttacks.maxhammerDamageAmount)
+                {
+                    playerAttacks.hammerDamageAmount *= 2;
+                }
+                else
+                {
+                    playerAttacks.hammerDamageAmount = playerAttacks.maxhammerDamageAmount;
+                }
+                playerAttacks.hammerRB.GetComponent<SC_HammerStats>().myHammerAnimation.SetFloat("SpeedIncreasing", speedIncrease);
+                speedIncrease++;
                 yield return new WaitForSeconds(forceDelay/2f);
             }
             else

@@ -31,5 +31,6 @@ public class SC_EnemyStats : MonoBehaviour
     public void DealDamage(float damage)
     {
         curHealth -= damage;
+        Debug.Log(gameObject.name + " Took: " + Mathf.RoundToInt(damage).ToString());
     }
 }

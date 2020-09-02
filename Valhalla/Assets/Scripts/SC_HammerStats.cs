@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SC_HammerStats : MonoBehaviour
 {
+    public bool aboveGround;
+    public Animator myHammerAnimation;
+
     SC_Attacks attacks;
     Rigidbody myRB;
     RaycastHit hit;
-    public bool aboveGround;
+
     private void Awake()
     {
         attacks = GetComponentInParent<SC_Attacks>();
