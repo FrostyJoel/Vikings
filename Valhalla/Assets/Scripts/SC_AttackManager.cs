@@ -22,22 +22,29 @@ public class SC_AttackManager : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            isAttacking = true;
             if (playerAttacks.inHand == true)
             {
-                attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-                player.charAnimator.HammerThrow();
+                StartCoroutine(HammerCharge());
                 return;
             }
             else
             {
                 if (playerAttacks.hitObject == true)
                 {
+                    isAttacking = true;
                     player.charAnimator.PullBack();
                 }
                 return;
             }
         }
+
+        if (Input.GetButtonUp("Fire1") && playerAttacks.inHand == true)
+        {
+            isAttacking = true;
+            attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
+            player.charAnimator.HammerThrow();
+        }
+
         if (Input.GetButtonDown("Fire2"))
         {
             if (playerAttacks.inHand)
@@ -50,6 +57,29 @@ public class SC_AttackManager : MonoBehaviour
                 }
             }
             else { return; }
+        }
+    }
+    IEnumerator HammerCharge()
+    {
+        float forceAdd = 0.5f;
+        float forceDelay = 0.5f;
+        while (Input.GetButton("Fire1"))
+        {
+            //Todo HammerSpin
+            playerAttacks.forceAmount += forceAdd;
+            if(forceAdd <= 7.5f)
+            {
+                forceAdd *= 2f;
+            }
+            if(playerAttacks.forceAmount <= playerAttacks.maxForce)
+            {
+                yield return new WaitForSeconds(forceDelay/2f);
+            }
+            else
+            {
+                playerAttacks.forceAmount = playerAttacks.maxForce;
+                yield break;
+            }
         }
     }
 }

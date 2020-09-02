@@ -25,41 +25,42 @@ public class SC_Attacks : MonoBehaviour
     [Range(5f, 20f)]
     public float hammerDamageAmount = 5f;
     [Range(20f, 40f)]
-    [SerializeField] float maxForce = 20f;
-    [Range(5f, 50f)]
-    [SerializeField] float returnSpeed = 20f;
+    public float maxForce = 20f;
+    public float forceAmount = 0f;
+    [Range(1f,5f)]
+    [SerializeField] float minforceAmount = 1f;
+    [Range(15f,40f)]
+    public float minFlyingForceReq = 20f;
+
+    public bool hitObject = false;
+    public bool inHand = true;
+
     [Range(5f, 20f)]
-    [SerializeField] float maxResetTimer = 5f;
+    [SerializeField] float hammerRangeOfFloating = 30f;
 
     private Vector3 oldPos;
-    private float forceAmount = 20f;
+
     private bool isReturning = false;
-    public bool inHand = true;
-    public bool hitObject = false;
+
     private float time = 0.0f;
-    private float resetTimer = 0.0f;
 
     private void Awake()
     {
+        forceAmount = minforceAmount;
         attackMan = FindObjectOfType<SC_AttackManager>();
     }
 
     private void Update()
     {
-        if(isReturning == false && inHand == false && hitObject == false)
+        if(isReturning == false && inHand == false && hitObject == false && !attackMan.isAttacking && !hammerRB.GetComponent<SC_HammerStats>().aboveGround)
         {
-            resetTimer += Time.deltaTime;
+            float dis = Vector3.Distance(targetHand.position, hammerRB.position);
 
-            if(resetTimer >= maxResetTimer)
+            if(dis >= hammerRangeOfFloating)
             {
-                HammerReturn();
                 attackMan.player.charAnimator.PullBack();
                 attackMan.isAttacking = true;
             }
-        }
-        else
-        {
-            resetTimer = 0.0f;
         }
 
         if(isReturning && inHand == false)
@@ -100,6 +101,10 @@ public class SC_Attacks : MonoBehaviour
     {
         hammerRB.transform.parent = null;
         hammerRB.isKinematic = false;
+        if(forceAmount <= minFlyingForceReq)
+        {
+            hammerRB.useGravity = true;
+        }
         hammerRB.AddForce(attackMan.player.transform.forward * forceAmount, ForceMode.Impulse);
     }
 
@@ -125,14 +130,25 @@ public class SC_Attacks : MonoBehaviour
     //Reset Hammer
     void ResetHammer()
     {
+        ReattachToHand();
+        ResetPostionHammer();
+        ResetAttack();
+    }
+
+    private void ReattachToHand()
+    {
         attackMan.player.charAnimator.Caught();
         isReturning = false;
         inHand = true;
         hitObject = false;
+    }
+
+    private void ResetPostionHammer()
+    {
+        forceAmount = minforceAmount;
         hammerRB.transform.parent = targetHand;
         hammerRB.position = targetHand.position;
         hammerRB.rotation = targetHand.rotation;
-        ResetAttack();
     }
 
     Vector3 getBQCPoint(float t, Vector3 p0,Vector3 p1,Vector3 p2)
