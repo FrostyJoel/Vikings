@@ -90,6 +90,7 @@ public class SC_Attacks : MonoBehaviour
     public void HammerThrow()
     {
         isReturning = false;
+        inHand = false;
         HammerAddingForce();
         HammerRotation();
     }
@@ -124,6 +125,7 @@ public class SC_Attacks : MonoBehaviour
     //Reset Hammer
     void ResetHammer()
     {
+        attackMan.player.charAnimator.Caught();
         isReturning = false;
         inHand = true;
         hitObject = false;

@@ -23,21 +23,27 @@ public class SC_CharacterAnimation : MonoBehaviour
         anime.SetFloat("MovingY", zDir);
     }
 
-    public void Attack1()
+    public void HammerThrow()
     {
-        anime.ResetTrigger("Attack0");
+        Debug.Log("Triggerd: " + "HammerThrow");
         anime.SetTrigger("Attack0");
+    }
+
+    public void LightningAttack()
+    {
+        Debug.Log("Triggerd: " + "LightningAttack");
+        anime.SetTrigger("Attack1");
     }
 
     public void PullBack()
     {
-        anime.ResetTrigger("HammerPull");
+        Debug.Log("Triggerd: " + "PullBack");
         anime.SetTrigger("HammerPull");
     }
 
-    public void Attack2()
+    public void Caught()
     {
-        anime.ResetTrigger("Attack1");
-        anime.SetTrigger("Attack1");
+        Debug.Log("Triggerd: " + "Caught");
+        anime.SetTrigger("Caught");
     }
 }
