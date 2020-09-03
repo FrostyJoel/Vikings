@@ -23,6 +23,8 @@ public class SC_Attacks : MonoBehaviour
     public Transform targetHand, curvePoint;
 
     [Range(5f, 40f)]
+    public float meleeHammerDamageAmount;
+    [Range(5f, 40f)]
     public float maxhammerDamageAmount;
     [Range(20f, 40f)]
     public float maxForce = 20f;
@@ -135,6 +137,7 @@ public class SC_Attacks : MonoBehaviour
     {
         ReattachToHand();
         ResetPostionHammer();
+        TakeOffHammerCollider();
         ResetAttack();
     }
 
@@ -163,8 +166,36 @@ public class SC_Attacks : MonoBehaviour
         return p;
     }
 
+    public void TakeOffHammerCollider()
+    {
+        if (hammerRB.GetComponent<Collider>().enabled == true)
+        {
+            hammerRB.GetComponent<Collider>().enabled = false;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void TurnOnHammerCollider()
+    {
+        if(hammerRB.GetComponent<Collider>().enabled == false)
+        {
+            hammerRB.GetComponent<Collider>().enabled = true;
+        }
+        else
+        {
+            return;
+        }
+    }
+
     public void ResetAttack()
     {
         attackMan.isAttacking = false;
+        if (hammerRB.GetComponent<SC_HammerStats>().melee)
+        {
+            hammerRB.GetComponent<SC_HammerStats>().melee = false;
+        }
     }
 }

@@ -23,16 +23,28 @@ public class SC_CharacterAnimation : MonoBehaviour
         anime.SetFloat("MovingY", zDir);
     }
 
+    public void MeleeAttack()
+    {
+        Debug.Log("Triggerd" + "MeleeAttack");
+        anime.SetTrigger("Attack(Melee)");
+    }
+
+    public void ResetMeleeAttack()
+    {
+        Debug.Log("Triggerd" + "ResetMeleeAttack");
+        anime.SetTrigger("HitWall");
+    }
+
     public void HammerThrow()
     {
         Debug.Log("Triggerd: " + "HammerThrow");
-        anime.SetTrigger("Attack0");
+        anime.SetTrigger("Attack(Throw)");
     }
 
     public void LightningAttack()
     {
         Debug.Log("Triggerd: " + "LightningAttack");
-        anime.SetTrigger("Attack1");
+        anime.SetTrigger("Attack(Lightning)");
     }
 
     public void PullBack()

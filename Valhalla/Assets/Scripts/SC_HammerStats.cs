@@ -5,7 +5,11 @@ using UnityEngine;
 public class SC_HammerStats : MonoBehaviour
 {
     public bool aboveGround;
+    public bool melee;
     public Animator myHammerAnimation;
+
+    [Range(5f,40f)]
+    [SerializeField] float meleeForceAmount = 5f;
 
     SC_Attacks attacks;
     Rigidbody myRB;
@@ -19,7 +23,7 @@ public class SC_HammerStats : MonoBehaviour
 
     private void Update()
     {
-        if(Physics.Raycast(transform.position,transform.forward*Mathf.Infinity,out hit))
+        if (Physics.Raycast(transform.position, transform.forward * 1000f, out hit))
         {
             aboveGround = true;
         }
@@ -31,19 +35,37 @@ public class SC_HammerStats : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(attacks.hitObject != true)
+
+        if (melee)
         {
-            myRB.isKinematic = false;
-            myRB.useGravity = true;
-            attacks.hitObject = true;
-            if(collision.gameObject.tag == "Enviorment" && attacks.forceAmount >= attacks.minFlyingForceReq)
+            if (collision.gameObject.tag == "Enviorment")
             {
-                myRB.isKinematic = true;
-                myRB.useGravity = false;
+                Debug.Log("HittingWall");
+                attacks.GetComponentInParent<SC_CharacterAnimation>().ResetMeleeAttack();
+                attacks.ResetAttack();
             }
-            if(collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<SC_EnemyStats>().DealDamage(attacks.hammerDamageAmount);
+                collision.gameObject.GetComponent<SC_EnemyStats>().DealDamage(attacks.meleeHammerDamageAmount);
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.transform.forward * meleeForceAmount, ForceMode.Impulse);
+            }
+        }
+        else
+        {
+            if (!attacks.hitObject && !attacks.inHand)
+            {
+                myRB.isKinematic = false;
+                myRB.useGravity = true;
+                attacks.hitObject = true;
+                if (collision.gameObject.tag == "Enviorment" && attacks.forceAmount >= attacks.minFlyingForceReq)
+                {
+                    myRB.isKinematic = true;
+                    myRB.useGravity = false;
+                }
+                if (collision.gameObject.tag == "Enemy")
+                {
+                    collision.gameObject.GetComponent<SC_EnemyStats>().DealDamage(attacks.hammerDamageAmount);
+                }
             }
         }
     }

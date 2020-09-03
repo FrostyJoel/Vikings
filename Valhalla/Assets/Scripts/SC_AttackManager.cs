@@ -24,7 +24,7 @@ public class SC_AttackManager : MonoBehaviour
         {
             if (playerAttacks.inHand == true)
             {
-                StartCoroutine(HammerCharge());
+                StartCoroutine(CheckButtonHold());
                 return;
             }
             else
@@ -42,8 +42,16 @@ public class SC_AttackManager : MonoBehaviour
         {
             isAttacking = true;
             attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-            playerAttacks.hammerRB.GetComponent<Animator>().enabled = false;
-            player.charAnimator.HammerThrow();
+            if(playerAttacks.forceAmount >= playerAttacks.minFlyingForceReq)
+            {
+                playerAttacks.hammerRB.GetComponent<Animator>().enabled = false;
+                player.charAnimator.HammerThrow();
+            }
+            else
+            {
+                player.charAnimator.MeleeAttack();
+                playerAttacks.hammerRB.GetComponent<SC_HammerStats>().melee = true;
+            }
         }
 
         if (Input.GetButtonDown("Fire2"))
@@ -61,12 +69,25 @@ public class SC_AttackManager : MonoBehaviour
         }
     }
 
+    IEnumerator CheckButtonHold()
+    {
+        float holdTimer = 0.0f;
+        while (Input.GetButton("Fire1"))
+        {
+            if(holdTimer >= 1f)
+            {
+                StartCoroutine(HammerCharge());
+                yield break;
+            }
+            holdTimer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
     IEnumerator HammerCharge()
     {
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
         float speedIncrease = 1.0f;
-
         while (Input.GetButton("Fire1"))
         {
             playerAttacks.hammerRB.GetComponent<Animator>().enabled = true;
