@@ -1,39 +1,54 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 
 public class SC_TopDownController : MonoBehaviour
 {
-    //Player Camera variables
     public enum CameraDirection { x, z }
+
+    [Header("Camera Settings")]
     public CameraDirection cameraDirection = CameraDirection.x;
     public float cameraHeight = 20f;
     public float cameraDistance = 7f;
+    public float cameraXYOffset = 2;
     public Camera playerCamera;
     public GameObject targetIndicatorPrefab;
-    //Player Controller variables
+
+    [Header("PlayerMovement Settings")]
     public float speed = 5.0f;
     public float gravity = 14.0f;
     public float maxVelocityChange = 10.0f;
-    public bool canJump = true;
     public float jumpHeight = 2.0f;
-    //Private variables
-    bool grounded = false;
+    public float turnSpeed = 90;
+    public bool canJump = true;
     [SerializeField]bool walking = false;
+
+    [Header("Player Stats")]
+    [Range(20f,60f)]
+    public float maxHealth;
+    [Range(1f,10f)]
+    public float invulnerableTimer;
+
+    float curHealth = 0.0f;
+    bool gotHit = false;
+    bool grounded = false;
+
     Rigidbody r;
     GameObject targetObject;
+
     //Mouse cursor Camera offset effect
     Vector2 playerPosOnScreen;
     Vector2 cursorPosition;
     Vector2 offsetVector;
+
     //Plane that represents imaginary floor that will be used to calculate Aim target position
     Plane surfacePlane = new Plane();
 
     //Animator and AttackManager
     SC_AttackManager attackManager;
-    public float turnSpeed = 90;
-    public float cameraXYOffset = 2;
     Vector3 targetVelocity;
     [HideInInspector]
     public SC_CharacterAnimation charAnimator;
@@ -45,6 +60,7 @@ public class SC_TopDownController : MonoBehaviour
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
         r.useGravity = false;
+        curHealth = maxHealth;
 
         //Instantiate aim target prefab
         if (targetIndicatorPrefab)
@@ -54,6 +70,21 @@ public class SC_TopDownController : MonoBehaviour
 
         //Hide the cursor
         Cursor.visible = false;
+    }
+
+    private void Update()
+    {
+        if(curHealth <= 0)
+        {
+            Die();
+        }
+        if (gotHit)
+        {
+            if (!IsInvoking())
+            {
+                Invoke("InvulnerableReset", invulnerableTimer);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -73,43 +104,57 @@ public class SC_TopDownController : MonoBehaviour
         {
             walking = false;
             targetVelocity = Vector3.zero;
-            // Calculate how fast we should be moving
-            if (cameraDirection == CameraDirection.x)
-            {
-                targetVelocity = new Vector3(Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? 1 : -1));
-            }
-            else if (cameraDirection == CameraDirection.z)
-            {
-                targetVelocity = new Vector3(Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1));
-            }
-            targetVelocity *= speed;
-            if(targetVelocity != Vector3.zero)
-            {
-                walking = true;
-                charAnimator.SetHorizontalAnime(Input.GetAxis("Horizontal"));
-                charAnimator.SetVerticalAnime(Input.GetAxis("Vertical"));
-            }
-
-            // Apply a force that attempts to reach our target velocity
-            Vector3 velocity = r.velocity;
-            Vector3 velocityChange = (targetVelocity - velocity);
-            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-            velocityChange.y = 0;
-            r.AddForce(velocityChange, ForceMode.VelocityChange);
-
-            // Jump
-            if (canJump && Input.GetButton("Jump"))
-            {
-                r.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-            }
+            MovementCalculations();
+            AccelerationAndJumping();
         }
 
         // We apply gravity manually for more tuning control
         r.AddForce(new Vector3(0, -gravity * r.mass, 0));
 
         grounded = false;
+        CameraOffsetFollowAndAim(cameraOffset);
+        PlayerRotation();
+    }
 
+    private void MovementCalculations()
+    {
+        // Calculate how fast we should be moving
+        if (cameraDirection == CameraDirection.x)
+        {
+            targetVelocity = new Vector3(Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? 1 : -1));
+        }
+        else if (cameraDirection == CameraDirection.z)
+        {
+            targetVelocity = new Vector3(Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1));
+        }
+        targetVelocity *= speed;
+        if (targetVelocity != Vector3.zero)
+        {
+            walking = true;
+            charAnimator.SetHorizontalAnime(Input.GetAxis("Horizontal"));
+            charAnimator.SetVerticalAnime(Input.GetAxis("Vertical"));
+        }
+    }
+
+    private void AccelerationAndJumping()
+    {
+        // Apply a force that attempts to reach our target velocity
+        Vector3 velocity = r.velocity;
+        Vector3 velocityChange = (targetVelocity - velocity);
+        velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+        velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+        velocityChange.y = 0;
+        r.AddForce(velocityChange, ForceMode.VelocityChange);
+
+        // Jump
+        if (canJump && Input.GetButton("Jump"))
+        {
+            r.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+        }
+    }
+
+    private void CameraOffsetFollowAndAim(Vector3 cameraOffset)
+    {
         //Mouse cursor offset effect
         playerPosOnScreen = playerCamera.WorldToViewportPoint(transform.position);
         cursorPosition = playerCamera.ScreenToViewportPoint(Input.mousePosition);
@@ -122,7 +167,10 @@ public class SC_TopDownController : MonoBehaviour
         //Aim target position and rotation
         targetObject.transform.position = GetAimTargetPos();
         targetObject.transform.LookAt(new Vector3(transform.position.x, targetObject.transform.position.y, transform.position.z));
+    }
 
+    private void PlayerRotation()
+    {
         //Player rotation
         if (attackManager.isAttacking)
         {
@@ -190,5 +238,29 @@ public class SC_TopDownController : MonoBehaviour
         // From the jump height and gravity we deduce the upwards speed 
         // for the character to reach at the apex.
         return Mathf.Sqrt(2 * jumpHeight * gravity);
+    }
+
+    public void Die()
+    {
+        Debug.Log("Die");
+    }
+
+    private void InvulnerableReset()
+    {
+        gotHit = false;
+    }
+
+    public void DealDamage(float damage)
+    {
+        if (!gotHit)
+        {
+            curHealth -= damage;
+            Debug.Log(gameObject.name + " Took: " + Mathf.RoundToInt(damage).ToString());
+            gotHit = true;
+        }
+        else
+        {
+            Debug.Log("invulnerable");
+        }
     }
 }

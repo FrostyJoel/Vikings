@@ -10,6 +10,7 @@ public class SC_AttackManager : MonoBehaviour
     [HideInInspector]
     public Vector3 attackPos;
 
+    private bool checkIfPressed = false;
     private void Update()
     {
         ButtonSelect();
@@ -38,11 +39,21 @@ public class SC_AttackManager : MonoBehaviour
             }
         }
 
+        if (Input.GetButton("Fire1"))
+        {
+            if (playerAttacks.inHand == true && checkIfPressed == false)
+            {
+                StartCoroutine(CheckButtonHold());
+                return;
+            }
+        }
+
         if (Input.GetButtonUp("Fire1") && playerAttacks.inHand == true)
         {
+            checkIfPressed = false;
             isAttacking = true;
             attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-            if(playerAttacks.forceAmount >= playerAttacks.minFlyingForceReq)
+            if(playerAttacks.hammerRB.GetComponent<Animator>().enabled == true)
             {
                 playerAttacks.hammerRB.GetComponent<Animator>().enabled = false;
                 player.charAnimator.HammerThrow();
@@ -71,10 +82,11 @@ public class SC_AttackManager : MonoBehaviour
 
     IEnumerator CheckButtonHold()
     {
+        checkIfPressed = true;
         float holdTimer = 0.0f;
         while (Input.GetButton("Fire1"))
         {
-            if(holdTimer >= 1f)
+            if(holdTimer >= 0.5f)
             {
                 StartCoroutine(HammerCharge());
                 yield break;
@@ -88,9 +100,9 @@ public class SC_AttackManager : MonoBehaviour
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
         float speedIncrease = 1.0f;
+        playerAttacks.hammerRB.GetComponent<Animator>().enabled = true;
         while (Input.GetButton("Fire1"))
         {
-            playerAttacks.hammerRB.GetComponent<Animator>().enabled = true;
             playerAttacks.forceAmount += forceAdd;
             if(forceAdd <= 7.5f)
             {

@@ -23,13 +23,16 @@ public class SC_HammerStats : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward * 1000f, out hit))
+        if (!attacks.inHand)
         {
-            aboveGround = true;
-        }
-        else
-        {
-            aboveGround = false;
+            if (Physics.Raycast(transform.position, transform.forward * 1000f, out hit))
+            {
+                aboveGround = true;
+            }
+            else
+            {
+                aboveGround = false;
+            }
         }
     }
 
@@ -38,6 +41,7 @@ public class SC_HammerStats : MonoBehaviour
 
         if (melee)
         {
+            Debug.Log("Melee");
             if (collision.gameObject.tag == "Enviorment")
             {
                 Debug.Log("HittingWall");
@@ -46,7 +50,7 @@ public class SC_HammerStats : MonoBehaviour
             }
             if (collision.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<SC_EnemyStats>().DealDamage(attacks.meleeHammerDamageAmount);
+                collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.meleeHammerDamageAmount);
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.transform.forward * meleeForceAmount, ForceMode.Impulse);
             }
         }
@@ -64,7 +68,7 @@ public class SC_HammerStats : MonoBehaviour
                 }
                 if (collision.gameObject.tag == "Enemy")
                 {
-                    collision.gameObject.GetComponent<SC_EnemyStats>().DealDamage(attacks.hammerDamageAmount);
+                    collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.hammerDamageAmount);
                 }
             }
         }
