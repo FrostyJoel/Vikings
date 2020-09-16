@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 1452761839608076884}
   m_Layer: 10
   m_Name: Inside
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 2695352073638340771}
   m_Layer: 10
   m_Name: ConectionPoints
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 1366639488677535169}
   m_Layer: 10
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 2146653847867370111}
   m_Layer: 10
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -605,6 +605,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pref_Wood_Wall_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7306816303495766551, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
+      objectReference: {fileID: 0}
     - target: {fileID: 7938955657189111981, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -679,6 +684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Wood_Window_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 502000381997367760, guid: bfc3eeb041521c34a8e768498acf9236,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     - target: {fileID: 989848659797482346, guid: bfc3eeb041521c34a8e768498acf9236,
         type: 3}
@@ -904,6 +914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pref_Wood_Wall_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306816303495766551, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     - target: {fileID: 7938955657189111981, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
         type: 3}
@@ -1134,6 +1149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pref_Wood_Wall_1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306816303495766551, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     - target: {fileID: 7938955657189111981, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
         type: 3}
@@ -1471,6 +1491,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Wood_Window_0
       objectReference: {fileID: 0}
+    - target: {fileID: 502000381997367760, guid: bfc3eeb041521c34a8e768498acf9236,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
+      objectReference: {fileID: 0}
     - target: {fileID: 989848659797482346, guid: bfc3eeb041521c34a8e768498acf9236,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1625,6 +1650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pref_Wood_Wall_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306816303495766551, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     - target: {fileID: 7938955657189111981, guid: c4aaf326ac0fc0b41b6bdb9f59eaa27e,
         type: 3}

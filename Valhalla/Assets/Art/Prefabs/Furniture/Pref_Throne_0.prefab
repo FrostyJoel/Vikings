@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2910415552765075256}
   - component: {fileID: 2291210790970757277}
   - component: {fileID: 4046751836811191383}
+  - component: {fileID: 8333581669551790949}
   m_Layer: 10
   m_Name: Pref_Throne_0
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8333581669551790949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533291467383096706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1354202, y: 2.2969408, z: 1.0646641}
+  m_Center: {x: 0, y: 1.1491075, z: -0.04528457}

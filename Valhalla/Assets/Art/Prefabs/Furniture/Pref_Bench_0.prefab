@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5842029791195274830}
   - component: {fileID: 7403025747410850283}
   - component: {fileID: 4708552959203370273}
+  - component: {fileID: 7164042972934617931}
   m_Layer: 10
   m_Name: Pref_Bench_0
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7164042972934617931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510199037071836404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49815452, y: 0.49647918, z: 2.827902}
+  m_Center: {x: 0, y: 0.24823959, z: 0}
