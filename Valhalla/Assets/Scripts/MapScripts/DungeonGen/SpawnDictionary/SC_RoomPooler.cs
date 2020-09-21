@@ -32,7 +32,16 @@ public class SC_RoomPooler : MonoBehaviour
             for (int j = 0; j < pool.prefab.Count; j++)
             {
                 GameObject room = Instantiate(pool.prefab[j],poolParent.transform);
+                SC_RoomTest roomTest = room.GetComponent<SC_RoomTest>();
+                for (int i = 0; i < roomTest.attachPoints.Length; i++)
+                {
+                    AttachPoints currentAttachPoint = roomTest.attachPoints[i];
+                    GameObject wall = Instantiate(SC_RoomManager.single.prefabWall, currentAttachPoint.point);
+                    currentAttachPoint.wall = wall;
+                    wall.SetActive(false);
+                }
                 room.SetActive(false);
+                roomTest.isChecker = true;
                 roomPool.Enqueue(room);
             }
             poolDictionary.Add((int)pool.tag, roomPool);

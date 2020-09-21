@@ -131,14 +131,15 @@ MonoBehaviour:
     nextSpawn: 0
     hasOffset: 0
     attached: 0
+    attachedTo: {fileID: 0}
   - point: {fileID: 4486840332544818248}
     nextSpawn: 0
     hasOffset: 0
     attached: 0
+    attachedTo: {fileID: 0}
   roomCollider: {fileID: 182792392953442132}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  fullyAttached: 0
+  roomType: 2
 --- !u!1 &965108021143216166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1165,11 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8312806284310263752, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,

@@ -697,9 +697,8 @@ MonoBehaviour:
     hasOffset: 0
     attached: 0
   roomCollider: {fileID: 2645320157111625898}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  fullyAttached: 0
+  roomType: 2
 --- !u!1 &3281808737353023377
 GameObject:
   m_ObjectHideFlags: 0

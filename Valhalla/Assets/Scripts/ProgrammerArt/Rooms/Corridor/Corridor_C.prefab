@@ -1185,7 +1185,6 @@ MonoBehaviour:
     hasOffset: 0
     attached: 0
   roomCollider: {fileID: 2529967945354914590}
-  owner: {fileID: 0}
   attachPointsLayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -1592,7 +1591,7 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.x
-      value: 8.4
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
@@ -1602,7 +1601,7 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.z
-      value: 8.4
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}

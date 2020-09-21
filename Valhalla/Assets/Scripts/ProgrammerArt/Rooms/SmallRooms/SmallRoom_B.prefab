@@ -642,18 +642,20 @@ MonoBehaviour:
     nextSpawn: 0
     hasOffset: 0
     attached: 0
+    attachedTo: {fileID: 0}
   - point: {fileID: 966465508635137430}
     nextSpawn: 0
     hasOffset: 0
     attached: 0
+    attachedTo: {fileID: 0}
   - point: {fileID: 8201414506720299847}
     nextSpawn: 0
     hasOffset: 0
     attached: 0
+    attachedTo: {fileID: 0}
   roomCollider: {fileID: 8104631174490340749}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  fullyAttached: 0
+  roomType: 2
 --- !u!1 &2578761055523653062
 GameObject:
   m_ObjectHideFlags: 0
