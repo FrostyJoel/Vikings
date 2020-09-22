@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 3717338184498911874}
   - component: {fileID: 304407453871805735}
   - component: {fileID: 2584379809552556525}
-  m_Layer: 0
-  m_Name: Mesh_Chicken_leg_0
-  m_TagString: Untagged
+  m_Layer: 10
+  m_Name: Mat_Chicken_leg_0
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &3717338184498911874
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4097558567660142648}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.287489, y: -1.7638016, z: 7.6269155}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

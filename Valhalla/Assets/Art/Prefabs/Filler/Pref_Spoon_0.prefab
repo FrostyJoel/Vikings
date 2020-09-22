@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 6479997867442200823}
   - component: {fileID: 7944992059807592274}
   - component: {fileID: 5307139659840723864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pref_Spoon_0
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6479997867442200823
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5955521322243996237}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.183638, y: -1.8684082, z: 6.099148}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

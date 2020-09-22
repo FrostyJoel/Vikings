@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 639794082616090436}
   - component: {fileID: 4561823996273070305}
   - component: {fileID: 1777283067835409451}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pref_Bottle_0
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &639794082616090436
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264254393737201150}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.659243, y: -2.3929443, z: 5.64999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
