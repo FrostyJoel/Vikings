@@ -63,6 +63,7 @@ public class SC_AttackManager : MonoBehaviour
             Animator hammerAnime = SC_Attacks.single.hammerRB.GetComponent<Animator>();
             if (hammerAnime.enabled == true)
             {
+                SC_Attacks.single.hammerRB.transform.localPosition = Vector3.zero;
                 hammerAnime.SetFloat("SpeedIncreasing", 1.0f);
                 hammerAnime.SetTrigger("Reset");
                 hammerAnime.enabled = false;

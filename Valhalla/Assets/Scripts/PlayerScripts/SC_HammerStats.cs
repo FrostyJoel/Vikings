@@ -36,6 +36,12 @@ public class SC_HammerStats : MonoBehaviour
         }
     }
 
+    public void ResetPos()
+    {
+        Debug.Log("Reset Pos");
+        transform.localPosition = Vector3.zero;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
 
