@@ -55,6 +55,10 @@ public class SC_TopDownController : MonoBehaviour
 
     void Awake()
     {
+        if(playerCamera.transform.parent != null)
+        {
+            playerCamera.transform.parent = null;
+        }
         charAnimator = GetComponent<SC_CharacterAnimation>();
         attackManager = FindObjectOfType<SC_AttackManager>();
         r = GetComponent<Rigidbody>();

@@ -7,10 +7,18 @@ public class SC_AttackManager : MonoBehaviour
     [SerializeField] SC_Attacks playerAttacks;
     public SC_TopDownController player;
     public bool isAttacking;
+    [SerializeField] float hammerAnimationTimeDelay;
+
     [HideInInspector]
     public Vector3 attackPos;
 
     private bool checkIfPressed = false;
+    SC_AttackManager single;
+
+    private void Awake()
+    {
+        single = this;
+    }
     private void Update()
     {
         ButtonSelect();
@@ -53,9 +61,12 @@ public class SC_AttackManager : MonoBehaviour
             checkIfPressed = false;
             isAttacking = true;
             attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-            if(playerAttacks.hammerRB.GetComponent<Animator>().enabled == true)
+            Animator hammerAnime = playerAttacks.hammerRB.GetComponent<Animator>();
+            if (hammerAnime.enabled == true)
             {
-                playerAttacks.hammerRB.GetComponent<Animator>().enabled = false;
+                hammerAnime.SetFloat("SpeedIncreasing", 1.0f);
+                hammerAnime.SetTrigger("Reset");
+                hammerAnime.enabled = false;
                 player.charAnimator.HammerThrow();
             }
             else
@@ -100,7 +111,9 @@ public class SC_AttackManager : MonoBehaviour
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
         float speedIncrease = 1.0f;
-        playerAttacks.hammerRB.GetComponent<Animator>().enabled = true;
+        Animator hammerAnimator = playerAttacks.hammerRB.GetComponent<Animator>();
+        hammerAnimator.enabled = true;
+        yield return new WaitForSeconds(hammerAnimationTimeDelay);
         while (Input.GetButton("Fire1"))
         {
             playerAttacks.forceAmount += forceAdd;
