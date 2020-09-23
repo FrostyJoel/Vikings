@@ -999,7 +999,7 @@ MonoBehaviour:
     - axisRot: 1
       rot: {x: 0, y: -90, z: 0}
     - axisRot: 2
-      rot: {x: 0, y: 0, z: 0}
+      rot: {x: 0, y: 180, z: 0}
     - axisRot: 3
       rot: {x: 0, y: 0, z: 0}
   startRoom: 1
@@ -1014,12 +1014,11 @@ MonoBehaviour:
   prefabWall: {fileID: 8847665219547034218, guid: d927190530d10464cbee460279143a1b,
     type: 3}
   spawnDelay: 0.1
-  MaxamountOfRooms: 50
+  MaxamountOfRooms: 10
   currRoomToCheck: {fileID: 0}
   attachment: 0
   customDungeonParent: {fileID: 0}
   currentAmountOfRooms: 0
-  rotationAmount: 0
   currRoomInverted: 0
 --- !u!4 &1505009994
 Transform:
@@ -1067,14 +1066,20 @@ MonoBehaviour:
   pools:
   - tag: 2
     prefab:
+    - {fileID: 2593217339244404547, guid: 242ce11282e16bb4985a9211b85232a2, type: 3}
+    - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
     - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
+    - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
   - tag: 3
     prefab: []
   - tag: 4
     prefab: []
   - tag: 0
     prefab:
+    - {fileID: 2096410673083253621, guid: 055e614146bd8a64487e330ead1df49d, type: 3}
+    - {fileID: 3155827181438389100, guid: 1cdd4bd08627e9b45863a717961c5ea2, type: 3}
     - {fileID: 8552914424950432439, guid: a90521dba5bf0c942946add0dc6f3ccb, type: 3}
+    - {fileID: 3649633782507802868, guid: b979531e4fc274e41916050406b8308a, type: 3}
   - tag: 1
     prefab:
     - {fileID: 4005589626138109547, guid: 0cad618bd2bf6904a8fb57c637065a5b, type: 3}

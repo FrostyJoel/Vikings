@@ -23,15 +23,19 @@ public class MaxRoom : MonoBehaviour {
             GameObject room = Instantiate(nextRoom);
             room.SetActive(true);
             MaxRoom newRoom = room.GetComponent<MaxRoom>();
-
-            for (int i = 0; i < attachPoints.Length; i++) {
-                print(gameObject.name + "my points");
-                for (int iB = 0; iB < newRoom.attachPoints.Length; iB++) {
-                    print(gameObject.name + "new room points");
-                    for (int iC = 0; iC < MaxRoomManager.single_MRM.rotations.Length; iC++) {
-                        print(gameObject.name + " Rot and pos " + MaxRoomManager.single_MRM.rotations[iC]);
+            for (int iC = 0; iC < MaxRoomManager.single_MRM.rotations.Length; iC++)
+            {
+                for (int i = 0; i < attachPoints.Length; i++)
+                {
+                    for (int iB = 0; iB < newRoom.attachPoints.Length; iB++)
+                    {
                         Transform nrAttachPoint = newRoom.attachPoints[iB];
-                        Vector3 newOffset = new Vector3(nrAttachPoint.localPosition.x, nrAttachPoint.localPosition.y, nrAttachPoint.localPosition.z);
+                        float multi = 1f;
+                        if(nrAttachPoint.localPosition.x != 0 && nrAttachPoint.localPosition.z != 0)
+                        {
+                            multi = -1f;
+                        }
+                        Vector3 newOffset = new Vector3(nrAttachPoint.localPosition.x * multi, nrAttachPoint.localPosition.y, nrAttachPoint.localPosition.z * multi);
                         newRoom.transform.position = attachPoints[i].position + newOffset;
                         newRoom.transform.rotation = Quaternion.Euler(MaxRoomManager.single_MRM.rotations[iC]);
                         yield return new WaitForSeconds(mrm.delay);

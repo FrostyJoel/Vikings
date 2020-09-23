@@ -479,25 +479,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoints:
   - point: {fileID: 1528390004816057940}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 7186554105105070910}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 3082007248151148305}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 5936092714887684304}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 2529967945354914590}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  roomType: 0
+  fullyAttached: 0
+  isChecker: 0
 --- !u!1 &9208071661005695268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,32 +2188,32 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.x
-      value: 8.766654
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.096375
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.z
-      value: 8.757162
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.4574411
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.0061650276
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.014799118
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8312806284310263752, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}

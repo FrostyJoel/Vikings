@@ -392,7 +392,6 @@ MonoBehaviour:
   roomType: 2
   fullyAttached: 0
   isChecker: 0
-  inverted: 0
 --- !u!1 &2593217340223462831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,17 +3102,17 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.0519342
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.4786103
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
       propertyPath: m_Size.x
-      value: 9.2
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
@@ -3123,7 +3122,7 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
       propertyPath: m_Size.z
-      value: 9.2
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}

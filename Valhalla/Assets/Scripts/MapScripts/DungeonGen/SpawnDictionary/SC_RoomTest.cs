@@ -2,21 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_RoomTest : MonoBehaviour, IInit
+public class SC_RoomTest : MonoBehaviour
 {
     public AttachPoints[] attachPoints;
     public BoxCollider roomCollider;
     public AvailableSlots roomType;
     [Header("HideInInspector")]
+    public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
     public bool fullyAttached;
     public bool isChecker;
-    public bool inverted;
-
-    public void Init()
-    {
-        Debug.Log("I Did Init");
-        SC_RoomManager.single.CheckRoomAndSpawn(this);
-    }
 
     private void OnDrawGizmosSelected()
     {
@@ -51,11 +45,12 @@ public class SC_RoomTest : MonoBehaviour, IInit
     }
 }
 
-
-
-public interface IInit
+[System.Serializable]
+public class SpawnablePosAndRot
 {
-    void Init();
+    public Vector3 pos;
+    public Quaternion rot;
+    public GameObject room;
 }
 
 [System.Serializable]

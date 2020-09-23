@@ -162,17 +162,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoints:
   - point: {fileID: 1033405182725707651}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 2831899383392064648}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 8552014223007933837}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  roomType: 0
+  fullyAttached: 0
+  isChecker: 0
 --- !u!1 &4781629778609993691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,32 +1364,32 @@ PrefabInstance:
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.x
-      value: 3.5247355
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.y
-      value: 3.1086776
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.z
-      value: 8.787893
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.4616493
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.00046110153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.000579834
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8312806284310263752, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
