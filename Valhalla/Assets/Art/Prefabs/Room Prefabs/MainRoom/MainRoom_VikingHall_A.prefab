@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 7634092656503853355}
   m_Layer: 10
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 8592946714017901638}
   m_Layer: 10
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7598,7 +7598,7 @@ PrefabInstance:
     - target: {fileID: 8312806284310263752, guid: b517208fc1f0f2e499efcd08f5d9d346,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b517208fc1f0f2e499efcd08f5d9d346, type: 3}
@@ -9809,7 +9809,7 @@ PrefabInstance:
     - target: {fileID: 1397596063771792243, guid: cd9580afbf8d2ad4a8b31da1754b5901,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3741904150266650893, guid: cd9580afbf8d2ad4a8b31da1754b5901,
         type: 3}
@@ -10049,7 +10049,7 @@ PrefabInstance:
     - target: {fileID: 1397596063771792243, guid: cd9580afbf8d2ad4a8b31da1754b5901,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3741904150266650893, guid: cd9580afbf8d2ad4a8b31da1754b5901,
         type: 3}

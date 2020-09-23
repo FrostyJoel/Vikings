@@ -42,13 +42,13 @@ public class SC_HammerStats : MonoBehaviour
         if (melee)
         {
             Debug.Log("Melee");
-            if (collision.gameObject.tag == "Enviorment")
+            if (collision.gameObject.CompareTag("Enviorment"))
             {
                 Debug.Log("HittingWall");
                 attacks.GetComponentInParent<SC_CharacterAnimation>().ResetMeleeAttack();
                 attacks.ResetAttack();
             }
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.CompareTag("Enemy"))
             {
                 collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.meleeHammerDamageAmount);
                 collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.transform.forward * meleeForceAmount, ForceMode.Impulse);
@@ -61,12 +61,13 @@ public class SC_HammerStats : MonoBehaviour
                 myRB.isKinematic = false;
                 myRB.useGravity = true;
                 attacks.hitObject = true;
-                if (collision.gameObject.tag == "Enviorment" && attacks.forceAmount >= attacks.minFlyingForceReq)
+                if (collision.gameObject.CompareTag("Enviorment") && attacks.forceAmount >= attacks.minFlyingForceReq)
                 {
+                    myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                     myRB.isKinematic = true;
                     myRB.useGravity = false;
                 }
-                if (collision.gameObject.tag == "Enemy")
+                if (collision.gameObject.CompareTag("Enemy"))
                 {
                     collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.hammerDamageAmount);
                 }

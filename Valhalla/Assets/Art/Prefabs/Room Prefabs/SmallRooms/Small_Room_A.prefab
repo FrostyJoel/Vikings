@@ -85,9 +85,9 @@ GameObject:
   - component: {fileID: 3984156444657745193}
   - component: {fileID: 9080679210777322111}
   - component: {fileID: 8565671445214619214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,9 +527,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5819141531272750106}
   - component: {fileID: 4120760337899374637}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

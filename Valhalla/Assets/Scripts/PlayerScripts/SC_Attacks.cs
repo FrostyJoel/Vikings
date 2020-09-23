@@ -24,9 +24,9 @@ public class SC_Attacks : MonoBehaviour
     public Transform targetHand, curvePoint;
 
     [Range(5f, 40f)]
-    public float meleeHammerDamageAmount;
+    public float meleeHammerDamageAmount = 5f;
     [Range(5f, 40f)]
-    public float maxhammerDamageAmount;
+    public float maxhammerDamageAmount = 5f;
     [Range(20f, 40f)]
     public float maxForce = 20f;
     [Range(15f,40f)]
@@ -195,6 +195,7 @@ public class SC_Attacks : MonoBehaviour
 
     public void ResetAttack()
     {
+        Debug.Log("Triggerd:  ResetAttack");
         SC_AttackManager.single.isAttacking = false;
         if (hammerRB.GetComponent<SC_HammerStats>().melee)
         {
