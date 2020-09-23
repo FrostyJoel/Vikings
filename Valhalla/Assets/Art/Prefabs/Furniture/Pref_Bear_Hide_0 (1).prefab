@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4657381341643314286}
   - component: {fileID: 8578667014843898827}
-  - component: {fileID: 5830326961493339905}
+  - component: {fileID: 9046573022706813829}
   m_Layer: 10
   m_Name: Pref_Bear_Hide_0 (1)
   m_TagString: Enviorment
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5470051704246292180}
   m_Mesh: {fileID: 7748706797495002060, guid: 9bae44a1af0832e4e85fa60775f3a5cf, type: 3}
---- !u!23 &5830326961493339905
+--- !u!23 &9046573022706813829
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

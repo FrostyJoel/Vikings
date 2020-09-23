@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5502797230172818453}
   - component: {fileID: 8931209230413415344}
   - component: {fileID: 6635755191325669242}
+  - component: {fileID: -2037955630397377637}
   m_Layer: 10
   m_Name: Pref_Firewood_3
   m_TagString: Enviorment
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &-2037955630397377637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5122295096905307823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25467247, y: 0.20966315, z: 0.7278797}
+  m_Center: {x: 0.04527626, y: 0.10483158, z: 0}
