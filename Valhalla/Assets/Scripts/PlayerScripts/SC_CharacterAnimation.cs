@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SC_CharacterAnimation : MonoBehaviour
 {
+    public static SC_CharacterAnimation single;
+
     public Animator anime;
     float xDir, zDir;
     private void Awake()
     {
+        single = this;
         anime = GetComponentInChildren<Animator>();
     }
 

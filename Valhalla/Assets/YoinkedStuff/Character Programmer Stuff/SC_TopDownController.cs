@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class SC_TopDownController : MonoBehaviour
 {
+    public static SC_TopDownController single;
     public enum CameraDirection { x, z }
 
     [Header("Camera Settings")]
@@ -48,19 +49,16 @@ public class SC_TopDownController : MonoBehaviour
     Plane surfacePlane = new Plane();
 
     //Animator and AttackManager
-    SC_AttackManager attackManager;
     Vector3 targetVelocity;
-    [HideInInspector]
-    public SC_CharacterAnimation charAnimator;
+    
 
     void Awake()
     {
+        single = this;
         if(playerCamera.transform.parent != null)
         {
             playerCamera.transform.parent = null;
         }
-        charAnimator = GetComponent<SC_CharacterAnimation>();
-        attackManager = FindObjectOfType<SC_AttackManager>();
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
         r.useGravity = false;
@@ -86,7 +84,7 @@ public class SC_TopDownController : MonoBehaviour
         {
             if (!IsInvoking())
             {
-                Invoke("InvulnerableReset", invulnerableTimer);
+                Invoke(nameof(InvulnerableReset), invulnerableTimer);
             }
         }
     }
@@ -104,7 +102,7 @@ public class SC_TopDownController : MonoBehaviour
             cameraOffset = new Vector3(0, cameraHeight, cameraDistance);
         }
 
-        if (grounded && !attackManager.isAttacking)
+        if (grounded && !SC_AttackManager.single.isAttacking)
         {
             walking = false;
             targetVelocity = Vector3.zero;
@@ -135,8 +133,8 @@ public class SC_TopDownController : MonoBehaviour
         if (targetVelocity != Vector3.zero)
         {
             walking = true;
-            charAnimator.SetHorizontalAnime(Input.GetAxis("Horizontal"));
-            charAnimator.SetVerticalAnime(Input.GetAxis("Vertical"));
+            SC_CharacterAnimation.single.SetHorizontalAnime(Input.GetAxis("Horizontal"));
+            SC_CharacterAnimation.single.SetVerticalAnime(Input.GetAxis("Vertical"));
         }
     }
 
@@ -176,10 +174,10 @@ public class SC_TopDownController : MonoBehaviour
     private void PlayerRotation()
     {
         //Player rotation
-        if (attackManager.isAttacking)
+        if (SC_AttackManager.single.isAttacking)
         {
             ResetMovement();
-            Vector3 dir = attackManager.attackPos - transform.position;
+            Vector3 dir = SC_AttackManager.single.attackPos - transform.position;
             DetermineRotation(dir);
             //transform.LookAt(new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
         }
@@ -203,8 +201,8 @@ public class SC_TopDownController : MonoBehaviour
 
     private void ResetMovement()
     {
-        charAnimator.SetHorizontalAnime(0);
-        charAnimator.SetVerticalAnime(0);
+        SC_CharacterAnimation.single.SetHorizontalAnime(0);
+        SC_CharacterAnimation.single.SetVerticalAnime(0);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
@@ -217,9 +215,7 @@ public class SC_TopDownController : MonoBehaviour
         Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
         //Initialise the enter variable
-        float enter = 0.0f;
-
-        if (surfacePlane.Raycast(ray, out enter))
+        if (surfacePlane.Raycast(ray, out float enter))
         {
             //Get the point that is clicked
             Vector3 hitPoint = ray.GetPoint(enter);

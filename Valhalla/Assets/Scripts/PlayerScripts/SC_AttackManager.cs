@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SC_AttackManager : MonoBehaviour
 {
-    [SerializeField] SC_Attacks playerAttacks;
-    public SC_TopDownController player;
+    public static SC_AttackManager single;
+    
     public bool isAttacking;
     [SerializeField] float hammerAnimationTimeDelay;
 
@@ -13,7 +13,6 @@ public class SC_AttackManager : MonoBehaviour
     public Vector3 attackPos;
 
     private bool checkIfPressed = false;
-    SC_AttackManager single;
 
     private void Awake()
     {
@@ -26,22 +25,22 @@ public class SC_AttackManager : MonoBehaviour
 
     public void ButtonSelect()
     {
-        if (player.charAnimator.anime.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) { return; }
+        if (SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) { return; }
         if (isAttacking) { return; }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (playerAttacks.inHand == true)
+            if (SC_Attacks.single.inHand == true)
             {
                 StartCoroutine(CheckButtonHold());
                 return;
             }
             else
             {
-                if (playerAttacks.hitObject == true)
+                if (SC_Attacks.single.hitObject == true)
                 {
                     isAttacking = true;
-                    player.charAnimator.PullBack();
+                    SC_CharacterAnimation.single.PullBack();
                 }
                 return;
             }
@@ -49,42 +48,42 @@ public class SC_AttackManager : MonoBehaviour
 
         if (Input.GetButton("Fire1"))
         {
-            if (playerAttacks.inHand == true && checkIfPressed == false)
+            if (SC_Attacks.single.inHand == true && checkIfPressed == false)
             {
                 StartCoroutine(CheckButtonHold());
                 return;
             }
         }
 
-        if (Input.GetButtonUp("Fire1") && playerAttacks.inHand == true)
+        if (Input.GetButtonUp("Fire1") && SC_Attacks.single.inHand == true)
         {
             checkIfPressed = false;
             isAttacking = true;
-            attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
-            Animator hammerAnime = playerAttacks.hammerRB.GetComponent<Animator>();
+            attackPos = new Vector3(SC_TopDownController.single.GetAimTargetPos().x, SC_TopDownController.single.GetAimTargetPos().y + 0.2f, SC_TopDownController.single.GetAimTargetPos().z);
+            Animator hammerAnime = SC_Attacks.single.hammerRB.GetComponent<Animator>();
             if (hammerAnime.enabled == true)
             {
                 hammerAnime.SetFloat("SpeedIncreasing", 1.0f);
                 hammerAnime.SetTrigger("Reset");
                 hammerAnime.enabled = false;
-                player.charAnimator.HammerThrow();
+                SC_CharacterAnimation.single.HammerThrow();
             }
             else
             {
-                player.charAnimator.MeleeAttack();
-                playerAttacks.hammerRB.GetComponent<SC_HammerStats>().melee = true;
+                SC_CharacterAnimation.single.MeleeAttack();
+                SC_Attacks.single.hammerRB.GetComponent<SC_HammerStats>().melee = true;
             }
         }
 
         if (Input.GetButtonDown("Fire2"))
         {
-            if (playerAttacks.inHand)
+            if (SC_Attacks.single.inHand)
             {
                 if (!IsInvoking())
                 {
                     isAttacking = true;
-                    player.charAnimator.LightningAttack();
-                    attackPos = new Vector3(player.GetAimTargetPos().x, player.GetAimTargetPos().y + 0.2f, player.GetAimTargetPos().z);
+                    SC_CharacterAnimation.single.LightningAttack();
+                    attackPos = new Vector3(SC_TopDownController.single.GetAimTargetPos().x, SC_TopDownController.single.GetAimTargetPos().y + 0.2f, SC_TopDownController.single.GetAimTargetPos().z);
                 }
             }
             else { return; }
@@ -111,33 +110,33 @@ public class SC_AttackManager : MonoBehaviour
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
         float speedIncrease = 1.0f;
-        Animator hammerAnimator = playerAttacks.hammerRB.GetComponent<Animator>();
+        Animator hammerAnimator = SC_Attacks.single.hammerRB.GetComponent<Animator>();
         hammerAnimator.enabled = true;
         yield return new WaitForSeconds(hammerAnimationTimeDelay);
         while (Input.GetButton("Fire1"))
         {
-            playerAttacks.forceAmount += forceAdd;
+            SC_Attacks.single.forceAmount += forceAdd;
             if(forceAdd <= 7.5f)
             {
                 forceAdd *= 2f;
             }
-            if(playerAttacks.forceAmount <= playerAttacks.maxForce)
+            if(SC_Attacks.single.forceAmount <= SC_Attacks.single.maxForce)
             {
-                if (playerAttacks.hammerDamageAmount <= playerAttacks.maxhammerDamageAmount)
+                if (SC_Attacks.single.hammerDamageAmount <= SC_Attacks.single.maxhammerDamageAmount)
                 {
-                    playerAttacks.hammerDamageAmount *= 2;
+                    SC_Attacks.single.hammerDamageAmount *= 2;
                 }
                 else
                 {
-                    playerAttacks.hammerDamageAmount = playerAttacks.maxhammerDamageAmount;
+                    SC_Attacks.single.hammerDamageAmount = SC_Attacks.single.maxhammerDamageAmount;
                 }
-                playerAttacks.hammerRB.GetComponent<SC_HammerStats>().myHammerAnimation.SetFloat("SpeedIncreasing", speedIncrease);
+                SC_Attacks.single.hammerRB.GetComponent<SC_HammerStats>().myHammerAnimation.SetFloat("SpeedIncreasing", speedIncrease);
                 speedIncrease++;
                 yield return new WaitForSeconds(forceDelay/2f);
             }
             else
             {
-                playerAttacks.forceAmount = playerAttacks.maxForce;
+                SC_Attacks.single.forceAmount = SC_Attacks.single.maxForce;
                 yield break;
             }
         }

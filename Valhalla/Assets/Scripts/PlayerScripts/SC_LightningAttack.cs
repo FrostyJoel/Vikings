@@ -6,13 +6,14 @@ public class SC_LightningAttack : MonoBehaviour
 {
     public SC_Attacks attack;
     [SerializeField] List<SC_EnemyStats> allEnemies = new List<SC_EnemyStats>();
+
     private void Start()
     {
         StartCoroutine(DealOverTimedamage());
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.CompareTag("Enemy"))
         {
             if (!allEnemies.Contains(other.GetComponent<SC_EnemyStats>()))
             {
@@ -23,7 +24,7 @@ public class SC_LightningAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             if (!allEnemies.Contains(other.GetComponent<SC_EnemyStats>()))
             {
@@ -34,7 +35,7 @@ public class SC_LightningAttack : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             if (!allEnemies.Contains(other.GetComponent<SC_EnemyStats>()))
             {

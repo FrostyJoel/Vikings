@@ -6,7 +6,8 @@ public class SC_Attacks : MonoBehaviour
 {
     public enum Hammer {LiniearHammer,CurveHammer}
 
-    SC_AttackManager attackMan;
+    public static SC_Attacks single;
+
     [Header("LightnigCircleAttack")]
     [Range(0.5f,1f)]
     public float delay = 1.5f;
@@ -52,19 +53,19 @@ public class SC_Attacks : MonoBehaviour
     private void Awake()
     {
         forceAmount = minforceAmount;
-        attackMan = FindObjectOfType<SC_AttackManager>();
+        single = this;
     }
 
     private void Update()
     {
-        if(isReturning == false && inHand == false && hitObject == false && !attackMan.isAttacking && !hammerRB.GetComponent<SC_HammerStats>().aboveGround)
+        if(isReturning == false && inHand == false && hitObject == false && !SC_AttackManager.single.isAttacking && !hammerRB.GetComponent<SC_HammerStats>().aboveGround)
         {
             float dis = Vector3.Distance(targetHand.position, hammerRB.position);
 
             if(dis >= hammerRangeOfFloating)
             {
-                attackMan.player.charAnimator.PullBack();
-                attackMan.isAttacking = true;
+                SC_CharacterAnimation.single.PullBack();
+                SC_AttackManager.single.isAttacking = true;
             }
         }
 
@@ -72,7 +73,7 @@ public class SC_Attacks : MonoBehaviour
         {
             if (time < 1.0f)
             {
-                hammerRB.position = getBQCPoint(time, oldPos, curvePoint.position, targetHand.position);
+                hammerRB.position = GetBQCPoint(time, oldPos, curvePoint.position, targetHand.position);
                 hammerRB.rotation = Quaternion.Slerp(hammerRB.transform.rotation, targetHand.rotation, 7.5f * Time.deltaTime);
                 time += Time.deltaTime;
             }
@@ -85,7 +86,7 @@ public class SC_Attacks : MonoBehaviour
 
     public void LightningCircle()
     {
-        GameObject lightningCircle = Instantiate(lightningCircleVisual, attackMan.attackPos, lightningCircleVisual.transform.rotation);
+        GameObject lightningCircle = Instantiate(lightningCircleVisual, SC_AttackManager.single.attackPos, lightningCircleVisual.transform.rotation);
         lightningCircle.GetComponent<SC_LightningAttack>().attack = this;
         //Todo Add Fading Effect to Particle
         Destroy(lightningCircle, duration);
@@ -106,11 +107,12 @@ public class SC_Attacks : MonoBehaviour
     {
         hammerRB.transform.parent = null;
         hammerRB.isKinematic = false;
-        if(forceAmount <= minFlyingForceReq)
+        hammerRB.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        if (forceAmount <= minFlyingForceReq)
         {
             hammerRB.useGravity = true;
         }
-        hammerRB.AddForce(attackMan.player.transform.forward * forceAmount, ForceMode.Impulse);
+        hammerRB.AddForce(SC_TopDownController.single.transform.forward * forceAmount, ForceMode.Impulse);
     }
 
     //Rotate in the correct Rotation
@@ -128,6 +130,7 @@ public class SC_Attacks : MonoBehaviour
         oldPos = hammerRB.position;
         isReturning = true;
         hammerRB.velocity = Vector3.zero;
+        hammerRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         hammerRB.isKinematic = true;
         hammerRB.useGravity = false;
     }
@@ -143,7 +146,7 @@ public class SC_Attacks : MonoBehaviour
 
     private void ReattachToHand()
     {
-        attackMan.player.charAnimator.Caught();
+        SC_CharacterAnimation.single.Caught();
         isReturning = false;
         inHand = true;
         hitObject = false;
@@ -157,7 +160,7 @@ public class SC_Attacks : MonoBehaviour
         hammerRB.rotation = targetHand.rotation;
     }
 
-    Vector3 getBQCPoint(float t, Vector3 p0,Vector3 p1,Vector3 p2)
+    Vector3 GetBQCPoint(float t, Vector3 p0,Vector3 p1,Vector3 p2)
     {
         float u = 1 - t;
         float tt = t * t;
@@ -192,7 +195,7 @@ public class SC_Attacks : MonoBehaviour
 
     public void ResetAttack()
     {
-        attackMan.isAttacking = false;
+        SC_AttackManager.single.isAttacking = false;
         if (hammerRB.GetComponent<SC_HammerStats>().melee)
         {
             hammerRB.GetComponent<SC_HammerStats>().melee = false;

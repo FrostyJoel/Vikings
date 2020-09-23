@@ -23,7 +23,7 @@ public class SC_EnemyStats : MonoBehaviour
     [SerializeField] float rotateSpeed = 7.5f;
     [SerializeField] float aggroRange = 9f;
     [SerializeField] float attackDelay = 2f;
-    bool canWalking = true;
+    bool canWalk = true;
 
     void Awake()
     {
@@ -41,7 +41,7 @@ public class SC_EnemyStats : MonoBehaviour
         {
             if (!IsInvoking("InvulnerableReset"))
             {
-                Invoke("InvulnerableReset", invulnerableTimer);
+                Invoke(nameof(InvulnerableReset), invulnerableTimer);
             }
         }
     }
@@ -54,7 +54,7 @@ public class SC_EnemyStats : MonoBehaviour
         else
         {
             CancelInvoke("DealDamage");
-            Invoke("RestartWalking", 3f);
+            Invoke(nameof(RestartWalking), 3f);
         }
     }
 
@@ -71,20 +71,20 @@ public class SC_EnemyStats : MonoBehaviour
 
             if (dis >= reachedDistance)
             {
-                if (!IsInvoking("DealDamage") && canWalking)
+                if (!IsInvoking("DealDamage") && canWalk)
                 {
                     transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
                 }
                 else
                 {
                     CancelInvoke("DealDamage");
-                    Invoke("RestartWalking", 3f);
+                    Invoke(nameof(RestartWalking), 3f);
                 }
             }
             else
             {
-                canWalking = false;
-                InvokeRepeating("DealDamage", 2f, attackDelay);
+                canWalk = false;
+                InvokeRepeating(nameof(DealDamage), 2f, attackDelay);
             }
         }
     }
@@ -96,7 +96,7 @@ public class SC_EnemyStats : MonoBehaviour
 
     public void RestartWalking()
     {
-        canWalking = true;
+        canWalk = true;
     }
 
     private void InvulnerableReset()
@@ -106,6 +106,7 @@ public class SC_EnemyStats : MonoBehaviour
 
     private void Die()
     {
+        SC_GameManager.single.UpdateEnemyList(this);
         Destroy(gameObject);
     }
 
