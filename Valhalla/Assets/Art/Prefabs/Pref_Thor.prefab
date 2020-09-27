@@ -594,7 +594,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3227478502206569811}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.5451546, y: 0.2, z: 0.6248071}
@@ -618,6 +618,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1411343674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227478502206569811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5451546, y: 0.2, z: 0.6248071}
+  m_Center: {x: 0.0018193885, y: 0.02227251, z: 0.09936665}
 --- !u!1 &5238855091057501048
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,15 +736,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cc39bcae13cee6b4fba4fa19316af605, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4271864ead297145955e97472a6a57e, type: 3}
---- !u!1 &2074379947342621459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4271864ead297145955e97472a6a57e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1155389099524347458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1694054118445593001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4271864ead297145955e97472a6a57e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1155389099524347458}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2074379947342621459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4271864ead297145955e97472a6a57e,
     type: 3}
   m_PrefabInstance: {fileID: 1155389099524347458}
   m_PrefabAsset: {fileID: 0}
@@ -808,6 +821,11 @@ PrefabInstance:
       propertyPath: myHammerAnimation
       value: 
       objectReference: {fileID: 2114919479739246721}
+    - target: {fileID: 6691668305793841117, guid: 8fc7e9665504ad84784913e840844ad6,
+        type: 3}
+      propertyPath: meleeForceAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8175491844581036364, guid: 8fc7e9665504ad84784913e840844ad6,
         type: 3}
       propertyPath: m_Name

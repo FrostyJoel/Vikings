@@ -128,16 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2552305352720141181, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2552305352720141181, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3512218661894456595, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -197,31 +187,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Prefab_Draugr
-      objectReference: {fileID: 0}
-    - target: {fileID: 5863109407123139005, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: aggroRange
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5863109407123139005, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: playerLayer.m_Bits
-      value: 32768
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296946379221083865, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: m_AutoBraking
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296946379221083865, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296946379221083865, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15e7c8411dc40fa4aae081a21bb29c7d, type: 3}
@@ -508,11 +473,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 99911262560099266, guid: 0180a67f2a2240a45b13ad2923bc7b07,
-        type: 3}
-      propertyPath: meleeForceAmount
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1724489565688839776, guid: 0180a67f2a2240a45b13ad2923bc7b07,
         type: 3}
       propertyPath: m_Name
@@ -572,11 +532,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6135023083778416007, guid: 0180a67f2a2240a45b13ad2923bc7b07,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0180a67f2a2240a45b13ad2923bc7b07, type: 3}
@@ -1152,25 +1107,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c5a434846b8be46802da9177452a17, type: 3}
---- !u!1 &1411343668 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3227478502206569811, guid: 0180a67f2a2240a45b13ad2923bc7b07,
-    type: 3}
-  m_PrefabInstance: {fileID: 657346285}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1411343674
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1411343668}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5451546, y: 0.2, z: 0.6248071}
-  m_Center: {x: 0.0018193885, y: 0.02227251, z: 0.09936665}
 --- !u!1001 &1531675090
 PrefabInstance:
   m_ObjectHideFlags: 0
