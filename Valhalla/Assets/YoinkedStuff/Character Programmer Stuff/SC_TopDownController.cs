@@ -136,6 +136,11 @@ public class SC_TopDownController : MonoBehaviour
             SC_CharacterAnimation.single.SetHorizontalAnime(Input.GetAxis("Horizontal"));
             SC_CharacterAnimation.single.SetVerticalAnime(Input.GetAxis("Vertical"));
         }
+        else
+        {
+            SC_CharacterAnimation.single.SetHorizontalAnime(0);
+            SC_CharacterAnimation.single.SetVerticalAnime(0);
+        }
     }
 
     private void AccelerationAndJumping()

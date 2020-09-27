@@ -58,7 +58,7 @@ public class SC_Attacks : MonoBehaviour
 
     private void Update()
     {
-        if(isReturning == false && inHand == false && hitObject == false && !SC_AttackManager.single.isAttacking && !hammerRB.GetComponent<SC_HammerStats>().aboveGround)
+        if(isReturning == false && inHand == false && !SC_AttackManager.single.isAttacking && !hammerRB.GetComponent<SC_HammerStats>().aboveGround)
         {
             float dis = Vector3.Distance(targetHand.position, hammerRB.position);
 
@@ -98,6 +98,15 @@ public class SC_Attacks : MonoBehaviour
     {
         isReturning = false;
         inHand = false;
+        Collider[] hammerColliders = hammerRB.GetComponents<Collider>();
+        for (int i = 0; i < hammerColliders.Length; i++)
+        {
+            if (!hammerColliders[i].isTrigger)
+            {
+                hammerColliders[i].enabled = false;
+            }
+        }
+
         HammerAddingForce();
         HammerRotation();
     }

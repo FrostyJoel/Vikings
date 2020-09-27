@@ -64,6 +64,7 @@ public class SC_AttackManager : MonoBehaviour
             if (hammerAnime.enabled == true)
             {
                 SC_Attacks.single.hammerRB.transform.localPosition = Vector3.zero;
+                SC_Attacks.single.hammerRB.transform.localRotation = Quaternion.identity;
                 hammerAnime.SetFloat("SpeedIncreasing", 1.0f);
                 hammerAnime.SetTrigger("Reset");
                 hammerAnime.enabled = false;

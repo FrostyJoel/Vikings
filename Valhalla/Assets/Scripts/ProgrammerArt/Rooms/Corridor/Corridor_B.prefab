@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 840881180111475019}
   m_Layer: 10
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540893556709860540}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.1, y: 0.96, z: 0.00000071525}
+  m_LocalPosition: {x: -1.1, y: 1, z: 0.00000071525}
   m_LocalScale: {x: 8.4, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1746349449296116363}
@@ -163,21 +163,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoints:
   - point: {fileID: 2299220507208008038}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 4306092431920936172}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 5150574296022968893}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 3622729549353036463}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  roomType: 0
+  spawnablePosAndRots: []
+  fullyAttached: 0
+  isChecker: 0
+  isClosed: 0
 --- !u!1 &3276755870919073073
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +202,7 @@ GameObject:
   - component: {fileID: 3276755870919073075}
   m_Layer: 10
   m_Name: Wall (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276755870919073073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 0.96, z: -1.1}
+  m_LocalPosition: {x: 2.7, y: 1, z: -1.1}
   m_LocalScale: {x: 3, y: 2, z: 0.19999999}
   m_Children: []
   m_Father: {fileID: 1746349449296116363}
@@ -270,7 +281,7 @@ GameObject:
   - component: {fileID: 3276755872743888018}
   m_Layer: 10
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276755872743888016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7, y: 0.96, z: 1.1}
+  m_LocalPosition: {x: 2.7, y: 1, z: 1.1}
   m_LocalScale: {x: 3, y: 2, z: 0.19999999}
   m_Children: []
   m_Father: {fileID: 1746349449296116363}
@@ -349,7 +360,7 @@ GameObject:
   - component: {fileID: 3276755872840692207}
   m_Layer: 10
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276755872840692205}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.1, y: 0.96, z: -2.6}
+  m_LocalPosition: {x: 1.1, y: 1, z: -2.6}
   m_LocalScale: {x: 3.2, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1746349449296116363}
@@ -428,7 +439,7 @@ GameObject:
   - component: {fileID: 3276755872944184379}
   m_Layer: 10
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,7 +452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276755872944184377}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.1, y: 0.96, z: 2.6}
+  m_LocalPosition: {x: 1.1, y: 1, z: 2.6}
   m_LocalScale: {x: 3.2, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1746349449296116363}
@@ -589,7 +600,7 @@ GameObject:
   - component: {fileID: 6049990518176808738}
   m_Layer: 10
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -615,7 +626,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457714350694029165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e01bb24c85b1eda4cb806d910b7c9786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -628,7 +639,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457714350694029165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e01bb24c85b1eda4cb806d910b7c9786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -641,7 +652,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457714350694029165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e01bb24c85b1eda4cb806d910b7c9786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -654,7 +665,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457714350694029165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e01bb24c85b1eda4cb806d910b7c9786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -667,7 +678,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457714350694029165}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e01bb24c85b1eda4cb806d910b7c9786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

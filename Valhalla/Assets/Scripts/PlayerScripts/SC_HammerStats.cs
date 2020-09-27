@@ -44,7 +44,6 @@ public class SC_HammerStats : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         if (melee)
         {
             Debug.Log("Melee");
@@ -54,30 +53,58 @@ public class SC_HammerStats : MonoBehaviour
                 attacks.GetComponentInParent<SC_CharacterAnimation>().ResetMeleeAttack();
                 attacks.ResetAttack();
             }
-            if (collision.gameObject.CompareTag("Enemy"))
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (melee)
+        {
+            Debug.Log("Melee");
+            if (other.gameObject.CompareTag("Enemy"))
             {
-                collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.meleeHammerDamageAmount);
-                collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.transform.forward * meleeForceAmount, ForceMode.Impulse);
+                SC_EnemyStats enemyHit = other.gameObject.GetComponent<SC_EnemyStats>();
+                enemyHit.DealDamageToSelf(attacks.meleeHammerDamageAmount);
+                HitEnemy(other, enemyHit,meleeForceAmount);
             }
         }
         else
         {
             if (!attacks.hitObject && !attacks.inHand)
             {
-                myRB.isKinematic = false;
-                myRB.useGravity = true;
-                attacks.hitObject = true;
-                if (collision.gameObject.CompareTag("Enviorment") && attacks.forceAmount >= attacks.minFlyingForceReq)
+                if (other.gameObject.CompareTag("Wall") && attacks.forceAmount >= attacks.minFlyingForceReq)
                 {
+                    attacks.hitObject = true;   
+                    Debug.Log("HitWall");
                     myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
                     myRB.isKinematic = true;
                     myRB.useGravity = false;
+                    myRB.velocity = Vector3.zero;
+                    Collider[] myColliders = GetComponents<Collider>();
+                    for (int i = 0; i < myColliders.Length; i++)
+                    {
+                        if (!myColliders[i].enabled)
+                        {
+                            myColliders[i].enabled = true;
+                        }
+                    }
                 }
-                if (collision.gameObject.CompareTag("Enemy"))
+                if (other.gameObject.CompareTag("Enemy"))
                 {
-                    collision.gameObject.GetComponent<SC_EnemyStats>().DealDamageToSelf(attacks.hammerDamageAmount);
+                    SC_EnemyStats enemyHit = other.gameObject.GetComponent<SC_EnemyStats>();
+                    enemyHit.DealDamageToSelf(attacks.hammerDamageAmount);
+                    HitEnemy(other, enemyHit,attacks.forceAmount);
                 }
             }
         }
+    }
+
+    private void HitEnemy(Collider other, SC_EnemyStats enemyHit,float forceAmount)
+    {
+        if (enemyHit.myAgent.enabled)
+        {
+            enemyHit.myAgent.updatePosition = false;
+            enemyHit.myRB.isKinematic = false;
+        }
+        enemyHit.myRB.AddForce(-other.transform.forward * forceAmount, ForceMode.Impulse);
     }
 }

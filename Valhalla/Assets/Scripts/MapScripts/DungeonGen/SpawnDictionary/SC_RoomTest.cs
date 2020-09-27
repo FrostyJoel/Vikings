@@ -7,10 +7,12 @@ public class SC_RoomTest : MonoBehaviour
     public AttachPoints[] attachPoints;
     public BoxCollider roomCollider;
     public AvailableSlots roomType;
+
     [Header("HideInInspector")]
     public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
     public bool fullyAttached;
     public bool isChecker;
+    public bool isClosed;
 
     private void OnDrawGizmosSelected()
     {

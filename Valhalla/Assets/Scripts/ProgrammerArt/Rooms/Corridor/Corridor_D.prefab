@@ -207,17 +207,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoints:
   - point: {fileID: 5846229015232848919}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   - point: {fileID: 1618243705787028115}
+    wall: {fileID: 0}
     nextSpawn: 2
-    hasOffset: 0
     attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    Off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 338557564769299924}
-  attachPointsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  roomType: 0
+  spawnablePosAndRots: []
+  fullyAttached: 0
+  isChecker: 0
 --- !u!1 &3752829541498472515
 GameObject:
   m_ObjectHideFlags: 0

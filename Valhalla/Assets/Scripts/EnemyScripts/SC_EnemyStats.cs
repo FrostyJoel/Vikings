@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SC_EnemyStats : MonoBehaviour
 {
@@ -10,24 +11,36 @@ public class SC_EnemyStats : MonoBehaviour
     [SerializeField] float damage = 5f;
     [Range(20f,50f)]
     [SerializeField] float maxHealth = 20f;
-    
+    [Range(20f, 50f)]
+    [SerializeField] float attackRange = 1f;
+
     [Header("EnemyMovement")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float invulnerableTimer = 1f;
-    [SerializeField] float reachedDistance = 1f;
+
+    [HideInInspector]
+    public NavMeshAgent myAgent;
+    public Rigidbody myRB;
     bool gotHit = false;
     float curHealth;
+    RaycastHit hit;
 
     //Todo Remove
-    [SerializeField] SC_TopDownController player;
-    [SerializeField] float rotateSpeed = 7.5f;
-    [SerializeField] float aggroRange = 9f;
+    public bool roomClosed;
     [SerializeField] float attackDelay = 2f;
-    bool canWalk = true;
 
     void Awake()
     {
+        if (!SC_TopDownController.single)
+        {
+            Debug.LogWarning("No Player Found");
+            return;
+        }
         curHealth = maxHealth;
+        myRB = GetComponent<Rigidbody>();
+        myAgent = GetComponent<NavMeshAgent>();
+        myAgent.updateRotation = true;
+        myAgent.stoppingDistance = attackRange;
     }
 
     // Update is called once per frame
@@ -37,66 +50,79 @@ public class SC_EnemyStats : MonoBehaviour
         {
             Die();
         }
-        if (gotHit)
-        {
-            if (!IsInvoking("InvulnerableReset"))
-            {
-                Invoke(nameof(InvulnerableReset), invulnerableTimer);
-            }
-        }
     }
     private void FixedUpdate()
     {
+        if (myAgent.velocity.sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.rotation = Quaternion.LookRotation(myAgent.velocity.normalized);
+        }
+
         if (!gotHit)
         {
             TempMovement();
         }
         else
         {
-            CancelInvoke("DealDamage");
-            Invoke(nameof(RestartWalking), 3f);
+            CancelInvoke(nameof(DealDamage));
+            if (!IsInvoking(nameof(RestartWalking)))
+            {
+                Invoke(nameof(RestartWalking), 3f);
+            }
         }
     }
 
     private void TempMovement()
     {
-        //ToDO Remove
-        float dis = Vector3.Distance(player.transform.position, transform.position);
-        if (dis <= aggroRange)
+        //Todo Change Dis To locked Room
+        if (roomClosed)
         {
-            Vector3 dir = player.transform.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            SC_TopDownController player = SC_TopDownController.single;
+            float dis = Vector3.Distance(player.transform.position, transform.position);
+            myAgent.destination = player.transform.position;
 
-            if (dis >= reachedDistance)
+            if (dis > attackRange)
             {
-                if (!IsInvoking("DealDamage") && canWalk)
+                if (!IsInvoking(nameof(DealDamage)) && myAgent.isStopped)
                 {
-                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                    if (!IsInvoking(nameof(RestartWalking)))
+                    {
+                        Invoke(nameof(RestartWalking), 0.5f);
+                    }
                 }
                 else
                 {
-                    CancelInvoke("DealDamage");
-                    Invoke(nameof(RestartWalking), 3f);
+                    CancelInvoke(nameof(DealDamage));
+                    if (!IsInvoking(nameof(RestartWalking)))
+                    {
+                        Invoke(nameof(RestartWalking), 2f);
+                    }
                 }
             }
             else
             {
-                canWalk = false;
-                InvokeRepeating(nameof(DealDamage), 2f, attackDelay);
+                myAgent.isStopped = true;
+                myAgent.velocity = Vector3.zero;
+                InvokeRepeating(nameof(DealDamage), 0, attackDelay);
             }
         }
     }
 
     public void DealDamage()
     {
-        player.DealDamage(damage);
+        SC_TopDownController.single.DealDamage(damage);
     }
 
     public void RestartWalking()
     {
-        canWalk = true;
+        if (!myAgent.updatePosition)
+        {
+            gotHit = false;
+            myAgent.nextPosition = transform.position;
+            myRB.isKinematic = true;
+            myAgent.updatePosition = true;
+            myAgent.isStopped = false;
+        }
     }
 
     private void InvulnerableReset()
@@ -121,6 +147,13 @@ public class SC_EnemyStats : MonoBehaviour
         else
         {
             Debug.Log("invulnerable");
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Wall") && gotHit)
+        {
+            Invoke(nameof(RestartWalking),0f);
         }
     }
 }

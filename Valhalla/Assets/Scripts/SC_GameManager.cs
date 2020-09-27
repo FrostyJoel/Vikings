@@ -43,7 +43,10 @@ public class SC_GameManager : MonoBehaviour
     public void GameDone()
     {
         Debug.Log("GameDone");
-        SC_MenuManager.single.GetNextRoom();
+        if (SC_MenuManager.single != null)
+        {
+            SC_MenuManager.single.GetNextRoom();
+        }
     }
 
 }
