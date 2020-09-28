@@ -1150,6 +1150,7 @@ Transform:
   - {fileID: 9009499983549886164}
   - {fileID: 1133215138473015793}
   - {fileID: 1429730293}
+  - {fileID: 87266109020963568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1181,13 +1182,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   maxHealth: 20
-  attackRange: 1
+  attackRange: 1.2
+  attackRadius: 0
+  attackSphere: {fileID: 87266109020963568}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 2
   invulnerableTimer: 1
   myAgent: {fileID: 0}
   myRB: {fileID: 0}
+  myAnimator: {fileID: 0}
   roomClosed: 0
-  attackDelay: 2
 --- !u!54 &2552305352720141181
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2022,6 +2028,36 @@ Transform:
   - {fileID: 7928586106036321031}
   m_Father: {fileID: 92231766925327510}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7695859543526946994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87266109020963568}
+  m_Layer: 11
+  m_Name: AttackSpherePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87266109020963568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7695859543526946994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3512218661894456595}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7869809852706928378
 GameObject:

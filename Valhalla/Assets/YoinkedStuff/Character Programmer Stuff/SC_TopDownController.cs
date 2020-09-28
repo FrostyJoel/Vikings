@@ -260,7 +260,6 @@ public class SC_TopDownController : MonoBehaviour
         if (!gotHit)
         {
             curHealth -= damage;
-            Debug.Log(gameObject.name + " Took: " + Mathf.RoundToInt(damage).ToString());
             gotHit = true;
         }
         else

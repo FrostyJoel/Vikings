@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_RoomTest : MonoBehaviour
+public class SC_Rooms : MonoBehaviour
 {
     public AttachPoints[] attachPoints;
     public BoxCollider roomCollider;
@@ -76,6 +76,6 @@ public class AttachPoints
     public AvailableSlots nextSpawn;
     public bool attached;
     public bool canBeAttached;
-    public SC_RoomTest attachedTo;
+    public SC_Rooms attachedTo;
     public Vector3 Off;
 }

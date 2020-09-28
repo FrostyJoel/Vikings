@@ -204,7 +204,6 @@ public class SC_Attacks : MonoBehaviour
 
     public void ResetAttack()
     {
-        Debug.Log("Triggerd:  ResetAttack");
         SC_AttackManager.single.isAttacking = false;
         if (hammerRB.GetComponent<SC_HammerStats>().melee)
         {

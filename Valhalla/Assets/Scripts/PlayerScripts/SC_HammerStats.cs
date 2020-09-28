@@ -46,7 +46,6 @@ public class SC_HammerStats : MonoBehaviour
     {
         if (melee)
         {
-            Debug.Log("Melee");
             if (collision.gameObject.CompareTag("Enviorment"))
             {
                 Debug.Log("HittingWall");
@@ -59,7 +58,7 @@ public class SC_HammerStats : MonoBehaviour
     {
         if (melee)
         {
-            Debug.Log("Melee");
+            
             if (other.gameObject.CompareTag("Enemy"))
             {
                 SC_EnemyStats enemyHit = other.gameObject.GetComponent<SC_EnemyStats>();
