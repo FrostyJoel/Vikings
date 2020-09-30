@@ -9,15 +9,15 @@ public class SC_RoomManager : MonoBehaviour
     public StandardRoomRots sRoomRots;
     [Space(10)]
     public AvailableSlots startRoom;
-    public List<SC_Rooms> allspawnedRooms = new List<SC_Rooms>();
-    public List<SC_Rooms> allFinishedSpawningRooms = new List<SC_Rooms>();
+    public List<SC_Room> allspawnedRooms = new List<SC_Room>();
+    public List<SC_Room> allFinishedSpawningRooms = new List<SC_Room>();
     public LayerMask overlapLayer;
     public LayerMask attachPointsLayer;
     public GameObject prefabWall;
     public float spawnDelay;
     public int MaxamountOfRooms;
 
-    public SC_Rooms currRoomToCheck;
+    public SC_Room currRoomToCheck;
     public int attachment;
     [HideInInspector]
     public GameObject customDungeonParent;
@@ -75,7 +75,7 @@ public class SC_RoomManager : MonoBehaviour
         }
     }
 
-    public IEnumerator CheckRoomAndSpawn(SC_Rooms roomToCheck)
+    public IEnumerator CheckRoomAndSpawn(SC_Room roomToCheck)
     {
         //Debug.Log(currentAmountOfRooms);
         if (currentAmountOfRooms < MaxamountOfRooms)
@@ -94,7 +94,7 @@ public class SC_RoomManager : MonoBehaviour
                         if (!currAttachpoint.attached)
                         {
                             GameObject pooledRoomObject = SC_RoomPooler.single.SpawnFromPool(currAttachpoint.nextSpawn, Vector3.zero, Quaternion.identity);
-                            SC_Rooms pooledRoom = pooledRoomObject.GetComponent<SC_Rooms>();
+                            SC_Room pooledRoom = pooledRoomObject.GetComponent<SC_Room>();
                             AttachPoints[] aPpooledRoom = pooledRoom.attachPoints;
                             //Debug.Log(roomToCheck.name + " " + roomToCheck.attachPoints[i] + " " + i + "Is Not Attached");
 
@@ -114,10 +114,12 @@ public class SC_RoomManager : MonoBehaviour
                                 bool overlap = CheckCollision(pooledRoomObject);
                                 if (overlap)
                                 {
-                                    SpawnablePosAndRot newRoomPosAndRot = new SpawnablePosAndRot();
-                                    newRoomPosAndRot.pos = pooledRoom.transform.position;
-                                    newRoomPosAndRot.rot = pooledRoom.transform.rotation;
-                                    newRoomPosAndRot.room = pooledRoomObject;
+                                    SpawnablePosAndRot newRoomPosAndRot = new SpawnablePosAndRot
+                                    {
+                                        pos = pooledRoom.transform.position,
+                                        rot = pooledRoom.transform.rotation,
+                                        room = pooledRoomObject
+                                    };
                                     newPosAndRot.Add(newRoomPosAndRot);
                                 }
                                 else
@@ -156,7 +158,7 @@ public class SC_RoomManager : MonoBehaviour
         else
         {
             Debug.Log("Dungeon Finished");
-            foreach (SC_Rooms test in allspawnedRooms)
+            foreach (SC_Room test in allspawnedRooms)
             {
                 foreach (AttachPoints points in test.attachPoints)
                 {
@@ -173,7 +175,7 @@ public class SC_RoomManager : MonoBehaviour
 
     private bool CheckCollision(GameObject pooledRoomObject)
     {
-        SC_Rooms pooledRoom = pooledRoomObject.GetComponent<SC_Rooms>();
+        SC_Room pooledRoom = pooledRoomObject.GetComponent<SC_Room>();
 
         Collider[] col = Physics.OverlapBox(pooledRoomObject.transform.position + pooledRoom.roomCollider.center, pooledRoom.roomCollider.bounds.extents * 0.5f, pooledRoomObject.transform.rotation, overlapLayer);
         bool isOverlapingWithOthers = CheckOverlapSelf(col, pooledRoom);
@@ -181,12 +183,12 @@ public class SC_RoomManager : MonoBehaviour
         return isOverlapingWithOthers;
     }
 
-    bool CheckOverlapSelf(Collider[] colliding, SC_Rooms selfParent)
+    bool CheckOverlapSelf(Collider[] colliding, SC_Room selfParent)
     {
         bool isOverlapingWithOthers = false;
         for (int i = 0; i < colliding.Length; i++)
         {
-            if (colliding[i].GetComponentInParent<SC_Rooms>() != selfParent)
+            if (colliding[i].GetComponentInParent<SC_Room>() != selfParent)
             {
                 //Debug.Log(selfParent.name + " Is CollidingWith  Self");
                 isOverlapingWithOthers = true;
@@ -195,14 +197,14 @@ public class SC_RoomManager : MonoBehaviour
         return isOverlapingWithOthers;
     }
 
-    public void CheckAttachMent(SC_Rooms ownerRoom)
+    public void CheckAttachMent(SC_Room ownerRoom)
     {
         AttachPoints[] attachments = ownerRoom.attachPoints;
 
         for (int i = 0; i < attachments.Length; i++)
         {
             AttachPoints attachPoint = attachments[i];
-            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.attachCollider.center, attachPoint.attachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
+            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
             bool isOverlapingWithOthers = CheckOverlapSelf(col, ownerRoom);
 
             //Debug.Log(ownerRoom.name + " Has " + col.Length + " Collisions In Total ");
@@ -221,7 +223,7 @@ public class SC_RoomManager : MonoBehaviour
     public void SpawnRoom(GameObject room)
     {
         //Debug.Log("SpawningRoom");
-        SC_Rooms pooledRoom = room.GetComponent<SC_Rooms>();
+        SC_Room pooledRoom = room.GetComponent<SC_Room>();
 
         foreach (AttachPoints roomPoints in pooledRoom.attachPoints)
         {
@@ -231,7 +233,7 @@ public class SC_RoomManager : MonoBehaviour
 
         GameObject newRoom = Instantiate(room);
         newRoom.SetActive(true);
-        SC_Rooms newRoomScript = newRoom.GetComponent<SC_Rooms>();
+        SC_Room newRoomScript = newRoom.GetComponent<SC_Room>();
 
         newRoomScript.isChecker = false;
         newRoom.transform.SetParent(customDungeonParent.transform);
@@ -246,25 +248,25 @@ public class SC_RoomManager : MonoBehaviour
         SetAttachment(newRoomScript);
     }
 
-    public void SetAttachment(SC_Rooms ownerRoom)
+    public void SetAttachment(SC_Room ownerRoom)
     {
         AttachPoints[] attachments = ownerRoom.attachPoints;
         for (int i = 0; i < attachments.Length; i++)
         {
             AttachPoints attachPoint = attachments[i];
-            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.attachCollider.center, attachPoint.attachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
+            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
 
             //Debug.Log(ownerRoom.name + " Has " + col.Length + " Collisions In Total ");
             //Debug.Log(ownerRoom.name + " Has " + overlapsWithSelf + " Collisions With Self");
 
             for (int k = 0; k < col.Length; k++)
             {
-                if (col[k].GetComponentInParent<SC_Rooms>() != ownerRoom)
+                if (col[k].GetComponentInParent<SC_Room>() != ownerRoom)
                 {
-                    SC_Rooms otherRoom = col[k].GetComponentInParent<SC_Rooms>();
+                    SC_Room otherRoom = col[k].GetComponentInParent<SC_Room>();
                     for (int j = 0; j < otherRoom.attachPoints.Length; j++)
                     {
-                        if (col[k] == otherRoom.attachPoints[j].attachCollider && !attachPoint.attached)
+                        if (col[k] == otherRoom.attachPoints[j].AttachCollider && !attachPoint.attached)
                         {
                             attachPoint.canBeAttached = true;
                             if (!otherRoom.isChecker)
@@ -289,7 +291,7 @@ public class SC_RoomManager : MonoBehaviour
         }
     }
 
-    bool CheckIfFullyAttached(SC_Rooms roomToCheck)
+    bool CheckIfFullyAttached(SC_Room roomToCheck)
     {
         bool allAttached = true;
         AttachPoints[] attachPoints = roomToCheck.attachPoints;

@@ -32,7 +32,7 @@ public class SC_RoomPooler : MonoBehaviour
             for (int j = 0; j < pool.prefab.Count; j++)
             {
                 GameObject room = Instantiate(pool.prefab[j],poolParent.transform);
-                SC_Rooms roomTest = room.GetComponent<SC_Rooms>();
+                SC_Room roomTest = room.GetComponent<SC_Room>();
                 for (int i = 0; i < roomTest.attachPoints.Length; i++)
                 {
                     AttachPoints currentAttachPoint = roomTest.attachPoints[i];

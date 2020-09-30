@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SC_Rooms : MonoBehaviour
+public class SC_Room : MonoBehaviour
 {
     public AttachPoints[] attachPoints;
     public BoxCollider roomCollider;
@@ -20,7 +20,7 @@ public class SC_Rooms : MonoBehaviour
         {
             foreach (AttachPoints attachPoint in attachPoints)
             {
-                Gizmos.DrawWireCube(attachPoint.point.position + attachPoint.attachCollider.center, attachPoint.attachCollider.bounds.extents * 2f);
+                Gizmos.DrawWireCube(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 2f);
             }
         }
         else
@@ -42,7 +42,7 @@ public class SC_Rooms : MonoBehaviour
     {
         for (int i = 0; i < attachPoints.Length; i++)
         {
-            attachPoints[i].Off = attachPoints[i].point.localPosition;
+            attachPoints[i].off = attachPoints[i].point.localPosition;
         }
     }
 }
@@ -61,7 +61,7 @@ public class AttachPoints
     public Transform point;
     [Header ("HideInInspector")]
     public GameObject wall;
-    public BoxCollider attachCollider
+    public BoxCollider AttachCollider
     {
         get
         {
@@ -76,6 +76,6 @@ public class AttachPoints
     public AvailableSlots nextSpawn;
     public bool attached;
     public bool canBeAttached;
-    public SC_Rooms attachedTo;
-    public Vector3 Off;
+    public SC_Room attachedTo;
+    public Vector3 off;
 }
