@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5333782396839940549}
-  - component: {fileID: 1498299992847298599}
+  - component: {fileID: 6246814881014960041}
   m_Layer: 10
   m_Name: Corridor_A
   m_TagString: Enviorment
@@ -146,7 +146,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1498299992847298599
+--- !u!114 &6246814881014960041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2096410673083253621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdf20d69db0ecd4e8408203659d17d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8870d3e3df19dbd408d88746d363abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoints:
@@ -165,20 +165,20 @@ MonoBehaviour:
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 2831899383392064648}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 8552014223007933837}
-  roomType: 0
+  roomType: 2
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
-  isClosed: 0
+  isChecked: 0
 --- !u!1 &2575611455931837605
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +731,7 @@ PrefabInstance:
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
@@ -778,30 +778,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+    - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
-      propertyPath: m_Size.x
+      propertyPath: m_LocalScale.x
       value: 2.2
       objectReference: {fileID: 0}
-    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+    - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
-      propertyPath: m_Size.y
+      propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+    - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
-      propertyPath: m_Size.z
+      propertyPath: m_LocalScale.z
       value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
-      propertyPath: m_Center.y
+      propertyPath: m_Size.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8312806284310263752, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}

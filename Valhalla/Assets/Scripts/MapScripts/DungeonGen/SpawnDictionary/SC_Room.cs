@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SC_Room : MonoBehaviour
 {
-    public AttachPoints[] attachPoints;
+    public AttachPoint[] attachPoints;
     public BoxCollider roomCollider;
     public AvailableSlots roomType;
 
@@ -12,25 +12,27 @@ public class SC_Room : MonoBehaviour
     public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
     public bool fullyAttached;
     public bool isChecker;
-    public bool isClosed;
+    public bool isChecked;
 
     private void OnDrawGizmosSelected()
     {
-        if (attachPoints.Length > 0)
-        {
-            foreach (AttachPoints attachPoint in attachPoints)
-            {
-                Gizmos.DrawWireCube(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 2f);
-            }
-        }
-        else
-        {
-            Debug.LogError("No Attachpoints Assigned to " + gameObject.name);
-        }
+        //if (attachPoints.Length > 0)
+        //{
+        //    foreach (AttachPoint attachPoint in attachPoints)
+        //    {
+        //        Gizmos.matrix = attachPoint.point.localToWorldMatrix;
+        //        Gizmos.DrawWireCube(attachPoint.attachCollider.center, attachPoint.attachCollider.size);
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.LogError("No Attachpoints Assigned to " + gameObject.name);
+        //}
 
         if (roomCollider)
         {
-            Gizmos.DrawWireCube(transform.position + roomCollider.center, roomCollider.bounds.extents * 2f);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(roomCollider.transform.position + roomCollider.center, roomCollider.size);
         }
         else
         {
@@ -56,12 +58,12 @@ public class SpawnablePosAndRot
 }
 
 [System.Serializable]
-public class AttachPoints
+public class AttachPoint
 {
     public Transform point;
     [Header ("HideInInspector")]
     public GameObject wall;
-    public BoxCollider AttachCollider
+    public BoxCollider attachCollider
     {
         get
         {

@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8996314824514148828}
-  - component: {fileID: -7615916470704224129}
+  - component: {fileID: 7895770377095202803}
   m_Layer: 10
   m_Name: Corridor_B
   m_TagString: Enviorment
@@ -149,7 +149,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7615916470704224129
+--- !u!114 &7895770377095202803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3155827181438389100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdf20d69db0ecd4e8408203659d17d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8870d3e3df19dbd408d88746d363abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoints:
@@ -168,27 +168,27 @@ MonoBehaviour:
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 4306092431920936172}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 5150574296022968893}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 3622729549353036463}
   roomType: 0
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
-  isClosed: 0
+  isChecked: 0
 --- !u!1 &3276755870919073073
 GameObject:
   m_ObjectHideFlags: 0

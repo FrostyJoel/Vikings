@@ -599,8 +599,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364516862112004262}
-  - component: {fileID: 2773220561428696829}
   - component: {fileID: -1656034686727408481}
+  - component: {fileID: 1213862920153660113}
   m_Layer: 10
   m_Name: SmallRoom_B
   m_TagString: Enviorment
@@ -626,46 +626,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2773220561428696829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116695239720708630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdf20d69db0ecd4e8408203659d17d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachPoints:
-  - point: {fileID: 2973426734291296284}
-    wall: {fileID: 0}
-    nextSpawn: 0
-    attached: 0
-    canBeAttached: 0
-    attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
-  - point: {fileID: 966465508635137430}
-    wall: {fileID: 0}
-    nextSpawn: 0
-    attached: 0
-    canBeAttached: 0
-    attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
-  - point: {fileID: 8201414506720299847}
-    wall: {fileID: 0}
-    nextSpawn: 0
-    attached: 0
-    canBeAttached: 0
-    attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
-  roomCollider: {fileID: 8104631174490340749}
-  roomType: 2
-  spawnablePosAndRots: []
-  fullyAttached: 0
-  isChecker: 0
-  isClosed: 0
 --- !u!114 &-1656034686727408481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +655,46 @@ MonoBehaviour:
   m_VoxelSize: 0.083333336
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 17bbeaae1365a3a46bcf520fe1ba86cb, type: 2}
+--- !u!114 &1213862920153660113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116695239720708630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8870d3e3df19dbd408d88746d363abd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachPoints:
+  - point: {fileID: 2973426734291296284}
+    wall: {fileID: 0}
+    nextSpawn: 0
+    attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    off: {x: 0, y: 0, z: 0}
+  - point: {fileID: 966465508635137430}
+    wall: {fileID: 0}
+    nextSpawn: 0
+    attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    off: {x: 0, y: 0, z: 0}
+  - point: {fileID: 8201414506720299847}
+    wall: {fileID: 0}
+    nextSpawn: 0
+    attached: 0
+    canBeAttached: 0
+    attachedTo: {fileID: 0}
+    off: {x: 0, y: 0, z: 0}
+  roomCollider: {fileID: 8104631174490340749}
+  roomType: 2
+  spawnablePosAndRots: []
+  fullyAttached: 0
+  isChecker: 0
+  isChecked: 0
 --- !u!1 &2578761055523653062
 GameObject:
   m_ObjectHideFlags: 0

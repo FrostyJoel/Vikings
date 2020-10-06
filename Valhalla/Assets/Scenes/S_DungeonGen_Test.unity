@@ -992,34 +992,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6561616f2c0bb7458b19831e1245a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRoomType: 1
   sRoomRots:
     presetRots:
-    - axisRot: 0
-      rot: {x: 0, y: 90, z: 0}
-    - axisRot: 1
-      rot: {x: 0, y: -90, z: 0}
-    - axisRot: 2
-      rot: {x: 0, y: 180, z: 0}
     - axisRot: 3
       rot: {x: 0, y: 0, z: 0}
-  startRoom: 1
-  allspawnedRooms: []
-  allFinishedSpawningRooms: []
+    - axisRot: 2
+      rot: {x: 0, y: 180, z: 0}
+    - axisRot: 1
+      rot: {x: 0, y: -90, z: 0}
+    - axisRot: 0
+      rot: {x: 0, y: 90, z: 0}
+  mainWall: {fileID: 8847665219547034218, guid: 672eac260a268f44abe4e12567190617,
+    type: 3}
+  maxAmountOfRooms: 10
   overlapLayer:
     serializedVersion: 2
     m_Bits: 4096
   attachPointsLayer:
     serializedVersion: 2
     m_Bits: 8192
-  prefabWall: {fileID: 8847665219547034218, guid: d927190530d10464cbee460279143a1b,
-    type: 3}
   spawnDelay: 0.1
-  MaxamountOfRooms: 10
+  allspawnedRooms: []
+  allFinishedSpawningRooms: []
   currRoomToCheck: {fileID: 0}
-  attachment: 0
   customDungeonParent: {fileID: 0}
   currentAmountOfRooms: 0
-  currRoomInverted: 0
 --- !u!4 &1505009994
 Transform:
   m_ObjectHideFlags: 0
@@ -1066,23 +1064,17 @@ MonoBehaviour:
   pools:
   - tag: 2
     prefab:
-    - {fileID: 2593217339244404547, guid: 242ce11282e16bb4985a9211b85232a2, type: 3}
-    - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
-    - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
-    - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
+    - {fileID: 2661901783682184194, guid: 202ca0a58018ded49bbae9b1f7a90e87, type: 3}
   - tag: 3
     prefab: []
   - tag: 4
     prefab: []
   - tag: 0
     prefab:
-    - {fileID: 2096410673083253621, guid: 055e614146bd8a64487e330ead1df49d, type: 3}
-    - {fileID: 3155827181438389100, guid: 1cdd4bd08627e9b45863a717961c5ea2, type: 3}
-    - {fileID: 8552914424950432439, guid: a90521dba5bf0c942946add0dc6f3ccb, type: 3}
-    - {fileID: 3649633782507802868, guid: b979531e4fc274e41916050406b8308a, type: 3}
+    - {fileID: 8552914424950432439, guid: 000a7f44f7a5cfe4ca2c09cd88e06c35, type: 3}
   - tag: 1
     prefab:
-    - {fileID: 4005589626138109547, guid: 0cad618bd2bf6904a8fb57c637065a5b, type: 3}
+    - {fileID: 6707083054457901248, guid: 51423f170d2d7e643b16e309910f26fc, type: 3}
 --- !u!4 &1707402424
 Transform:
   m_ObjectHideFlags: 0

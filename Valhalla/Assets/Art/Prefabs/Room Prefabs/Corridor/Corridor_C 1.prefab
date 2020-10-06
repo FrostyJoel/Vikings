@@ -474,7 +474,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8552914424950432439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cdf20d69db0ecd4e8408203659d17d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 8870d3e3df19dbd408d88746d363abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoints:
@@ -484,33 +484,34 @@ MonoBehaviour:
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 7186554105105070910}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 3082007248151148305}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   - point: {fileID: 5936092714887684304}
     wall: {fileID: 0}
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
     attachedTo: {fileID: 0}
-    Off: {x: 0, y: 0, z: 0}
+    off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 2529967945354914590}
   roomType: 0
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
+  isChecked: 0
 --- !u!1 &9208071661005695268
 GameObject:
   m_ObjectHideFlags: 0

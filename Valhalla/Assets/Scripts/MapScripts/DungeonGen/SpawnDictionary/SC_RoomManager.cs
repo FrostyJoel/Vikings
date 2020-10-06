@@ -6,24 +6,23 @@ public class SC_RoomManager : MonoBehaviour
 {
     public static SC_RoomManager single;
 
+    public AvailableSlots startRoomType;
     public StandardRoomRots sRoomRots;
-    [Space(10)]
-    public AvailableSlots startRoom;
-    public List<SC_Room> allspawnedRooms = new List<SC_Room>();
-    public List<SC_Room> allFinishedSpawningRooms = new List<SC_Room>();
+
+    [Space]
+    public GameObject mainWall;
+    public int maxAmountOfRooms;
     public LayerMask overlapLayer;
     public LayerMask attachPointsLayer;
-    public GameObject prefabWall;
     public float spawnDelay;
-    public int MaxamountOfRooms;
 
+    [Header("HideInInspector")]
+    public List<SC_Room> allspawnedRooms = new List<SC_Room>();
+    public List<SC_Room> allFinishedSpawningRooms = new List<SC_Room>();
     public SC_Room currRoomToCheck;
-    public int attachment;
-    [HideInInspector]
     public GameObject customDungeonParent;
-    [HideInInspector]
     public int currentAmountOfRooms;
-    public bool currRoomInverted;
+
 
     private void Awake()
     {
@@ -38,7 +37,7 @@ public class SC_RoomManager : MonoBehaviour
         }
         customDungeonParent = new GameObject("Custom Dungeon");
 
-        GameObject mainRoom = SC_RoomPooler.single.SpawnFromPool(startRoom, transform.position, Quaternion.identity);
+        GameObject mainRoom = SC_RoomPooler.single.SpawnFromPool(startRoomType, transform.position, Quaternion.identity);
         //RoomCheckApply
         mainRoom.SetActive(false);
         SpawnRoom(mainRoom);
@@ -50,6 +49,8 @@ public class SC_RoomManager : MonoBehaviour
     {
         if (customDungeonParent != null)
         {
+            allspawnedRooms.Clear();
+            allFinishedSpawningRooms.Clear();
             Destroy(customDungeonParent);
         }
     }
@@ -78,89 +79,84 @@ public class SC_RoomManager : MonoBehaviour
     public IEnumerator CheckRoomAndSpawn(SC_Room roomToCheck)
     {
         //Debug.Log(currentAmountOfRooms);
-        if (currentAmountOfRooms < MaxamountOfRooms)
+        if (currentAmountOfRooms < maxAmountOfRooms)
         {
             while (!CheckIfFullyAttached(roomToCheck))
             {
-                List<SpawnablePosAndRot> newPosAndRot = new List<SpawnablePosAndRot>();
-
-                //Debug.Log(roomToCheck.name);
-                for (int k = 0; k < sRoomRots.presetRots.Length; k++)
+                for (int i = 0; i < roomToCheck.attachPoints.Length; i++)
                 {
-                    for (int i = 0; i < roomToCheck.attachPoints.Length; i++)
+                    AttachPoint currAttachpoint = roomToCheck.attachPoints[i];
+                    if (!currAttachpoint.attached)
                     {
-                        AttachPoints currAttachpoint = roomToCheck.attachPoints[i];
+                        GameObject newRoomObject = SC_RoomPooler.single.SpawnFromPool(currAttachpoint.nextSpawn, Vector3.zero, Quaternion.identity);
+                        SC_Room newRoomScript = newRoomObject.GetComponent<SC_Room>();
+                        AttachPoint[] newRoomAttachPoints = newRoomScript.attachPoints;
+                        List<SpawnablePosAndRot> newRoomPosAndRot = newRoomScript.spawnablePosAndRots;
 
-                        if (!currAttachpoint.attached)
+                        for (int iA = 0; iA < sRoomRots.presetRots.Length; iA++)
                         {
-                            GameObject pooledRoomObject = SC_RoomPooler.single.SpawnFromPool(currAttachpoint.nextSpawn, Vector3.zero, Quaternion.identity);
-                            SC_Room pooledRoom = pooledRoomObject.GetComponent<SC_Room>();
-                            AttachPoints[] aPpooledRoom = pooledRoom.attachPoints;
-                            //Debug.Log(roomToCheck.name + " " + roomToCheck.attachPoints[i] + " " + i + "Is Not Attached");
-
-                            for (int j = 0; j < aPpooledRoom.Length; j++)
+                            for (int iB = 0; iB < newRoomAttachPoints.Length; iB++)
                             {
-
-                                Transform nrAttachPoint = aPpooledRoom[j].point;
-                                float multi = 1f;
-                                if(nrAttachPoint.localPosition.x != 0 && nrAttachPoint.localPosition.z != 0)
+                                bool canBeAttached = false;
+                                SetRotSpawnedRoom(newRoomScript, iA);
+                                SetOffsetSpawnedRoom(currAttachpoint, newRoomAttachPoints[iB], newRoomScript);
+                                for (int iC = 0; iC < newRoomAttachPoints.Length; iC++)
                                 {
-                                    multi = -1f;
-                                }
-                                Vector3 newOffset = new Vector3(nrAttachPoint.localPosition.x*multi, nrAttachPoint.localPosition.y, nrAttachPoint.localPosition.z*multi);
-                                pooledRoomObject.transform.position = currAttachpoint.point.position + newOffset;
-                                pooledRoomObject.transform.rotation = Quaternion.Euler(sRoomRots.presetRots[k].rot);
-                                
-                                bool overlap = CheckCollision(pooledRoomObject);
-                                if (overlap)
-                                {
-                                    SpawnablePosAndRot newRoomPosAndRot = new SpawnablePosAndRot
+                                    if (IsOverlappingWithOtherAttachPoint(newRoomAttachPoints[iC]))
                                     {
-                                        pos = pooledRoom.transform.position,
-                                        rot = pooledRoom.transform.rotation,
-                                        room = pooledRoomObject
-                                    };
-                                    newPosAndRot.Add(newRoomPosAndRot);
-                                }
-                                else
+                                        Debug.Log("CanBeAttached");
+                                        canBeAttached = true;
+                                        break;
+                                    }
+                                } 
+
+                                if (!IsCollidingWithOtherRoom(newRoomObject) && canBeAttached)
                                 {
-                                    Debug.Log("Overlapping With Room");
+                                    Debug.Log(newRoomObject.name + " NewPosAndRot Found");
+                                    SpawnablePosAndRot posAndRot = new SpawnablePosAndRot
+                                    {
+                                        pos = newRoomObject.transform.position,
+                                        rot = newRoomObject.transform.rotation,
+                                        room = newRoomObject
+                                    };
+                                    newRoomPosAndRot.Add(posAndRot);
                                 }
-                                pooledRoomObject.SetActive(false);
                                 yield return new WaitForSeconds(spawnDelay);
                             }
-                            Debug.Log(pooledRoom.name + " Has :" + pooledRoom.spawnablePosAndRots.Count + "SpawnablePosses");
+                        }
+
+
+                        if (newRoomPosAndRot.Count > 0)
+                        {
+                            int randomPosAndRot = Random.Range(0, newRoomPosAndRot.Count - 1);
+                            GameObject finalRoom = newRoomPosAndRot[randomPosAndRot].room;
+                            finalRoom.transform.position = newRoomPosAndRot[randomPosAndRot].pos;
+                            finalRoom.transform.rotation = newRoomPosAndRot[randomPosAndRot].rot;
+                            newRoomPosAndRot.Clear();
+                            SpawnRoom(finalRoom);
+                        }
+                        else
+                        {
+                            newRoomObject.SetActive(false);
+                            currAttachpoint.wall.SetActive(true);
+                            currAttachpoint.attached = true;
                         }
                     }
-                }
-
-                if (newPosAndRot.Count > 0)
-                {
-                    int randomPosAndRot = Random.Range(0, newPosAndRot.Count - 1);
-                    GameObject finalRoom = newPosAndRot[randomPosAndRot].room;
-                    finalRoom.transform.position = newPosAndRot[randomPosAndRot].pos;
-                    finalRoom.transform.rotation = newPosAndRot[randomPosAndRot].rot;
-                    SpawnRoom(finalRoom);
                 }
             }
 
             if (CheckIfFullyAttached(roomToCheck))
             {
                 roomToCheck.fullyAttached = true;
-            }
-
-            if (roomToCheck.fullyAttached)
-            {
                 GetNextAvaialableRoom();
             }
-
         }
         else
         {
             Debug.Log("Dungeon Finished");
             foreach (SC_Room test in allspawnedRooms)
             {
-                foreach (AttachPoints points in test.attachPoints)
+                foreach (AttachPoint points in test.attachPoints)
                 {
                     if (!points.attached)
                     {
@@ -173,68 +169,67 @@ public class SC_RoomManager : MonoBehaviour
 
     }
 
-    private bool CheckCollision(GameObject pooledRoomObject)
+    private void SetRotSpawnedRoom(SC_Room spawnedRoom,int index)
+    {
+        spawnedRoom.transform.rotation = Quaternion.Euler(sRoomRots.presetRots[index].rot);
+    }
+
+    private void SetOffsetSpawnedRoom(AttachPoint starterRoomAttachpoint, AttachPoint spawnedRoomAttachpoint, SC_Room spawnedRoom)
+    {
+        float multi = 1f;
+        Vector3 spawnroomAttachpointPos = spawnedRoomAttachpoint.point.localPosition;
+
+        if (spawnroomAttachpointPos.x != 0 && spawnroomAttachpointPos.z != 0)
+        {
+            multi = -1f;
+        }
+
+        Vector3 newOffset = new Vector3(spawnroomAttachpointPos.x * multi,
+               spawnroomAttachpointPos.y,
+               spawnroomAttachpointPos.z * multi);
+
+        spawnedRoom.transform.position = starterRoomAttachpoint.point.position + newOffset;
+        //spawnedRoom.transform.position = starterRoom.transform.position + starterRoomAttachpoint.off + spawnedRoomAttachpoint.off;
+    }
+
+    private bool IsCollidingWithOtherRoom(GameObject pooledRoomObject)
     {
         SC_Room pooledRoom = pooledRoomObject.GetComponent<SC_Room>();
+        string oldTag = pooledRoom.roomCollider.tag;
+        pooledRoom.roomCollider.tag = "Ignore";
 
-        Collider[] col = Physics.OverlapBox(pooledRoomObject.transform.position + pooledRoom.roomCollider.center, pooledRoom.roomCollider.bounds.extents * 0.5f, pooledRoomObject.transform.rotation, overlapLayer);
-        bool isOverlapingWithOthers = CheckOverlapSelf(col, pooledRoom);
-        
+        Collider[] col = Physics.OverlapBox(pooledRoomObject.transform.position + pooledRoom.roomCollider.center,
+            pooledRoom.roomCollider.size /2f,
+            pooledRoomObject.transform.rotation,
+            overlapLayer);
+
+        bool isOverlapingWithOthers = IsOverlappingWithOthers(col, pooledRoomObject);
+        pooledRoom.roomCollider.tag = oldTag;
+
         return isOverlapingWithOthers;
     }
 
-    bool CheckOverlapSelf(Collider[] colliding, SC_Room selfParent)
+    bool IsOverlappingWithOthers(Collider[] colliding, GameObject selfParent)
     {
         bool isOverlapingWithOthers = false;
         for (int i = 0; i < colliding.Length; i++)
         {
-            if (colliding[i].GetComponentInParent<SC_Room>() != selfParent)
+            if (!colliding[i].gameObject.CompareTag("Ignore") && colliding[i].GetComponentInParent<SC_Room>().gameObject != selfParent)
             {
-                //Debug.Log(selfParent.name + " Is CollidingWith  Self");
+                Debug.Log(selfParent.name + " Is Colliding With: " + colliding[i].GetComponentInParent<SC_Room>().transform.name);
                 isOverlapingWithOthers = true;
             }
         }
         return isOverlapingWithOthers;
     }
 
-    public void CheckAttachMent(SC_Room ownerRoom)
-    {
-        AttachPoints[] attachments = ownerRoom.attachPoints;
-
-        for (int i = 0; i < attachments.Length; i++)
-        {
-            AttachPoints attachPoint = attachments[i];
-            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
-            bool isOverlapingWithOthers = CheckOverlapSelf(col, ownerRoom);
-
-            //Debug.Log(ownerRoom.name + " Has " + col.Length + " Collisions In Total ");
-            //Debug.Log(ownerRoom.name + " Has " + overlapsWithSelf + " Collisions With Self");
-
-            for (int k = 0; k < col.Length; k++)
-            {
-                if (isOverlapingWithOthers)
-                {
-                    attachPoint.canBeAttached = true;
-                }
-            }
-        }
-    }
-
     public void SpawnRoom(GameObject room)
     {
-        //Debug.Log("SpawningRoom");
-        SC_Room pooledRoom = room.GetComponent<SC_Room>();
-
-        foreach (AttachPoints roomPoints in pooledRoom.attachPoints)
-        {
-            roomPoints.attached = false;
-            roomPoints.attachedTo = null;
-        }
-
+        //Debug.Log("Spawning");
         GameObject newRoom = Instantiate(room);
-        newRoom.SetActive(true);
         SC_Room newRoomScript = newRoom.GetComponent<SC_Room>();
 
+        newRoom.SetActive(true);
         newRoomScript.isChecker = false;
         newRoom.transform.SetParent(customDungeonParent.transform);
         allspawnedRooms.Add(newRoomScript);
@@ -244,57 +239,90 @@ public class SC_RoomManager : MonoBehaviour
             currentAmountOfRooms++;
         }
 
-        pooledRoom.spawnablePosAndRots.Clear();
+        room.SetActive(false);
         SetAttachment(newRoomScript);
+    }
+
+    public bool IsOverlappingWithOtherAttachPoint(AttachPoint currentAttachPoint)
+    {
+        bool canBeAttached = false;
+
+        string oldTag = currentAttachPoint.attachCollider.tag;
+        currentAttachPoint.attachCollider.tag = "Ignore";
+
+        Collider[] col = Physics.OverlapBox(currentAttachPoint.point.position + currentAttachPoint.attachCollider.center,
+            currentAttachPoint.attachCollider.size * 0.5f,
+            Quaternion.identity,
+            attachPointsLayer);
+
+        if (IsOverlappingWithOthers(col, currentAttachPoint.point.gameObject))
+        {
+            canBeAttached = true;
+        }
+
+        currentAttachPoint.attachCollider.tag = oldTag;
+
+        return canBeAttached;
     }
 
     public void SetAttachment(SC_Room ownerRoom)
     {
-        AttachPoints[] attachments = ownerRoom.attachPoints;
-        for (int i = 0; i < attachments.Length; i++)
+        foreach (AttachPoint attach in ownerRoom.attachPoints)
         {
-            AttachPoints attachPoint = attachments[i];
-            Collider[] col = Physics.OverlapBox(attachPoint.point.position + attachPoint.AttachCollider.center, attachPoint.AttachCollider.bounds.extents * 0.5f, attachPoint.point.rotation, attachPointsLayer);
+            AttachPoint ownersAttachPoint = attach;
+
+            string oldTag = ownersAttachPoint.attachCollider.tag;
+            ownersAttachPoint.attachCollider.tag = "Ignore";
+
+            Collider[] col = Physics.OverlapBox(ownersAttachPoint.point.position + ownersAttachPoint.attachCollider.center,
+                ownersAttachPoint.attachCollider.size * 0.5f,
+                Quaternion.identity, attachPointsLayer);
 
             //Debug.Log(ownerRoom.name + " Has " + col.Length + " Collisions In Total ");
             //Debug.Log(ownerRoom.name + " Has " + overlapsWithSelf + " Collisions With Self");
 
-            for (int k = 0; k < col.Length; k++)
+            for (int iA = 0; iA < col.Length; iA++)
             {
-                if (col[k].GetComponentInParent<SC_Room>() != ownerRoom)
+                if (!col[iA].gameObject.CompareTag("Ignore"))
                 {
-                    SC_Room otherRoom = col[k].GetComponentInParent<SC_Room>();
-                    for (int j = 0; j < otherRoom.attachPoints.Length; j++)
+                    //Debug.Log("NotOwner");
+                    SC_Room otherRoom = col[iA].GetComponentInParent<SC_Room>();
+                    for (int iB = 0; iB < otherRoom.attachPoints.Length; iB++)
                     {
-                        if (col[k] == otherRoom.attachPoints[j].AttachCollider && !attachPoint.attached)
+                        AttachPoint otherAttachPoint = otherRoom.attachPoints[iB];
+                        if(otherAttachPoint.attachCollider == col[iA])
                         {
-                            attachPoint.canBeAttached = true;
-                            if (!otherRoom.isChecker)
+                            if (!otherAttachPoint.attached && !ownersAttachPoint.attached)
                             {
-                                Destroy(otherRoom.attachPoints[j].wall);
+                                if (!otherRoom.isChecker)
+                                {
+                                    //Debug.Log("Attaching");
+                                    Destroy(otherAttachPoint.wall);
 
-                                attachPoint.attached = true;
-                                attachPoint.attachedTo = otherRoom;
+                                    ownersAttachPoint.attached = true;
+                                    ownersAttachPoint.attachedTo = otherRoom;
 
-                                //Debug.Log(otherAttachPoint.name + " Is Attached");
+                                    //Debug.Log(otherAttachPoint.name + " Is Attached");
 
-                                otherRoom.attachPoints[j].attached = true;
-                                otherRoom.attachPoints[j].attachedTo = ownerRoom;
-                                otherRoom.attachPoints[j].wall = attachPoint.wall;
+                                    otherAttachPoint.attached = true;
+                                    otherAttachPoint.attachedTo = ownerRoom;
+                                    otherAttachPoint.wall = ownersAttachPoint.wall;
+                                    break;
+                                }
                                 break;
                             }
-                            break;
                         }
                     }
                 }
             }
+            ownersAttachPoint.attachCollider.tag = oldTag;
         }
     }
 
     bool CheckIfFullyAttached(SC_Room roomToCheck)
     {
         bool allAttached = true;
-        AttachPoints[] attachPoints = roomToCheck.attachPoints;
+        AttachPoint[] attachPoints = roomToCheck.attachPoints;
         for (int i = 0; i < attachPoints.Length; i++)
         {
             if (!attachPoints[i].attached)
