@@ -13,6 +13,10 @@ public class SC_Room : MonoBehaviour
     public bool fullyAttached;
     public bool isChecker;
     public bool isChecked;
+    public bool isMinHorizontal;
+    public bool isPlusHorizontal;
+    public bool isMinVertical;
+    public bool isPlusVertical;
 
     private void OnDrawGizmosSelected()
     {
@@ -20,8 +24,8 @@ public class SC_Room : MonoBehaviour
         //{
         //    foreach (AttachPoint attachPoint in attachPoints)
         //    {
-        //        Gizmos.matrix = attachPoint.point.localToWorldMatrix;
-        //        Gizmos.DrawWireCube(attachPoint.attachCollider.center, attachPoint.attachCollider.size);
+        //        Gizmos.color = Color.red;
+        //        Gizmos.DrawWireCube(attachPoint.attachCollider.transform.position + attachPoint.attachCollider.center, attachPoint.attachCollider.size * 2f);
         //    }
         //}
         //else
@@ -37,14 +41,6 @@ public class SC_Room : MonoBehaviour
         else
         {
             Debug.LogError("No RoomCollider Assigned to " + gameObject.name);
-        }
-    }
-
-    public void ResetAttachPoint()
-    {
-        for (int i = 0; i < attachPoints.Length; i++)
-        {
-            attachPoints[i].off = attachPoints[i].point.localPosition;
         }
     }
 }

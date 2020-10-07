@@ -179,6 +179,7 @@ MonoBehaviour:
   fullyAttached: 0
   isChecker: 0
   isChecked: 0
+  isHorizontal: 0
 --- !u!1 &2575611455931837605
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +732,7 @@ PrefabInstance:
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
@@ -781,37 +782,37 @@ PrefabInstance:
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2756487509162510811, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 8.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}
       propertyPath: m_Center.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5282026947238992847, guid: d55a8eeffc8684e4b8e6d802e0ad03a0,
         type: 3}

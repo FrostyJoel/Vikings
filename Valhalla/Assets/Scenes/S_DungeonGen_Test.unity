@@ -995,17 +995,17 @@ MonoBehaviour:
   startRoomType: 1
   sRoomRots:
     presetRots:
-    - axisRot: 3
-      rot: {x: 0, y: 0, z: 0}
-    - axisRot: 2
-      rot: {x: 0, y: 180, z: 0}
-    - axisRot: 1
-      rot: {x: 0, y: -90, z: 0}
     - axisRot: 0
+      rot: {x: 0, y: 0, z: 0}
+    - axisRot: 1
+      rot: {x: 0, y: 180, z: 0}
+    - axisRot: 2
       rot: {x: 0, y: 90, z: 0}
+    - axisRot: 3
+      rot: {x: 0, y: -90, z: 0}
   mainWall: {fileID: 8847665219547034218, guid: 672eac260a268f44abe4e12567190617,
     type: 3}
-  maxAmountOfRooms: 10
+  maxAmountOfRooms: 20
   overlapLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -1064,14 +1064,20 @@ MonoBehaviour:
   pools:
   - tag: 2
     prefab:
+    - {fileID: 297073304919272373, guid: fbd487c45ab2cdc40ba3e64da86e8345, type: 3}
+    - {fileID: 2116695239720708630, guid: b0b31debe3bf7ee4f9ef2b4c229a919d, type: 3}
     - {fileID: 2661901783682184194, guid: 202ca0a58018ded49bbae9b1f7a90e87, type: 3}
+    - {fileID: 5119443955146086379, guid: 9a8495f4c0df42b4e9d0adeb04890724, type: 3}
   - tag: 3
     prefab: []
   - tag: 4
     prefab: []
   - tag: 0
     prefab:
+    - {fileID: 2096410673083253621, guid: ece16ba7d8e75d645b129baca5e38842, type: 3}
+    - {fileID: 3155827181438389100, guid: 26d0bc46b36862946aae13ea0420ab9e, type: 3}
     - {fileID: 8552914424950432439, guid: 000a7f44f7a5cfe4ca2c09cd88e06c35, type: 3}
+    - {fileID: 3649633782507802868, guid: dc169ee1e39e513429bd4c06cd414dc7, type: 3}
   - tag: 1
     prefab:
     - {fileID: 6707083054457901248, guid: 51423f170d2d7e643b16e309910f26fc, type: 3}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,11 +24,12 @@ public class SC_RoomPooler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         GameObject poolParent = new GameObject("PoolParent");
         foreach (Pool pool in pools)
         {
             Queue<GameObject> roomPool = new Queue<GameObject>();
-
+            RandomizeRoomPrefabs(pool);
             for (int j = 0; j < pool.prefab.Count; j++)
             {
                 GameObject room = Instantiate(pool.prefab[j],poolParent.transform);
@@ -47,6 +48,17 @@ public class SC_RoomPooler : MonoBehaviour
                 roomPool.Enqueue(room);
             }
             poolDictionary.Add((int)pool.tag, roomPool);
+        }
+    }
+
+    private void RandomizeRoomPrefabs(Pool pool)
+    {
+        for (int i = 0; i < pool.prefab.Count; i++)
+        {
+            GameObject temp = pool.prefab[i];
+            int randomIndex = Random.Range(i, pool.prefab.Count);
+            pool.prefab[i] = pool.prefab[randomIndex];
+            pool.prefab[randomIndex] = temp;
         }
     }
 
