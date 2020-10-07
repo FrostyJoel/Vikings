@@ -293,7 +293,7 @@ public class SC_RoomManager : MonoBehaviour
         newRoom.transform.SetParent(customDungeonParent.transform);
         allspawnedRooms.Add(newRoomScript);
 
-        if (newRoomScript.roomType == AvailableSlots.SmallRooms)
+        if (newRoomScript.roomType == AvailableSlots.Rooms)
         {
             currentAmountOfRooms++;
         }

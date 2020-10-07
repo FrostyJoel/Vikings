@@ -88,7 +88,5 @@ public enum AvailableSlots
 {
     HallWays,
     MainRooms,
-    SmallRooms,
-    MediumRooms,
-    LargeRooms
+    Rooms,
 }
