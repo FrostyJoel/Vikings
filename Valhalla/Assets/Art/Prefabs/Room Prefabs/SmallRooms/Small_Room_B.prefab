@@ -364,6 +364,10 @@ MonoBehaviour:
   fullyAttached: 0
   isChecker: 0
   isChecked: 0
+  isMinHorizontal: 0
+  isPlusHorizontal: 0
+  isMinVertical: 0
+  isPlusVertical: 0
 --- !u!1 &2593217340223462831
 GameObject:
   m_ObjectHideFlags: 0
