@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class SC_Room : MonoBehaviour
 {
@@ -13,10 +13,7 @@ public class SC_Room : MonoBehaviour
     public bool fullyAttached;
     public bool isChecker;
     public bool isChecked;
-    public bool isMinHorizontal;
-    public bool isPlusHorizontal;
-    public bool isMinVertical;
-    public bool isPlusVertical;
+    public MeshRenderer[] meshRenderers;
 
     private void OnDrawGizmosSelected()
     {
@@ -35,12 +32,20 @@ public class SC_Room : MonoBehaviour
 
         if (roomCollider)
         {
+            Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(roomCollider.transform.position + roomCollider.center, roomCollider.size);
         }
         else
         {
             Debug.LogError("No RoomCollider Assigned to " + gameObject.name);
+        }
+    }
+    public void MakeEverythingStatic()
+    {
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].gameObject.isStatic = true;
         }
     }
 }
@@ -77,3 +82,35 @@ public class AttachPoint
     public SC_Room attachedTo;
     public Vector3 off;
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(SC_Room)), CanEditMultipleObjects]
+public class SC_RoomEditor : Editor
+{
+    SC_Room target_Room;
+
+    public void OnEnable()
+    {
+        target_Room = (SC_Room)target;
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        if (GUILayout.Button("Set MeshRenderers"))
+        {
+            MeshRenderer[] iaArray = target_Room.GetComponentsInChildren<MeshRenderer>();
+            List<MeshRenderer> iaList = new List<MeshRenderer>();
+            int i;
+            for (i = 0; i < iaArray.Length; i++)
+            {
+                MeshRenderer interactable = iaArray[i];
+                iaList.Add(interactable);
+                EditorUtility.SetDirty(interactable);
+            }
+            target_Room.meshRenderers = iaList.ToArray();
+            Debug.LogWarning($"Successfully set {i} meshrenderers, don't forget to save!");
+        }
+    }
+}
+#endif

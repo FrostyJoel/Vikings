@@ -1012,7 +1012,7 @@ MonoBehaviour:
   attachPointsLayer:
     serializedVersion: 2
     m_Bits: 8192
-  spawnDelay: 0.1
+  spawnDelay: 0
   allspawnedRooms: []
   allFinishedSpawningRooms: []
   currRoomToCheck: {fileID: 0}
@@ -1064,20 +1064,20 @@ MonoBehaviour:
   pools:
   - tag: 2
     prefab:
-    - {fileID: 297073304919272373, guid: fbd487c45ab2cdc40ba3e64da86e8345, type: 3}
-    - {fileID: 2116695239720708630, guid: b0b31debe3bf7ee4f9ef2b4c229a919d, type: 3}
-    - {fileID: 2661901783682184194, guid: 202ca0a58018ded49bbae9b1f7a90e87, type: 3}
-    - {fileID: 5119443955146086379, guid: 9a8495f4c0df42b4e9d0adeb04890724, type: 3}
-    - {fileID: 1398518346542388713, guid: ecd042ee9fda41d4e8712aee79afb94d, type: 3}
+    - {fileID: 2593217339244404547, guid: 242ce11282e16bb4985a9211b85232a2, type: 3}
+    - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
+    - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
+    - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
+    - {fileID: 714487914289013527, guid: 84b3c3122676eb141a07fc56792ace41, type: 3}
   - tag: 0
     prefab:
-    - {fileID: 2096410673083253621, guid: ece16ba7d8e75d645b129baca5e38842, type: 3}
-    - {fileID: 3155827181438389100, guid: 26d0bc46b36862946aae13ea0420ab9e, type: 3}
-    - {fileID: 8552914424950432439, guid: 000a7f44f7a5cfe4ca2c09cd88e06c35, type: 3}
-    - {fileID: 3649633782507802868, guid: dc169ee1e39e513429bd4c06cd414dc7, type: 3}
+    - {fileID: 2096410673083253621, guid: 055e614146bd8a64487e330ead1df49d, type: 3}
+    - {fileID: 3155827181438389100, guid: 1cdd4bd08627e9b45863a717961c5ea2, type: 3}
+    - {fileID: 8552914424950432439, guid: a90521dba5bf0c942946add0dc6f3ccb, type: 3}
+    - {fileID: 3649633782507802868, guid: b979531e4fc274e41916050406b8308a, type: 3}
   - tag: 1
     prefab:
-    - {fileID: 6707083054457901248, guid: 51423f170d2d7e643b16e309910f26fc, type: 3}
+    - {fileID: 4005589626138109547, guid: 0cad618bd2bf6904a8fb57c637065a5b, type: 3}
 --- !u!4 &1707402424
 Transform:
   m_ObjectHideFlags: 0

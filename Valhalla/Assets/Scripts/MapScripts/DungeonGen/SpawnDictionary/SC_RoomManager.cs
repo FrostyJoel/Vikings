@@ -18,7 +18,7 @@ public class SC_RoomManager : MonoBehaviour
 
     [Header("HideInInspector")]
     public List<SC_Room> allspawnedRooms = new List<SC_Room>();
-    public List<SC_Room> allFinishedSpawningRooms = new List<SC_Room>();
+    public List<GameObject> allFinishedSpawningRooms = new List<GameObject>();
     public SC_Room currRoomToCheck;
     public GameObject customDungeonParent;
     public int currentAmountOfRooms;
@@ -34,15 +34,19 @@ public class SC_RoomManager : MonoBehaviour
         if (customDungeonParent != null)
         {
             Debug.LogWarning("Already a Dungeon Existing Destroy First");
+            return;
         }
         customDungeonParent = new GameObject("Custom Dungeon");
 
         GameObject mainRoom = SC_RoomPooler.single.SpawnFromPool(startRoomType, transform.position, Quaternion.identity);
         //RoomCheckApply
-        mainRoom.SetActive(false);
-        SpawnRoom(mainRoom);
+        if (mainRoom != null)
+        {
+            mainRoom.SetActive(false);
+            SpawnRoom(mainRoom);
 
-        GetNextAvaialableRoom();
+            GetNextAvaialableRoom();
+        }
     }
 
     public void DestroyDungeon()
@@ -67,9 +71,12 @@ public class SC_RoomManager : MonoBehaviour
             }
             else
             {
-                if (!allFinishedSpawningRooms.Contains(currRoomToCheck))
+                if (currRoomToCheck.roomType == AvailableSlots.Rooms)
                 {
-                    allFinishedSpawningRooms.Add(currRoomToCheck);
+                    if (!allFinishedSpawningRooms.Contains(currRoomToCheck.gameObject))
+                    {
+                        allFinishedSpawningRooms.Add(currRoomToCheck.gameObject);
+                    }
                 }
                 //allspawnedRooms.Remove(allspawnedRooms[i]);
             }
@@ -98,7 +105,7 @@ public class SC_RoomManager : MonoBehaviour
                             for (int iB = 0; iB < newRoomAttachPoints.Length; iB++)
                             {
                                 SetRotSpawnedRoom(newRoomScript, iA);
-                                SetOffsetSpawnedRoom(currAttachpoint, newRoomAttachPoints[iB], newRoomScript);
+                                SetOffsetSpawnedRoom(currAttachpoint, newRoomAttachPoints[iB], newRoomScript,iA);
                                 foreach (AttachPoint newRoomAttachPoint in newRoomAttachPoints)
                                 {
                                     if (IsOverlappingWithOtherAttachPoint(newRoomAttachPoint))
@@ -106,7 +113,7 @@ public class SC_RoomManager : MonoBehaviour
                                         //Debug.Log("CanBeAttached");
                                         if (!IsCollidingWithOtherRoom(newRoomObject))
                                         {
-                                            Debug.Log(newRoomObject.name + " NewPosAndRot Found");
+                                            //Debug.Log(newRoomObject.name + " NewPosAndRot Found");
                                             SpawnablePosAndRot posAndRot = new SpawnablePosAndRot
                                             {
                                                 pos = newRoomObject.transform.position,
@@ -123,7 +130,6 @@ public class SC_RoomManager : MonoBehaviour
                                 yield return new WaitForSeconds(spawnDelay);
                             }
                         }
-
 
                         if (newRoomPosAndRot.Count > 0)
                         {
@@ -171,37 +177,9 @@ public class SC_RoomManager : MonoBehaviour
     private void SetRotSpawnedRoom(SC_Room spawnedRoom,int index)
     {
         spawnedRoom.transform.rotation = Quaternion.Euler(sRoomRots.presetRots[index].rot);
-        if (index == (int)Rots.XPlus)
-        {
-            spawnedRoom.isPlusHorizontal = true;
-            spawnedRoom.isMinHorizontal = false;
-            spawnedRoom.isPlusVertical = false;
-            spawnedRoom.isMinVertical = false;
-        }
-        else if(index == (int)Rots.XMin)
-        {
-            spawnedRoom.isPlusHorizontal = false;
-            spawnedRoom.isMinHorizontal = true;
-            spawnedRoom.isPlusVertical = false;
-            spawnedRoom.isMinVertical = false;
-        }
-        else if(index == (int)Rots.ZPlus)
-        {
-            spawnedRoom.isPlusHorizontal = false;
-            spawnedRoom.isMinHorizontal = false;
-            spawnedRoom.isPlusVertical = true;
-            spawnedRoom.isMinVertical = false;
-        }
-        else if (index == (int)Rots.ZMin)
-        {
-            spawnedRoom.isPlusHorizontal = false;
-            spawnedRoom.isMinHorizontal = false;
-            spawnedRoom.isPlusVertical = false;
-            spawnedRoom.isMinVertical = true;
-        }
     }
 
-    private void SetOffsetSpawnedRoom(AttachPoint starterRoomAttachpoint, AttachPoint spawnedRoomAttachpoint, SC_Room spawnedRoom)
+    private void SetOffsetSpawnedRoom(AttachPoint starterRoomAttachpoint, AttachPoint spawnedRoomAttachpoint, SC_Room spawnedRoom, int RotationIndex)
     {
         float multi = 1f;
         Vector3 spawnroomAttachpointPos = spawnedRoomAttachpoint.point.localPosition;
@@ -211,40 +189,24 @@ public class SC_RoomManager : MonoBehaviour
         {
             multi = -1f;
         }
-        if (spawnedRoom.isPlusHorizontal || spawnedRoom.isMinHorizontal)
-        {
-            if (spawnedRoom.isPlusHorizontal)
-            {
-                newOffset = new Vector3(spawnroomAttachpointPos.z * multi,
-                  spawnroomAttachpointPos.y,
-                  spawnroomAttachpointPos.x * multi);
-            }
 
-            if (spawnedRoom.isMinHorizontal)
-            {
-                newOffset = new Vector3(spawnroomAttachpointPos.z * -multi,
-                  spawnroomAttachpointPos.y,
-                  spawnroomAttachpointPos.x * -multi);
-            }
+        if(RotationIndex == (int)Rots.XMin || RotationIndex == (int)Rots.ZPlus)
+        {
+            multi *= -1f;
         }
 
-        if (spawnedRoom.isPlusVertical || spawnedRoom.isMinVertical)
+        if (RotationIndex == (int)Rots.XPlus || RotationIndex == (int)Rots.XMin)
         {
+            newOffset = new Vector3(spawnroomAttachpointPos.z * multi,
+              spawnroomAttachpointPos.y,
+              spawnroomAttachpointPos.x * multi);
+        }
 
-            if (spawnedRoom.isPlusVertical)
-            {
-                newOffset = new Vector3(spawnroomAttachpointPos.x * -multi,
-                 spawnroomAttachpointPos.y,
-                 spawnroomAttachpointPos.z * -multi);
-            }
-
-            if (spawnedRoom.isMinVertical)
-            {
-                newOffset = new Vector3(spawnroomAttachpointPos.x * multi,
-                  spawnroomAttachpointPos.y,
-                  spawnroomAttachpointPos.z * multi);
-            }
-
+        if (RotationIndex == (int)Rots.ZPlus || RotationIndex == (int)Rots.ZMin)
+        {
+            newOffset = new Vector3(spawnroomAttachpointPos.x * multi,
+             spawnroomAttachpointPos.y,
+             spawnroomAttachpointPos.z * multi);
         }
         
         spawnedRoom.transform.position = starterRoomAttachpoint.point.position + newOffset;
@@ -281,27 +243,6 @@ public class SC_RoomManager : MonoBehaviour
         }
         return isOverlapingWithOthers;
     }
-
-    public void SpawnRoom(GameObject room)
-    {
-        //Debug.Log("Spawning");
-        GameObject newRoom = Instantiate(room);
-        SC_Room newRoomScript = newRoom.GetComponent<SC_Room>();
-
-        newRoom.SetActive(true);
-        newRoomScript.isChecker = false;
-        newRoom.transform.SetParent(customDungeonParent.transform);
-        allspawnedRooms.Add(newRoomScript);
-
-        if (newRoomScript.roomType == AvailableSlots.Rooms)
-        {
-            currentAmountOfRooms++;
-        }
-
-        room.SetActive(false);
-        SetAttachment(newRoomScript);
-    }
-
     public bool IsOverlappingWithOtherAttachPoint(AttachPoint currentAttachPoint)
     {
         bool canBeAttached = false;
@@ -323,7 +264,26 @@ public class SC_RoomManager : MonoBehaviour
 
         return canBeAttached;
     }
+    public void SpawnRoom(GameObject room)
+    {
+        //Debug.Log("Spawning");
+        GameObject newRoom = Instantiate(room);
+        SC_Room newRoomScript = newRoom.GetComponent<SC_Room>();
 
+        newRoom.SetActive(true);
+        newRoomScript.MakeEverythingStatic();
+        newRoomScript.isChecker = false;
+        newRoom.transform.SetParent(customDungeonParent.transform);
+        allspawnedRooms.Add(newRoomScript);
+
+        if (newRoomScript.roomType == AvailableSlots.Rooms)
+        {
+            currentAmountOfRooms++;
+        }
+
+        room.SetActive(false);
+        SetAttachment(newRoomScript);
+    }
     public void SetAttachment(SC_Room ownerRoom)
     {
         foreach (AttachPoint attach in ownerRoom.attachPoints)
@@ -377,7 +337,6 @@ public class SC_RoomManager : MonoBehaviour
             ownersAttachPoint.attachCollider.tag = oldTag;
         }
     }
-
     bool CheckIfFullyAttached(SC_Room roomToCheck)
     {
         bool allAttached = true;
@@ -389,7 +348,6 @@ public class SC_RoomManager : MonoBehaviour
         }
         return allAttached;
     }
-
 }
 
 public enum Rots

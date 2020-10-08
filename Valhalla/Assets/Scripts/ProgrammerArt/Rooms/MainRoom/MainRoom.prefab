@@ -300,11 +300,12 @@ MonoBehaviour:
     attachedTo: {fileID: 0}
     off: {x: 0, y: 0, z: 0}
   roomCollider: {fileID: 1510750857338417366}
-  roomType: 1
+  roomType: 0
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
   isChecked: 0
+  meshRenderers: []
 --- !u!1 &6707083054588683942
 GameObject:
   m_ObjectHideFlags: 0

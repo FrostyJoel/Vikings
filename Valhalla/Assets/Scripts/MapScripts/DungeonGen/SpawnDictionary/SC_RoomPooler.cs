@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SC_RoomPooler : MonoBehaviour
@@ -24,7 +23,6 @@ public class SC_RoomPooler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         GameObject poolParent = new GameObject("PoolParent");
         foreach (Pool pool in pools)
         {
@@ -32,7 +30,7 @@ public class SC_RoomPooler : MonoBehaviour
             RandomizeRoomPrefabs(pool);
             for (int j = 0; j < pool.prefab.Count; j++)
             {
-                GameObject room = Instantiate(pool.prefab[j],poolParent.transform);
+                GameObject room = Instantiate(pool.prefab[j], poolParent.transform);
                 SC_Room roomTest = room.GetComponent<SC_Room>();
                 roomTest.roomType = pool.tag;
                 for (int i = 0; i < roomTest.attachPoints.Length; i++)
@@ -65,7 +63,6 @@ public class SC_RoomPooler : MonoBehaviour
     public GameObject SpawnFromPool(AvailableSlots tag,Vector3 position, Quaternion rotation)
     {
         int numberTag = (int)tag;
-
         if (!poolDictionary.ContainsKey(numberTag))
         {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");

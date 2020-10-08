@@ -198,7 +198,7 @@ public class SC_EnemyStats : MonoBehaviour
     private void Die()
     {
         myRB.velocity = Vector3.zero;
-        SC_GameManager.single.UpdateEnemyList(this);
+        SC_GameManager.single.RemoveFromEnemyList(this);
         myAnimator.SetTrigger("Death");
         Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
     }
