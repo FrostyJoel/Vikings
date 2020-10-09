@@ -10,12 +10,12 @@ public class SC_FinalScreen : MonoBehaviour
     }
     public void RestartGame()
     {
-        SC_MenuManager.single.RestartGame();
+        SC_UiManager.single.QuitToMainMenu();
     }
 
     public void QuitGame()
     {
-        SC_MenuManager.single.QuitGame();
+        SC_UiManager.single.QuitGame();
     }
 
 }

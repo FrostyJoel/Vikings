@@ -5,14 +5,22 @@ using UnityEditor;
 public class SC_Room : MonoBehaviour
 {
     public AttachPoint[] attachPoints;
+    [Space]
+    public Transform[] spawnPosEnemies;
     public BoxCollider roomCollider;
     public AvailableSlots roomType;
 
     [Header("HideInInspector")]
+    public bool hasEnemies;
+    [HideInInspector]
     public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
+    [HideInInspector]
     public bool fullyAttached;
+    [HideInInspector]
     public bool isChecker;
+    [HideInInspector]
     public bool isChecked;
+    [HideInInspector]
     public MeshRenderer[] meshRenderers;
 
     private void OnDrawGizmosSelected()
@@ -32,7 +40,7 @@ public class SC_Room : MonoBehaviour
 
         if (roomCollider)
         {
-            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.matrix = transform.worldToLocalMatrix;
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(roomCollider.transform.position + roomCollider.center, roomCollider.size);
         }
@@ -62,8 +70,9 @@ public class SpawnablePosAndRot
 public class AttachPoint
 {
     public Transform point;
-    [Header ("HideInInspector")]
+    [HideInInspector]
     public GameObject wall;
+    [HideInInspector]
     public BoxCollider attachCollider
     {
         get
@@ -76,10 +85,15 @@ public class AttachPoint
             return myCollider;
         }
     }
+    [HideInInspector]
     public AvailableSlots nextSpawn;
+    [HideInInspector]
     public bool attached;
+    [HideInInspector]
     public bool canBeAttached;
+    [HideInInspector]
     public SC_Room attachedTo;
+    [HideInInspector]
     public Vector3 off;
 }
 

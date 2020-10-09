@@ -5,13 +5,15 @@ using UnityEngine;
 public class SC_AttackManager : MonoBehaviour
 {
     public static SC_AttackManager single;
-    
+
+    public float maxLightningCooldown;
+
     public bool isAttacking;
     [SerializeField] float hammerAnimationTimeDelay;
 
     [HideInInspector]
     public Vector3 attackPos;
-
+    public float currLightningCooldown;
     private bool checkIfPressed = false;
 
     private void Awake()
@@ -21,12 +23,17 @@ public class SC_AttackManager : MonoBehaviour
     private void Update()
     {
         ButtonSelect();
+        if(currLightningCooldown > 0)
+        {
+            currLightningCooldown -= Time.deltaTime;
+        }
     }
 
     public void ButtonSelect()
     {
         if (SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) { return; }
         if (isAttacking) { return; }
+        if (!SC_UiManager.single.getAttackInput) { return; }
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -81,11 +88,17 @@ public class SC_AttackManager : MonoBehaviour
         {
             if (SC_Attacks.single.inHand)
             {
-                if (!IsInvoking())
+                if (!IsInvoking() && currLightningCooldown <= 0)
                 {
                     isAttacking = true;
                     SC_CharacterAnimation.single.LightningAttack();
-                    attackPos = new Vector3(SC_TopDownController.single.GetAimTargetPos().x, SC_TopDownController.single.GetAimTargetPos().y + 0.2f, SC_TopDownController.single.GetAimTargetPos().z);
+
+                    currLightningCooldown = maxLightningCooldown;
+
+                    attackPos = new Vector3(SC_TopDownController.single.GetAimTargetPos().x, 
+                        SC_TopDownController.single.GetAimTargetPos().y + 0.2f, 
+                        SC_TopDownController.single.GetAimTargetPos().z);
+
                 }
             }
             else { return; }

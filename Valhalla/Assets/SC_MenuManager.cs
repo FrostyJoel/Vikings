@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SC_MenuManager : MonoBehaviour
 {
     public static SC_MenuManager single;
-    public int levelScene;
+    
     private void Awake()
     {
         if (single == null)
@@ -23,11 +23,6 @@ public class SC_MenuManager : MonoBehaviour
     public void GetNextRoom()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(levelScene);
     }
 
     public void QuitGame()

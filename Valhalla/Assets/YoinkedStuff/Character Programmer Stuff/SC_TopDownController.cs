@@ -33,7 +33,8 @@ public class SC_TopDownController : MonoBehaviour
     [Range(1f,10f)]
     public float invulnerableTimer;
 
-    float curHealth = 0.0f;
+    [Header("HideInInspector")]
+    public float curHealth = 0.0f;
     bool gotHit = false;
     bool grounded = false;
 
@@ -130,6 +131,7 @@ public class SC_TopDownController : MonoBehaviour
             targetVelocity = new Vector3(Input.GetAxis("Horizontal") * (cameraDistance >= 0 ? -1 : 1), 0, Input.GetAxis("Vertical") * (cameraDistance >= 0 ? -1 : 1));
         }
         targetVelocity *= speed;
+
         if (targetVelocity != Vector3.zero)
         {
             walking = true;

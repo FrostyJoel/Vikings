@@ -11,12 +11,12 @@ public class SC_RoomManager : MonoBehaviour
 
     [Space]
     public GameObject mainWall;
-    public int maxAmountOfRooms;
     public LayerMask overlapLayer;
     public LayerMask attachPointsLayer;
     public float spawnDelay;
 
     [Header("HideInInspector")]
+    public int maxAmountOfRooms;
     public List<SC_Room> allspawnedRooms = new List<SC_Room>();
     public List<GameObject> allFinishedSpawningRooms = new List<GameObject>();
     public SC_Room currRoomToCheck;
@@ -27,6 +27,7 @@ public class SC_RoomManager : MonoBehaviour
     private void Awake()
     {
         single = this;
+        maxAmountOfRooms = SC_GameManager.single.amountOfRooms;
     }
 
     public void CreateNewDungeon()
@@ -170,6 +171,7 @@ public class SC_RoomManager : MonoBehaviour
                     }
                 }
             }
+            SC_GameManager.single.GetRandomRoomToSpawnEnemies(allFinishedSpawningRooms);
         }
 
     }
