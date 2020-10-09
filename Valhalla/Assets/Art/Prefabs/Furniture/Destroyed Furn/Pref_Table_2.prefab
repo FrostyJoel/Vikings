@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &167554279853507384
 Transform:
@@ -174,6 +174,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Draugr_Arrow_0 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6750411987941963011, guid: ae0f81a3e0bc06743b612f9996f0ab47,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0f81a3e0bc06743b612f9996f0ab47, type: 3}
 --- !u!4 &6544941794470096717 stripped
@@ -258,6 +263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Draugr_Arrow_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750411987941963011, guid: ae0f81a3e0bc06743b612f9996f0ab47,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0f81a3e0bc06743b612f9996f0ab47, type: 3}
@@ -344,6 +354,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Draugr_Arrow_0
       objectReference: {fileID: 0}
+    - target: {fileID: 6750411987941963011, guid: ae0f81a3e0bc06743b612f9996f0ab47,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0f81a3e0bc06743b612f9996f0ab47, type: 3}
 --- !u!4 &4116533055875829305 stripped
@@ -428,6 +443,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Draugr_Arrow_0 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750411987941963011, guid: ae0f81a3e0bc06743b612f9996f0ab47,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0f81a3e0bc06743b612f9996f0ab47, type: 3}

@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7482137011604605738
 Transform:
@@ -113,6 +113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Valhalla_Spear_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461462382408826385, guid: b536f57bf6cbd744791bfa7bd464b0d1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982243124837262507, guid: b536f57bf6cbd744791bfa7bd464b0d1,
         type: 3}
@@ -244,6 +249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Valhalla_Sword_0 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 850948263705010897, guid: e91e08e7680842946ab1d34c9a4cfa35,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91e08e7680842946ab1d34c9a4cfa35, type: 3}
 --- !u!4 &849015586586456217 stripped
@@ -319,6 +329,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Valhalla_Sword_0
       objectReference: {fileID: 0}
+    - target: {fileID: 850948263705010897, guid: e91e08e7680842946ab1d34c9a4cfa35,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91e08e7680842946ab1d34c9a4cfa35, type: 3}
 --- !u!4 &4482085353817859103 stripped
@@ -338,6 +353,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Valhalla_Spear_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461462382408826385, guid: b536f57bf6cbd744791bfa7bd464b0d1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982243124837262507, guid: b536f57bf6cbd744791bfa7bd464b0d1,
         type: 3}
@@ -413,6 +433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Valhalla_Spear_0 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461462382408826385, guid: b536f57bf6cbd744791bfa7bd464b0d1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982243124837262507, guid: b536f57bf6cbd744791bfa7bd464b0d1,
         type: 3}
@@ -544,6 +569,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Valhalla_Axe_0
       objectReference: {fileID: 0}
+    - target: {fileID: 5735130491317357463, guid: 057fc736e5843ae46b34a4540b6255af,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 057fc736e5843ae46b34a4540b6255af, type: 3}
 --- !u!4 &2332649092234830906 stripped
@@ -618,6 +648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Valhalla_Great_Axe_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399487030000546578, guid: 772be179c70f99c40af25a56969f9a77,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 772be179c70f99c40af25a56969f9a77, type: 3}
@@ -694,6 +729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Valhalla_Shield_0
       objectReference: {fileID: 0}
+    - target: {fileID: 5443132974029526299, guid: cbec09293c73a2a4eb539fd68b6eb1f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbec09293c73a2a4eb539fd68b6eb1f4, type: 3}
 --- !u!4 &3838849788360191908 stripped
@@ -768,6 +808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Valhalla_Axe_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735130491317357463, guid: 057fc736e5843ae46b34a4540b6255af,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 057fc736e5843ae46b34a4540b6255af, type: 3}

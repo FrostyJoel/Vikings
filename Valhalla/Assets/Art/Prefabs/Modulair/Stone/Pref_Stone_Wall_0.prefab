@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5780745343101099685
 Transform:
@@ -95,7 +95,7 @@ GameObject:
   m_TagString: Enviorment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6757304967095239481
 Transform:
@@ -171,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Connect_Wall_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279105665866235373, guid: 0618c02f193f2df49b0fa1e89f7c3398,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1912793440380594007, guid: 0618c02f193f2df49b0fa1e89f7c3398,
         type: 3}
