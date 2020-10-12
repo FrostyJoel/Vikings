@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SC_RoomManager : MonoBehaviour
@@ -27,7 +28,10 @@ public class SC_RoomManager : MonoBehaviour
     private void Awake()
     {
         single = this;
-        maxAmountOfRooms = SC_GameManager.single.amountOfRooms;
+    }
+    private void Start()
+    {
+        CreateNewDungeon();
     }
 
     public void CreateNewDungeon()
@@ -281,6 +285,10 @@ public class SC_RoomManager : MonoBehaviour
         if (newRoomScript.roomType == AvailableSlots.Rooms)
         {
             currentAmountOfRooms++;
+        }
+        if(newRoomScript.roomType == AvailableSlots.MainRooms)
+        {
+            SC_GameManager.single.playerSpawnPos = newRoomScript.spawnPosEnemies.ToList();
         }
 
         room.SetActive(false);

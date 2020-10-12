@@ -22,6 +22,7 @@ public class SC_AttackManager : MonoBehaviour
     }
     private void Update()
     {
+        if (SC_CharacterAnimation.single == null){ return; }
         ButtonSelect();
         if(currLightningCooldown > 0)
         {

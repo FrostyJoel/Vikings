@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/S_Start_BackUp.unity
+    guid: fd42ea85f3c3a4a4ebf7c9c2ac89b8b2
   - enabled: 0
     path: Assets/Scenes/S_Player_Test.unity
     guid: cbfe36cfddfde964d9dfce63a355d5dd
   - enabled: 1
-    path: Assets/Scenes/S_Start_BackUp.unity
-    guid: fd42ea85f3c3a4a4ebf7c9c2ac89b8b2
-  - enabled: 1
+    path: Assets/Scenes/S_DungeonGen_Test.unity
+    guid: 1a008db6042259c4ca014bd34ac6b3cb
+  - enabled: 0
     path: Assets/Scenes/S_Level_Backup.unity
     guid: abb9997157427f24fbb63ff32b83c67b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/S_Finish_BackUp.unity
     guid: 165589dc6beac4f43b742a732124725c
   m_configObjects: {}

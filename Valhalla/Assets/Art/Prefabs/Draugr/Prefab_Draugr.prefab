@@ -1184,17 +1184,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   maxHealth: 20
-  attackRange: 1.2
-  attackRadius: 0
+  attackRange: 1.3
+  attackRadius: 0.705
   attackSphere: {fileID: 87266109020963568}
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   moveSpeed: 2
   invulnerableTimer: 1
   myAgent: {fileID: 0}
   myRB: {fileID: 0}
-  myAnimator: {fileID: 0}
+  myAnimator: {fileID: 1602995835}
   roomClosed: 0
 --- !u!54 &2552305352720141181
 Rigidbody:
@@ -2745,6 +2745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9009499983549886164}
   - component: {fileID: 1602995835}
+  - component: {fileID: 5917679212916670275}
   m_Layer: 0
   m_Name: Draugr Body
   m_TagString: Untagged
@@ -2776,8 +2777,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9176700715495426119}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 0af656bf6606b4340a9f72e4b092c6ec, type: 3}
+  m_Controller: {fileID: 9100000, guid: 704754825864ed942815a5103ce376e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2786,6 +2787,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5917679212916670275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176700715495426119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd980d212414c63438bdf1e89c06be95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &117198876425398855
 PrefabInstance:
   m_ObjectHideFlags: 0

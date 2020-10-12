@@ -35,11 +35,6 @@ public class SC_EnemyStats : MonoBehaviour
 
     void Awake()
     {
-        if (!SC_TopDownController.single)
-        {
-            Debug.LogWarning("No Player Found");
-            return;
-        }
         curHealth = maxHealth;
         myRB = GetComponent<Rigidbody>();
         myAnimator = GetComponentInChildren<Animator>();
@@ -58,7 +53,10 @@ public class SC_EnemyStats : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        SetRotationAndMovement();
+        if (SC_GameManager.gameStart)
+        {
+            SetRotationAndMovement();
+        }
     }
 
     private void SetRotationAndMovement()

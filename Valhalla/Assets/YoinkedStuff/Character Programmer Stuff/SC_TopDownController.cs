@@ -37,6 +37,7 @@ public class SC_TopDownController : MonoBehaviour
     public float curHealth = 0.0f;
     bool gotHit = false;
     bool grounded = false;
+    public bool canMove = true;
 
     Rigidbody r;
     GameObject targetObject;
@@ -70,9 +71,6 @@ public class SC_TopDownController : MonoBehaviour
         {
             targetObject = Instantiate(targetIndicatorPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         }
-
-        //Hide the cursor
-        Cursor.visible = false;
     }
 
     private void Update()
@@ -92,6 +90,7 @@ public class SC_TopDownController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!SC_GameManager.gameStart) { return; }
         //Setup camera offset
         Vector3 cameraOffset = Vector3.zero;
         if (cameraDirection == CameraDirection.x)

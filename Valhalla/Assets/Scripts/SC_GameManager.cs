@@ -6,17 +6,30 @@ using UnityEngine;
 public class SC_GameManager : MonoBehaviour
 {
     public static SC_GameManager single;
+    public static bool gameStart;
     public GameObject enemyPrefab;
+    public GameObject playerPrefab;
     public int amountOfRooms;
     public int minimumAmountOfEnemyRooms;
+    public Camera tempStarterCam;
 
 
     [Header ("HideInInspector")]
     public int enemyRoomAmount;
+    public List<Transform> playerSpawnPos = new List<Transform>();
     public List<SC_EnemyStats> enemies = new List<SC_EnemyStats>();
     private void Awake()
     {
-        single = this;
+        if(single == null)
+        {
+            single = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(single);
+        }
+        GetComponentInChildren<SC_RoomManager>().maxAmountOfRooms = amountOfRooms;
     }
 
     public void RemoveFromEnemyList(SC_EnemyStats enemy)
@@ -58,6 +71,7 @@ public class SC_GameManager : MonoBehaviour
             Debug.Log(room.name);
             RandomEnemyAmount(room.GetComponent<SC_Room>());
         }
+        SpawnPlayer();
     }
 
     public void RandomEnemyAmount(SC_Room room)
@@ -79,7 +93,6 @@ public class SC_GameManager : MonoBehaviour
         {
             SpawnEnemy(spawnPos);
         }
-
     }
 
     public void SpawnEnemy(Transform spawnPoint)
@@ -92,12 +105,24 @@ public class SC_GameManager : MonoBehaviour
         }
     }
 
+    public void SpawnPlayer()
+    {
+
+        int randomIndex = Random.Range(0, playerSpawnPos.Count);
+
+        Instantiate(playerPrefab.gameObject, playerSpawnPos[randomIndex].position, playerSpawnPos[randomIndex].rotation, null);
+        tempStarterCam.gameObject.SetActive(false);
+        gameStart = true;
+
+        Debug.Log(gameStart);
+    }
+
     public void GameDone()
     {
         Debug.Log("GameDone");
-        if (SC_MenuManager.single != null)
+        if (SC_UiManager.single != null)
         {
-            SC_MenuManager.single.GetNextRoom();
+            SC_UiManager.single.GetNextRoom();
         }
     }
 
