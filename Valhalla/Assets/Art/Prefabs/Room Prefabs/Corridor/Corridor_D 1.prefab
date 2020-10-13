@@ -127,8 +127,10 @@ MonoBehaviour:
     canBeAttached: 0
     attachedTo: {fileID: 0}
     off: {x: 0, y: 0, z: 0}
+  spawnPosEnemies: []
   roomCollider: {fileID: 338557564769299924}
   roomType: 0
+  hasEnemies: 0
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
