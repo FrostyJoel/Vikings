@@ -188,10 +188,6 @@ public class SC_UiManager : MonoBehaviour
     {
         if (startScreen || loading) 
         {
-            if(SC_GameManager.gameStart) 
-            {
-                SC_GameManager.gameStart = false;
-            }
             hud.SetActive(false);
             startScreenBackGround.gameObject.SetActive(true);
             pauseScreenBackGround.gameObject.SetActive(false);
@@ -204,7 +200,7 @@ public class SC_UiManager : MonoBehaviour
             startScreenBackGround.gameObject.SetActive(false);
             pauseScreenBackGround.gameObject.SetActive(true);
         }
-        if (SC_GameManager.gameStart)
+        if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
         {
             if (Input.GetButtonDown("Cancel"))
             {

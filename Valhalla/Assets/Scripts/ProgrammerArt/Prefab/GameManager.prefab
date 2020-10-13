@@ -113,13 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: 2
-    prefab:
-    - {fileID: 2593217339244404547, guid: 242ce11282e16bb4985a9211b85232a2, type: 3}
-    - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
-    - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
-    - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
-    - {fileID: 2593217339244404547, guid: 03ed9133fa732d646810baacf1a12c19, type: 3}
   - tag: 0
     prefab:
     - {fileID: 2096410673083253621, guid: 055e614146bd8a64487e330ead1df49d, type: 3}
@@ -129,6 +122,12 @@ MonoBehaviour:
   - tag: 1
     prefab:
     - {fileID: 4005589626138109547, guid: 0cad618bd2bf6904a8fb57c637065a5b, type: 3}
+  - tag: 2
+    prefab:
+    - {fileID: 2593217339244404547, guid: 242ce11282e16bb4985a9211b85232a2, type: 3}
+    - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
+    - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
+    - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
 --- !u!1 &4794369072102690048
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,12 +222,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b760908fb15fcb34daec0e131b44e96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStart: 0
   enemyPrefab: {fileID: 4320703492345290665, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
     type: 3}
   playerPrefab: {fileID: 570965775182389059, guid: ab360fa1caf5c454dac97fa967a99dc7,
     type: 3}
   amountOfRooms: 10
   minimumAmountOfEnemyRooms: 5
+  tempStarterCam: {fileID: 0}
   enemyRoomAmount: 5
   playerSpawnPos: []
   enemies: []

@@ -90,7 +90,7 @@ public class SC_TopDownController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!SC_GameManager.gameStart) { return; }
+        if (SC_GameManager.single != null && !SC_GameManager.single.gameStart) { return; }
         //Setup camera offset
         Vector3 cameraOffset = Vector3.zero;
         if (cameraDirection == CameraDirection.x)

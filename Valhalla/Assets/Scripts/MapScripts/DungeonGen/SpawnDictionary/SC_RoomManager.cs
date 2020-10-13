@@ -29,10 +29,6 @@ public class SC_RoomManager : MonoBehaviour
     {
         single = this;
     }
-    private void Start()
-    {
-        CreateNewDungeon();
-    }
 
     public void CreateNewDungeon()
     {

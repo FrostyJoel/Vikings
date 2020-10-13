@@ -53,7 +53,7 @@ public class SC_EnemyStats : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (SC_GameManager.gameStart)
+        if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
         {
             SetRotationAndMovement();
         }

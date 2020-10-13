@@ -6,7 +6,6 @@ using UnityEngine;
 public class SC_GameManager : MonoBehaviour
 {
     public static SC_GameManager single;
-    public static bool gameStart;
     public GameObject enemyPrefab;
     public GameObject playerPrefab;
     public int amountOfRooms;
@@ -15,6 +14,7 @@ public class SC_GameManager : MonoBehaviour
 
 
     [Header ("HideInInspector")]
+    public bool gameStart = false;
     public int enemyRoomAmount;
     public List<Transform> playerSpawnPos = new List<Transform>();
     public List<SC_EnemyStats> enemies = new List<SC_EnemyStats>();

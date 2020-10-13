@@ -9,16 +9,17 @@ public class SC_RoomPooler : MonoBehaviour
         public AvailableSlots tag;
         public List<GameObject> prefab = new List<GameObject>();
     }
-
+    #region singleton
     public static SC_RoomPooler single;
-
-    public List<Pool> pools = new List<Pool>();
-    public Dictionary<int, Queue<GameObject>> poolDictionary = new Dictionary<int, Queue<GameObject>>();
 
     private void Awake()
     {
         single = this;
     }
+    #endregion
+
+    public List<Pool> pools = new List<Pool>();
+    public Dictionary<AvailableSlots, Queue<GameObject>> poolDictionary = new Dictionary<AvailableSlots, Queue<GameObject>>();
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +46,9 @@ public class SC_RoomPooler : MonoBehaviour
                 roomTest.isChecker = true;
                 roomPool.Enqueue(room);
             }
-            poolDictionary.Add((int)pool.tag, roomPool);
+            poolDictionary.Add(pool.tag, roomPool);
         }
+        SC_RoomManager.single.CreateNewDungeon();
     }
 
     private void RandomizeRoomPrefabs(Pool pool)
@@ -62,20 +64,19 @@ public class SC_RoomPooler : MonoBehaviour
 
     public GameObject SpawnFromPool(AvailableSlots tag,Vector3 position, Quaternion rotation)
     {
-        int numberTag = (int)tag;
-        if (!poolDictionary.ContainsKey(numberTag))
+        if (!poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
             return null;
         }
 
-        GameObject roomToSpawn = poolDictionary[numberTag].Dequeue();
+        GameObject roomToSpawn = poolDictionary[tag].Dequeue();
 
         roomToSpawn.SetActive(true);
         roomToSpawn.transform.position = position;
         roomToSpawn.transform.rotation = rotation;
 
-        poolDictionary[numberTag].Enqueue(roomToSpawn);
+        poolDictionary[tag].Enqueue(roomToSpawn);
 
         return roomToSpawn;
     }
