@@ -599,6 +599,7 @@ MonoBehaviour:
   maxHealth: 45
   invulnerableTimer: 1
   curHealth: 0
+  canMove: 1
 --- !u!114 &460795431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5581,6 +5582,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cc39bcae13cee6b4fba4fa19316af605, type: 2}
+    - target: {fileID: 8417278953033801565, guid: d4271864ead297145955e97472a6a57e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4271864ead297145955e97472a6a57e, type: 3}
 --- !u!4 &701832058853009802 stripped
