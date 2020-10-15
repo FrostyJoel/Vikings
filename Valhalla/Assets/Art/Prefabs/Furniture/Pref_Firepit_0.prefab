@@ -191,6 +191,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062228222704659522}
     m_Modifications:
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896585609124142376, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.464
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461162359806534007, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_UseContactShadow.m_Override
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8285708763323639438, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,6 +286,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062228222704659522}
     m_Modifications:
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896585609124142376, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.464
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461162359806534007, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_UseContactShadow.m_Override
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8285708763323639438, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1241,6 +1281,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062228222704659522}
     m_Modifications:
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896585609124142376, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.464
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461162359806534007, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
+        type: 3}
+      propertyPath: m_UseContactShadow.m_Override
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8285708763323639438, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
         type: 3}
       propertyPath: m_LocalPosition.x
