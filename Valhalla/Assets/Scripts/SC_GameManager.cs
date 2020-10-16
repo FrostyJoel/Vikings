@@ -78,7 +78,8 @@ public class SC_GameManager : MonoBehaviour
     {
         if(room.spawnPosEnemies.Length <= 0) { return; }
         List<Transform> enemySpawnPos = new List<Transform>();
-        for (int i = 0; i < room.spawnPosEnemies.Length; i++)
+        int randomEnemyAmountIndex = Random.Range(1, room.maxAmountOfEnemies);
+        for (int i = 0; i < randomEnemyAmountIndex; i++)
         {
             int randomIndex = Random.Range(0, room.spawnPosEnemies.Length);
             Transform randomTransform = room.spawnPosEnemies[randomIndex];

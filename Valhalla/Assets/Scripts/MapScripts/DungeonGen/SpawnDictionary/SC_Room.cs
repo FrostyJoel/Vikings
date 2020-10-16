@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.AI;
 
 public class SC_Room : MonoBehaviour
 {
     public AttachPoint[] attachPoints;
     [Space]
+    public int maxAmountOfEnemies;
     public Transform[] spawnPosEnemies;
     public BoxCollider roomCollider;
     public AvailableSlots roomType;
+    public Transform propsGeo;
 
-    [Header("HideInInspector")]
+    [HideInInspector]
     public bool hasEnemies;
     [HideInInspector]
     public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
@@ -98,7 +101,7 @@ public class AttachPoint
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(SC_Room)), CanEditMultipleObjects]
+[CustomEditor(typeof(SC_Room))]
 public class SC_RoomEditor : Editor
 {
     SC_Room target_Room;
@@ -124,6 +127,26 @@ public class SC_RoomEditor : Editor
             }
             target_Room.meshRenderers = iaList.ToArray();
             Debug.LogWarning($"Successfully set {i} meshrenderers, don't forget to save!");
+        }
+
+        if(GUILayout.Button("Set Obstacles"))
+        {
+            if(target_Room.propsGeo != null)
+            {
+                Collider[] iaArray = target_Room.propsGeo.GetComponentsInChildren<Collider>();
+                foreach (Collider room in iaArray)
+                {
+
+                    room.gameObject.AddComponent(typeof(NavMeshObstacle));
+                    room.GetComponent<NavMeshObstacle>().carving = true;
+
+                }
+                Debug.LogWarning($"Successfully set {iaArray.Length} Obstacles, don't forget to save!");
+            }
+            else
+            {
+                Debug.LogWarning("PropsGeo Not Assigned");
+            }
         }
     }
 }

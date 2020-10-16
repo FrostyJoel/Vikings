@@ -54,7 +54,7 @@ MonoBehaviour:
       rot: {x: 0, y: 90, z: 0}
     - axisRot: 3
       rot: {x: 0, y: -90, z: 0}
-  mainWall: {fileID: 8847665219547034218, guid: 672eac260a268f44abe4e12567190617,
+  mainWall: {fileID: 6236664957249886595, guid: 7aadb3c15f0230c4dafdaa82b87f92ba,
     type: 3}
   overlapLayer:
     serializedVersion: 2
@@ -222,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b760908fb15fcb34daec0e131b44e96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStart: 0
   enemyPrefab: {fileID: 4320703492345290665, guid: 15e7c8411dc40fa4aae081a21bb29c7d,
     type: 3}
   playerPrefab: {fileID: 570965775182389059, guid: ab360fa1caf5c454dac97fa967a99dc7,
@@ -230,6 +229,7 @@ MonoBehaviour:
   amountOfRooms: 10
   minimumAmountOfEnemyRooms: 5
   tempStarterCam: {fileID: 0}
+  gameStart: 0
   enemyRoomAmount: 5
   playerSpawnPos: []
   enemies: []

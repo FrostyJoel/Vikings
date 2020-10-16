@@ -198,7 +198,6 @@ public class SC_UiManager : MonoBehaviour
         {
             hud.SetActive(true);
             startScreenBackGround.gameObject.SetActive(false);
-            pauseScreenBackGround.gameObject.SetActive(true);
         }
         if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
         {
@@ -223,6 +222,11 @@ public class SC_UiManager : MonoBehaviour
                 {
                     Cursor.visible = true;
                 }
+                if (pauseScreenBackGround.gameObject.activeSelf == false)
+                {
+                   
+                    pauseScreenBackGround.gameObject.SetActive(true);
+                }
             }
             else
             {
@@ -234,6 +238,10 @@ public class SC_UiManager : MonoBehaviour
                 if (Cursor.visible)
                 {
                     Cursor.visible = false;
+                }
+                if(pauseScreenBackGround.gameObject.activeSelf == true)
+                {
+                    pauseScreenBackGround.gameObject.SetActive(false);
                 }
             }
 
