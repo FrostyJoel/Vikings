@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4168542357379654869}
   m_Layer: 10
-  m_Name: Inside
+  m_Name: Props
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,8 +506,12 @@ MonoBehaviour:
     canBeAttached: 0
     attachedTo: {fileID: 0}
     off: {x: 0, y: 0, z: 0}
+  maxAmountOfEnemies: 0
+  spawnPosEnemies: []
   roomCollider: {fileID: 2529967945354914590}
   roomType: 0
+  propsGeo: {fileID: 2220821601607221369}
+  hasEnemies: 0
   spawnablePosAndRots: []
   fullyAttached: 0
   isChecker: 0
