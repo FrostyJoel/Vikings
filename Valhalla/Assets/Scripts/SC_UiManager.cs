@@ -15,6 +15,8 @@ public class SC_UiManager : MonoBehaviour
     [Header("Main")]
     public GameObject hud;
     public GameObject menu;
+    public GameObject wonScreen;
+    public GameObject lostScreen;
 
     [Header("Screens")]
     public GameObject startScreenMenu;
@@ -123,6 +125,10 @@ public class SC_UiManager : MonoBehaviour
         loading = true;
         loadingScreen.SetActive(true);
     }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public  void GetNextRoom()
     {
@@ -181,6 +187,10 @@ public class SC_UiManager : MonoBehaviour
         {
             Application.Quit();
         }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 
     // Update is called once per frame
@@ -189,9 +199,12 @@ public class SC_UiManager : MonoBehaviour
         if (startScreen || loading) 
         {
             hud.SetActive(false);
+            if(lostScreen.activeSelf == false || wonScreen.activeSelf == false)
+            {
+                SetLoadingBar();
+            }
             startScreenBackGround.gameObject.SetActive(true);
             pauseScreenBackGround.gameObject.SetActive(false);
-            SetLoadingBar();
             return;
         }
         else
@@ -335,7 +348,15 @@ public class SC_UiManager : MonoBehaviour
             Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
         }
     }
-
    
+    public void GetGameWonScreen()
+    {
+        wonScreen.SetActive(true);
+    }
+
+    public void GetGameLostScreen()
+    {
+        lostScreen.SetActive(true);
+    }
 
 }

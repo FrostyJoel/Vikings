@@ -3791,7 +3791,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1024
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4902,7 +4902,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.83e-43, y: 2.96e-43, z: 0, w: 41.53421}
+  m_BoundingSphereOverride: {x: 4.7019774e-38, y: 1.5e-43, z: 0, w: 3.8e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0.1
   m_ShadowAngle: 0
@@ -14592,6 +14592,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8768370225000319686}
+  - component: {fileID: 726123464}
+  - component: {fileID: 726123463}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -14615,6 +14617,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &726123464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531776671196800247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da75b23b3bfffaf47a4bdc04231039e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  allEnemies: []
+--- !u!65 &726123463
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531776671196800247}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7, y: 9, z: 6.5}
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &6964188261322813675
 GameObject:
   m_ObjectHideFlags: 0
@@ -18348,7 +18377,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1024
     maxCollisionShapes: 1
     quality: 0
     voxelSize: 0.5

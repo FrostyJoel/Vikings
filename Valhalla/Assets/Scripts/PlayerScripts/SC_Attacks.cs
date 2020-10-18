@@ -12,6 +12,7 @@ public class SC_Attacks : MonoBehaviour
     [Range(0.5f,1f)]
     public float delay = 1.5f;
     public GameObject lightningCircleVisual;
+    public GameObject lighningHammerTrail;
 
     [Range(2f, 10f)]
     public float damageOverTimeAmount = 3f;
@@ -87,10 +88,8 @@ public class SC_Attacks : MonoBehaviour
     public void LightningCircle()
     {
         GameObject lightningCircle = Instantiate(lightningCircleVisual, SC_AttackManager.single.attackPos, lightningCircleVisual.transform.rotation);
-        lightningCircle.GetComponent<SC_LightningAttack>().attack = this;
         //Todo Add Fading Effect to Particle
         Destroy(lightningCircle, duration);
-        
     }
 
     //Hammer Throw
@@ -150,6 +149,7 @@ public class SC_Attacks : MonoBehaviour
         ReattachToHand();
         ResetPostionHammer();
         TakeOffHammerCollider();
+        lighningHammerTrail.SetActive(false);
         ResetAttack();
     }
 

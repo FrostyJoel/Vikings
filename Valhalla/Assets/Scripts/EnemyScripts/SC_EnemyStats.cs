@@ -8,27 +8,27 @@ public class SC_EnemyStats : MonoBehaviour
 {
     [Header("EnemyStats")]
     [Range(5f, 10f)]
-    [SerializeField] private float damage = 5f;
+    public float damage = 5f;
     [Range(20f,50f)]
-    [SerializeField] private float maxHealth = 20f;
-    [Range(0.1f, 5f)]
-    [SerializeField] private float attackRange = 1f;
-    [Range(0.1f, 1f)]
-    [SerializeField] private float attackRadius;
+    public float maxHealth = 20f;
+    [Range(0.1f, 10f)]
+    public float attackRadius;
 
-    [SerializeField] private Transform attackSphere;
-    [SerializeField] private LayerMask playerMask;
+    public Transform heightOffset;
+    public LayerMask playerMask;
 
     [Header("EnemyMovement")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float invulnerableTimer = 1f;
+    public float moveSpeed = 5f;
+    public float invulnerableTimer = 1f;
+    public float rotSpeed;
 
     [Header("HideInInspector")]
     public NavMeshAgent myAgent;
     public Rigidbody myRB;
     public Animator myAnimator;
     public bool roomClosed;
-
+    public SC_TopDownController player;
+    bool playerInRange;
     bool gotHit = false;
     float curHealth;
     RaycastHit hit;
@@ -40,7 +40,6 @@ public class SC_EnemyStats : MonoBehaviour
         myAnimator = GetComponentInChildren<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
         myAgent.updateRotation = true;
-        myAgent.stoppingDistance = attackRange;
     }
 
     // Update is called once per frame
@@ -53,41 +52,53 @@ public class SC_EnemyStats : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
+        if(SC_GameManager.single == null) { return; }
+        if (SC_GameManager.single.gameStart)
         {
-            SetRotationAndMovement();
+            if(player == null)
+            {
+                player = SC_TopDownController.single;
+            }
+            if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+            {
+                myAgent.isStopped = false;
+                SetRotationAndMovement();
+            }
+            else
+            {
+                if (IsInvoking(nameof(ResetWalk)))
+                {
+                    if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+                    {
+                        myAnimator.ResetTrigger("Attack");
+                        myAnimator.SetTrigger("GotHit");
+                    }
+
+                }
+                myAgent.isStopped = true;
+            }
+        }
+        else
+        {
+            myAgent.isStopped = true;
         }
     }
 
     private void SetRotationAndMovement()
     {
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Die")) 
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Die"))
         {
-            myAgent.velocity = Vector3.zero;
-            myAgent.isStopped = true;
+            
             return;
         }
-        if (myAgent.velocity.sqrMagnitude > Mathf.Epsilon)
+
+
+        if (roomClosed)
         {
-            transform.rotation = Quaternion.LookRotation(myAgent.velocity.normalized);
+            MovingAnim();
+            EnemyMovement();
         }
 
-        if (!gotHit)
-        {
-            if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-            {
-                myAnimator.ResetTrigger("Attack");
-                if (!IsInvoking(nameof(RestartWalking)))
-                {
-                    Invoke(nameof(RestartWalking), myAnimator.GetCurrentAnimatorStateInfo(0).length);
-                }
-            }
-            else
-            {
-                MovingAnim();
-                EnemyMovement();
-            }
-        }
     }
 
     private void MovingAnim()
@@ -121,71 +132,40 @@ public class SC_EnemyStats : MonoBehaviour
 
     private void EnemyMovement()
     {
-        //Todo Change Dis To locked Room
-        if (roomClosed)
-        {
-            SC_TopDownController player = SC_TopDownController.single;
-            float dis = Vector3.Distance(player.transform.position, transform.position);
+        myAgent.destination = player.transform.position;
+        float disToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (dis < attackRange)
+        if(disToPlayer <= myAgent.stoppingDistance)
+        {
+            if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             {
-                if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-                {
-                    myAnimator.SetTrigger("Attack");
-                }
-                myAgent.isStopped = true;
-                myAgent.velocity = Vector3.zero;
-            }
-            else
-            {
-                myAgent.destination = player.transform.position;
-                if (myAgent.isStopped)
-                {
-                    RestartWalking();
-                }
+                FaceTarget();
+                myAnimator.SetTrigger("Attack");
             }
         }
     }
 
-    private bool IsEqual(float a, float b)
+    public void FaceTarget()
     {
-        if(a >= b - Mathf.Epsilon && a <= b + Mathf.Epsilon)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        Vector3 dir = (player.transform.position - transform.position).normalized;
+        Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x,0,dir.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * rotSpeed);
+
     }
 
     public void DealDamage()
     {
-        if (Physics.SphereCast(attackSphere.position, attackRadius, transform.forward, out RaycastHit hit, attackRange))
+        if (playerInRange)
         {
-            Debug.Log("HitSomething");
-            if (hit.transform.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("DamageToPlayer");
-                SC_TopDownController.single.DealDamage(damage);
-            }
+            Debug.Log("Hitting Player");
+            SC_TopDownController.single.DealDamage(damage);
         }
     }
 
-    public void RestartWalking()
+    public void ResetWalk()
     {
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            myAnimator.SetTrigger("Reset");
-        }
-        gotHit = false;
-        if (!myAgent.updatePosition)
-        {
-            myRB.isKinematic = true;
-            myAgent.updatePosition = true;
-            myAgent.nextPosition = transform.position;
-        }
-        myAgent.isStopped = false;
+        myAgent.nextPosition = transform.position;
+        myAgent.updatePosition = true;
     }
 
     private void InvulnerableReset()
@@ -195,7 +175,7 @@ public class SC_EnemyStats : MonoBehaviour
 
     private void Die()
     {
-        myRB.velocity = Vector3.zero;
+        myAgent.isStopped = true;
         SC_GameManager.single.RemoveFromEnemyList(this);
         myAnimator.SetTrigger("Death");
         Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
@@ -203,22 +183,34 @@ public class SC_EnemyStats : MonoBehaviour
 
     public void DealDamageToSelf(float damage)
     {
-        if (!gotHit)
+        if (!IsInvoking(nameof(InvulnerableReset)))
         {
             curHealth -= damage;
-            gotHit = true;
+            Invoke(nameof(InvulnerableReset), invulnerableTimer);
         }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Wall") && gotHit)
+        if (!IsInvoking(nameof(ResetWalk)))
         {
-            RestartWalking();
+            Invoke(nameof(ResetWalk), 3f);
         }
     }
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawLine(attackSphere.position, attackSphere.position + attackSphere.forward * attackRange);
-        Gizmos.DrawWireSphere(attackSphere.position + attackSphere.transform.forward * attackRange, attackRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(heightOffset.transform.position, attackRadius);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.gameObject.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.gameObject.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
     }
 }

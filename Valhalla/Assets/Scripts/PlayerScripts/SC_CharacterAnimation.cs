@@ -28,37 +28,44 @@ public class SC_CharacterAnimation : MonoBehaviour
 
     public void MeleeAttack()
     {
-        Debug.Log("Triggerd" + "MeleeAttack");
+        Debug.Log("Triggerd: MeleeAttack");
         anime.SetTrigger("Attack(Melee)");
     }
 
     public void ResetMeleeAttack()
     {
-        Debug.Log("Triggerd" + "ResetMeleeAttack");
+        Debug.Log("Triggerd: ResetMeleeAttack");
         anime.SetTrigger("HitWall");
     }
 
     public void HammerThrow()
     {
-        Debug.Log("Triggerd: " + "HammerThrow");
+        Debug.Log("Triggerd: HammerThrow");
         anime.SetTrigger("Attack(Throw)");
     }
 
     public void LightningAttack()
     {
-        Debug.Log("Triggerd: " + "LightningAttack");
+        Debug.Log("Triggerd: LightningAttack");
         anime.SetTrigger("Attack(Lightning)");
     }
 
     public void PullBack()
     {
-        Debug.Log("Triggerd: " + "PullBack");
+        Debug.Log("Triggerd: PullBack");
         anime.SetTrigger("HammerPull");
     }
 
     public void Caught()
     {
-        Debug.Log("Triggerd: " + "Caught");
+        Debug.Log("Triggerd: Caught");
         anime.SetTrigger("Caught");
     }
+
+    public void Die()
+    {
+        Debug.Log("Triggerd: Die");
+        anime.SetTrigger("Death");
+    }
+
 }

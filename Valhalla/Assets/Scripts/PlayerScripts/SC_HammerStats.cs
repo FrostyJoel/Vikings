@@ -13,7 +13,7 @@ public class SC_HammerStats : MonoBehaviour
 
     SC_Attacks attacks;
     Rigidbody myRB;
-    RaycastHit hit;
+    
 
     private void Awake()
     {
@@ -25,11 +25,7 @@ public class SC_HammerStats : MonoBehaviour
     {
         if (!attacks.inHand)
         {
-            if (Physics.Raycast(transform.position, transform.forward * 1000f, out hit))
-            {
-                aboveGround = true;
-            }
-            else
+            if (!Physics.Raycast(transform.position, transform.forward * 1000f))
             {
                 aboveGround = false;
             }
@@ -42,23 +38,10 @@ public class SC_HammerStats : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (melee)
-        {
-            if (collision.gameObject.CompareTag("Enviorment"))
-            {
-                Debug.Log("HittingWall");
-                attacks.GetComponentInParent<SC_CharacterAnimation>().ResetMeleeAttack();
-                attacks.ResetAttack();
-            }
-        }
-    }
     public void OnTriggerEnter(Collider other)
     {
         if (melee)
         {
-            
             if (other.gameObject.CompareTag("Enemy"))
             {
                 SC_EnemyStats enemyHit = other.gameObject.GetComponent<SC_EnemyStats>();

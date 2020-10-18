@@ -90,7 +90,8 @@ public class SC_TopDownController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (SC_GameManager.single != null && !SC_GameManager.single.gameStart) { return; }
+        if(SC_GameManager.single == null) { return; }
+        if (!SC_GameManager.single.gameStart) { return; }
         //Setup camera offset
         Vector3 cameraOffset = Vector3.zero;
         if (cameraDirection == CameraDirection.x)
@@ -248,7 +249,11 @@ public class SC_TopDownController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Die");
+        SC_CharacterAnimation.single.Die();
+        if (!SC_GameManager.single.IsInvoking(nameof(SC_GameManager.single.GameLost)))
+        {
+            SC_GameManager.single.Invoke(nameof(SC_GameManager.single.GameLost), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
+        }
     }
 
     private void InvulnerableReset()

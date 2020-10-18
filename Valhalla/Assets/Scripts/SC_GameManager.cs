@@ -29,7 +29,13 @@ public class SC_GameManager : MonoBehaviour
         {
             Destroy(single);
         }
-        GetComponentInChildren<SC_RoomManager>().maxAmountOfRooms = amountOfRooms;
+
+        //tempStarterCam = FindObjectOfType<Camera>();
+
+        if (GetComponentInChildren<SC_RoomManager>() != null)
+        { 
+            GetComponentInChildren<SC_RoomManager>().maxAmountOfRooms = amountOfRooms;
+        }
     }
 
     public void RemoveFromEnemyList(SC_EnemyStats enemy)
@@ -43,7 +49,7 @@ public class SC_GameManager : MonoBehaviour
                     enemies.Remove(enemies[i]);
                     if (enemies.Count <= 0)
                     {
-                        GameDone();
+                        GameWon();
                     }
                     break;
                 }
@@ -92,17 +98,18 @@ public class SC_GameManager : MonoBehaviour
 
         foreach (Transform spawnPos in enemySpawnPos)
         {
-            SpawnEnemy(spawnPos);
+            SpawnEnemy(spawnPos, room);
         }
     }
 
-    public void SpawnEnemy(Transform spawnPoint)
+    public void SpawnEnemy(Transform spawnPoint,SC_Room room)
     {
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint);
         SC_EnemyStats enemyScript = enemy.GetComponent<SC_EnemyStats>();
         if (!enemies.Contains(enemyScript))
         {
             enemies.Add(enemyScript);
+            room.enemiesInRoom.Add(enemyScript);
         }
     }
 
@@ -118,13 +125,22 @@ public class SC_GameManager : MonoBehaviour
         Debug.Log(gameStart);
     }
 
-    public void GameDone()
+    public void GameWon()
     {
-        Debug.Log("GameDone");
+        Debug.Log("GameWon");
         if (SC_UiManager.single != null)
         {
-            SC_UiManager.single.GetNextRoom();
+            gameStart = false;
+            SC_UiManager.single.GetGameWonScreen();
         }
     }
-
+    public void GameLost()
+    {
+        Debug.Log("GameLost");
+        if (SC_UiManager.single != null)
+        {
+            gameStart = false;
+            SC_UiManager.single.GetGameLostScreen();
+        }
+    }
 }

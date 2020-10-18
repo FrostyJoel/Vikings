@@ -23,6 +23,7 @@ public class SC_RoomManager : MonoBehaviour
     public SC_Room currRoomToCheck;
     public GameObject customDungeonParent;
     public int currentAmountOfRooms;
+    bool dungeonDone;
 
 
     private void Awake()
@@ -34,9 +35,9 @@ public class SC_RoomManager : MonoBehaviour
     {
         if (customDungeonParent != null)
         {
-            Debug.LogWarning("Already a Dungeon Existing Destroy First");
-            return;
+            DestroyDungeon();
         }
+
         customDungeonParent = new GameObject("Custom Dungeon");
 
         GameObject mainRoom = SC_RoomPooler.single.SpawnFromPool(startRoomType, transform.position, Quaternion.identity);
@@ -82,6 +83,18 @@ public class SC_RoomManager : MonoBehaviour
                 //allspawnedRooms.Remove(allspawnedRooms[i]);
             }
         }
+        if (!dungeonDone)
+        {
+            if (!IsInvoking(nameof(RestartDungeon)))
+            {
+                Invoke(nameof(RestartDungeon), 5f);
+            }
+        }
+    }
+
+    public void RestartDungeon()
+    {
+        CreateNewDungeon();
     }
 
     public IEnumerator CheckRoomAndSpawn(SC_Room roomToCheck)
@@ -151,15 +164,18 @@ public class SC_RoomManager : MonoBehaviour
                 }
             }
 
-            if (CheckIfFullyAttached(roomToCheck))
+            if (!roomToCheck.fullyAttached && CheckIfFullyAttached(roomToCheck))
             {
+                CancelInvoke(nameof(RestartDungeon));
                 roomToCheck.fullyAttached = true;
                 GetNextAvaialableRoom();
             }
         }
         else
         {
+            CancelInvoke(nameof(RestartDungeon));
             Debug.Log("Dungeon Finished");
+            dungeonDone = true;
             foreach (SC_Room test in allspawnedRooms)
             {
                 foreach (AttachPoint points in test.attachPoints)

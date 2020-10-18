@@ -14,6 +14,8 @@ public class SC_Room : MonoBehaviour
     public Transform propsGeo;
 
     [HideInInspector]
+    public List<SC_EnemyStats> enemiesInRoom = new List<SC_EnemyStats>();
+    [HideInInspector]
     public bool hasEnemies;
     [HideInInspector]
     public List<SpawnablePosAndRot> spawnablePosAndRots = new List<SpawnablePosAndRot>();
@@ -26,32 +28,33 @@ public class SC_Room : MonoBehaviour
     [HideInInspector]
     public MeshRenderer[] meshRenderers;
 
-    private void OnDrawGizmosSelected()
-    {
-        //if (attachPoints.Length > 0)
-        //{
-        //    foreach (AttachPoint attachPoint in attachPoints)
-        //    {
-        //        Gizmos.color = Color.red;
-        //        Gizmos.DrawWireCube(attachPoint.attachCollider.transform.position + attachPoint.attachCollider.center, attachPoint.attachCollider.size * 2f);
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.LogError("No Attachpoints Assigned to " + gameObject.name);
-        //}
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (attachPoints.Length > 0)
+    //    {
+    //        foreach (AttachPoint attachPoint in attachPoints)
+    //        {
+    //            Gizmos.color = Color.red;
+    //            Gizmos.DrawWireCube(attachPoint.attachCollider.transform.position + attachPoint.attachCollider.center, attachPoint.attachCollider.size * 2f);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("No Attachpoints Assigned to " + gameObject.name);
+    //    }
 
-        if (roomCollider)
-        {
-            Gizmos.matrix = transform.worldToLocalMatrix;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(roomCollider.transform.position + roomCollider.center, roomCollider.size);
-        }
-        else
-        {
-            Debug.LogError("No RoomCollider Assigned to " + gameObject.name);
-        }
-    }
+    //    if (roomCollider)
+    //    {
+    //        Gizmos.matrix = transform.worldToLocalMatrix;
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube(roomCollider.transform.position + roomCollider.center, roomCollider.size);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("No RoomCollider Assigned to " + gameObject.name);
+    //    }
+    //}
+
     public void MakeEverythingStatic()
     {
         for (int i = 0; i < meshRenderers.Length; i++)

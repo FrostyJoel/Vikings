@@ -7,7 +7,6 @@ public class SC_AttackManager : MonoBehaviour
     public static SC_AttackManager single;
 
     public float maxLightningCooldown;
-
     public bool isAttacking;
     [SerializeField] float hammerAnimationTimeDelay;
 
@@ -34,6 +33,7 @@ public class SC_AttackManager : MonoBehaviour
     {
         if (SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) { return; }
         if (isAttacking) { return; }
+        if (SC_UiManager.single == null) { return; }
         if (!SC_UiManager.single.getAttackInput) { return; }
 
         if (Input.GetButtonDown("Fire1"))
@@ -131,6 +131,7 @@ public class SC_AttackManager : MonoBehaviour
         yield return new WaitForSeconds(hammerAnimationTimeDelay);
         while (Input.GetButton("Fire1"))
         {
+            SC_Attacks.single.lighningHammerTrail.SetActive(true);
             SC_Attacks.single.forceAmount += forceAdd;
             if(forceAdd <= 7.5f)
             {

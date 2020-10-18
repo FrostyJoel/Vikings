@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SC_LightningAttack : MonoBehaviour
 {
-    public SC_Attacks attack;
     [SerializeField] List<SC_EnemyStats> allEnemies = new List<SC_EnemyStats>();
 
     private void Start()
@@ -56,9 +55,9 @@ public class SC_LightningAttack : MonoBehaviour
             {
                 foreach (SC_EnemyStats enemy in allEnemies)
                 {
-                    enemy.DealDamageToSelf(attack.damageOverTimeAmount);
+                    enemy.DealDamageToSelf(SC_Attacks.single.damageOverTimeAmount);
                 }
-                yield return new WaitForSeconds(attack.delay);
+                yield return new WaitForSeconds(SC_Attacks.single.delay);
             }
             else
             {
