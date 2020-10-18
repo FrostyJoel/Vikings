@@ -15,14 +15,15 @@ public class SC_UiManager : MonoBehaviour
     [Header("Main")]
     public GameObject hud;
     public GameObject menu;
-    public GameObject wonScreen;
-    public GameObject lostScreen;
+    public GameObject endScreen;
 
     [Header("Screens")]
     public GameObject startScreenMenu;
     public GameObject loadingScreen;
     public GameObject optionScreenMenu;
     public GameObject pauseScreenMenu;
+    public GameObject wonScreen;
+    public GameObject lostScreen;
 
     [Header("Sliders")]
     public Slider loadingBar;
@@ -227,7 +228,7 @@ public class SC_UiManager : MonoBehaviour
                 optionScreenMenu.SetActive(false);
             }
 
-            if (pauseScreenMenu.activeSelf)
+            if (pauseScreenMenu.activeSelf || optionScreenMenu.activeSelf)
             {
                 Time.timeScale = 0;
                 getAttackInput = false;
@@ -237,7 +238,6 @@ public class SC_UiManager : MonoBehaviour
                 }
                 if (pauseScreenBackGround.gameObject.activeSelf == false)
                 {
-                   
                     pauseScreenBackGround.gameObject.SetActive(true);
                 }
             }
@@ -351,11 +351,21 @@ public class SC_UiManager : MonoBehaviour
    
     public void GetGameWonScreen()
     {
+        if (!Cursor.visible)
+        {
+            Cursor.visible = true;
+        }
+        endScreen.SetActive(true);
         wonScreen.SetActive(true);
     }
 
     public void GetGameLostScreen()
     {
+        if (!Cursor.visible)
+        {
+            Cursor.visible = true;
+        }
+        endScreen.SetActive(true);
         lostScreen.SetActive(true);
     }
 

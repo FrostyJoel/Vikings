@@ -8,7 +8,7 @@ public class SC_HammerStats : MonoBehaviour
     public bool melee;
     public Animator myHammerAnimation;
 
-    [Range(5f,40f)]
+    [Range(0.1f,40f)]
     [SerializeField] float meleeForceAmount = 5f;
 
     SC_Attacks attacks;
@@ -87,6 +87,7 @@ public class SC_HammerStats : MonoBehaviour
             enemyHit.myAgent.updatePosition = false;
             enemyHit.myRB.isKinematic = false;
         }
+        enemyHit.ForceRot();
         enemyHit.myRB.AddForce(-other.transform.forward * forceAmount, ForceMode.Impulse);
     }
 }

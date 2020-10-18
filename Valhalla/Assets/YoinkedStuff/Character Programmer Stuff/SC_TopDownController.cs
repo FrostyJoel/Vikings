@@ -33,6 +33,8 @@ public class SC_TopDownController : MonoBehaviour
     [Range(1f,10f)]
     public float invulnerableTimer;
 
+    public ParticleSystem hitEffect;
+
     [Header("HideInInspector")]
     public float curHealth = 0.0f;
     bool gotHit = false;
@@ -91,7 +93,13 @@ public class SC_TopDownController : MonoBehaviour
     void FixedUpdate()
     {
         if(SC_GameManager.single == null) { return; }
-        if (!SC_GameManager.single.gameStart) { return; }
+        if (!SC_GameManager.single.gameStart) 
+        {
+            SC_CharacterAnimation.single.SetHorizontalAnime(0);
+            SC_CharacterAnimation.single.SetVerticalAnime(0);
+            r.velocity = Vector3.zero;
+            return; 
+        }
         //Setup camera offset
         Vector3 cameraOffset = Vector3.zero;
         if (cameraDirection == CameraDirection.x)
@@ -250,9 +258,10 @@ public class SC_TopDownController : MonoBehaviour
     public void Die()
     {
         SC_CharacterAnimation.single.Die();
-        if (!SC_GameManager.single.IsInvoking(nameof(SC_GameManager.single.GameLost)))
+        SC_GameManager.single.gameStart = false;
+        if (!SC_UiManager.single.IsInvoking(nameof(SC_UiManager.single.GetGameLostScreen)))
         {
-            SC_GameManager.single.Invoke(nameof(SC_GameManager.single.GameLost), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
+            SC_UiManager.single.Invoke(nameof(SC_UiManager.single.GetGameLostScreen), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
         }
     }
 
@@ -265,6 +274,7 @@ public class SC_TopDownController : MonoBehaviour
     {
         if (!gotHit)
         {
+            hitEffect.Play();
             curHealth -= damage;
             gotHit = true;
         }

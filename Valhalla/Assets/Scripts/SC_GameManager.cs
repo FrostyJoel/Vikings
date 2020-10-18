@@ -8,9 +8,11 @@ public class SC_GameManager : MonoBehaviour
     public static SC_GameManager single;
     public GameObject enemyPrefab;
     public GameObject playerPrefab;
+    public GameObject hitEffect;
     public int amountOfRooms;
     public int minimumAmountOfEnemyRooms;
     public Camera tempStarterCam;
+    public float winOffset;
 
 
     [Header ("HideInInspector")]
@@ -49,7 +51,10 @@ public class SC_GameManager : MonoBehaviour
                     enemies.Remove(enemies[i]);
                     if (enemies.Count <= 0)
                     {
-                        GameWon();
+                        if (!IsInvoking(nameof(GameWon)))
+                        {
+                            Invoke(nameof(GameWon),winOffset);
+                        }
                     }
                     break;
                 }

@@ -3264,12 +3264,13 @@ MonoBehaviour:
   loading: 0
   hud: {fileID: 7113531468927371996}
   menu: {fileID: 7664327521834221803}
-  wonScreen: {fileID: 2031098616}
-  lostScreen: {fileID: 8028379995236264820}
+  endScreen: {fileID: 1630392154}
   startScreenMenu: {fileID: 1337706019058291329}
   loadingScreen: {fileID: 4554910376006183849}
   optionScreenMenu: {fileID: 2554315102745913101}
   pauseScreenMenu: {fileID: 6975209001944185128}
+  wonScreen: {fileID: 2031098616}
+  lostScreen: {fileID: 8028379995236264820}
   loadingBar: {fileID: 4899968536360102757}
   healthBar: {fileID: 7582540974803780704}
   lightningStrike: {fileID: 5609438178480177517}

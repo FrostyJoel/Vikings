@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class SC_EnemyStats : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class SC_EnemyStats : MonoBehaviour
 
     public Transform heightOffset;
     public LayerMask playerMask;
+    public ParticleSystem hitEffect;
+    public Slider healthbar;
 
     [Header("EnemyMovement")]
     public float moveSpeed = 5f;
@@ -32,6 +35,7 @@ public class SC_EnemyStats : MonoBehaviour
     bool gotHit = false;
     float curHealth;
     RaycastHit hit;
+    Camera maincam;
 
     void Awake()
     {
@@ -40,6 +44,7 @@ public class SC_EnemyStats : MonoBehaviour
         myAnimator = GetComponentInChildren<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
         myAgent.updateRotation = true;
+        healthbar.maxValue = maxHealth;
     }
 
     // Update is called once per frame
@@ -47,6 +52,13 @@ public class SC_EnemyStats : MonoBehaviour
     {
         if(curHealth <= 0)
         {
+            if (healthbar.gameObject.activeSelf)
+            {
+                if (!IsInvoking(nameof(TurnOffHealthbar)))
+                {
+                    Invoke(nameof(TurnOffHealthbar),2f);
+                }
+            }
             Die();
         }
     }
@@ -82,16 +94,22 @@ public class SC_EnemyStats : MonoBehaviour
         {
             myAgent.isStopped = true;
         }
+
+        healthbar.value = curHealth;
+        
+        if(maincam == null)
+        {
+            maincam = FindObjectOfType<Camera>();
+        }
+        healthbar.transform.LookAt(maincam.transform);
     }
 
     private void SetRotationAndMovement()
     {
-        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Die"))
+        if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Die") || IsInvoking(nameof(ResetWalk)))
         {
-            
             return;
         }
-
 
         if (roomClosed)
         {
@@ -150,7 +168,13 @@ public class SC_EnemyStats : MonoBehaviour
         Vector3 dir = (player.transform.position - transform.position).normalized;
         Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x,0,dir.y));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * rotSpeed);
+    }
 
+    public void ForceRot()
+    {
+        Vector3 dir = (player.transform.position - transform.position).normalized;
+        Quaternion lookRot = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.y));
+        transform.rotation = lookRot;
     }
 
     public void DealDamage()
@@ -181,10 +205,16 @@ public class SC_EnemyStats : MonoBehaviour
         Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
     }
 
+    public void TurnOffHealthbar()
+    {
+        healthbar.gameObject.SetActive(false);
+    }
+
     public void DealDamageToSelf(float damage)
     {
         if (!IsInvoking(nameof(InvulnerableReset)))
         {
+            hitEffect.Play();
             curHealth -= damage;
             Invoke(nameof(InvulnerableReset), invulnerableTimer);
         }
