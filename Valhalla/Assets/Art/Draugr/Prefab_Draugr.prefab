@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &211430143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211430144}
+  m_Layer: 0
+  m_Name: Foot Particle (Right)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211430144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211430143}
+  m_LocalRotation: {x: 0.00648445, y: -0.46670943, z: -0.88334674, w: -0.04287986}
+  m_LocalPosition: {x: -0.010143393, y: 0.08291022, z: -0.06438375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2545952898228628191}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &356283762
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +514,36 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &1916090577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916090578}
+  m_Layer: 0
+  m_Name: Foot Particle (Left)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1916090578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916090577}
+  m_LocalRotation: {x: -0.0062900456, y: -0.4653228, z: -0.8840774, w: 0.04292256}
+  m_LocalPosition: {x: 0.01016516, y: 0.08242913, z: -0.06458214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6908330380056880780}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939870464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,6 +1300,7 @@ Transform:
   m_LocalScale: {x: 0.9999998, y: 1.0000006, z: 0.9999998}
   m_Children:
   - {fileID: 8967185150351541835}
+  - {fileID: 1916090578}
   m_Father: {fileID: 3106046395153295038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1677,7 +1738,7 @@ MonoBehaviour:
   myAgent: {fileID: 0}
   myRB: {fileID: 0}
   myAnimator: {fileID: 1602995835}
-  roomClosed: 1
+  roomClosed: 0
   player: {fileID: 0}
 --- !u!54 &2552305352720141181
 Rigidbody:
@@ -1914,6 +1975,7 @@ Transform:
   m_LocalScale: {x: 0.99999905, y: 0.99999946, z: 0.9999994}
   m_Children:
   - {fileID: 4907835584781766830}
+  - {fileID: 211430144}
   m_Father: {fileID: 7830763646833986547}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3243,6 +3305,7 @@ GameObject:
   - component: {fileID: 9009499983549886164}
   - component: {fileID: 1602995835}
   - component: {fileID: 5917679212916670275}
+  - component: {fileID: 711889188}
   m_Layer: 0
   m_Name: Draugr Body
   m_TagString: Untagged
@@ -3296,6 +3359,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd980d212414c63438bdf1e89c06be95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &711889188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176700715495426119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d915e344c295f264fb5381fcc49038b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftFoot: {fileID: 0}
+  rightFoot: {fileID: 0}
 --- !u!1001 &1424043000
 PrefabInstance:
   m_ObjectHideFlags: 0
