@@ -26,8 +26,6 @@ public class SC_UiManager : MonoBehaviour
     public GameObject lostScreen;
 
     [Header("Sliders")]
-    public Slider loadingBar;
-
     public Slider healthBar;
     public Slider lightningStrike;
 
@@ -79,11 +77,6 @@ public class SC_UiManager : MonoBehaviour
         {
             Debug.LogWarning("No Loading Screen Assigned");
             return;
-        }
-
-        if (loadingBar == null)
-        {
-            Debug.LogWarning("No Loading Bar Assigned");
         }
 
         if (pauseScreenMenu == null)
@@ -202,7 +195,11 @@ public class SC_UiManager : MonoBehaviour
             hud.SetActive(false);
             if(lostScreen.activeSelf == false || wonScreen.activeSelf == false)
             {
-                SetLoadingBar();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    loading = false;
+                    loadingScreen.SetActive(false);
+                }
             }
             startScreenBackGround.gameObject.SetActive(true);
             pauseScreenBackGround.gameObject.SetActive(false);
@@ -262,24 +259,6 @@ public class SC_UiManager : MonoBehaviour
             LightninStrikeCoolDownUpdate();
         
         }
-    }
-
-    private void SetLoadingBar()
-    {
-        if(SC_RoomPooler.single != null && SC_RoomManager.single != null)
-        {
-            loadingBar.minValue = 0;
-            loadingBar.value = SC_RoomManager.single.currentAmountOfRooms;
-            loadingBar.maxValue = SC_RoomManager.single.maxAmountOfRooms;
-
-            if(loadingBar.value >= loadingBar.maxValue)
-            {
-                loading = false;
-                loadingScreen.SetActive(false);
-            }
-
-        }
-        
     }
 
     //In Game Functions

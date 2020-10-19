@@ -24,19 +24,34 @@ public class SC_HammerStats : MonoBehaviour
     {
         if (!attacks.inHand)
         {
-            if (!Physics.Raycast(transform.position, -transform.up * 1000f))
+            if (!Physics.Raycast(transform.position, -transform.up * 1000f,out RaycastHit downHit))
             {
                 aboveGround = false;
             }
-            if(Physics.Raycast(transform.position,transform.forward * 1000f,out RaycastHit hit))
+            else
             {
-                if (hit.transform.CompareTag("Wall") && attacks.forceAmount >= attacks.minFlyingForceReq)
+                if (downHit.transform.CompareTag("Ground"))
+                {
+                    float dis = Vector3.Distance(transform.position, downHit.point);
+                    if(dis <= 0.1f)
+                    {
+                        attacks.hitObject = true;
+                        myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+                        myRB.velocity = Vector3.zero;
+                        myRB.isKinematic = true;
+                        myRB.useGravity = false;
+                    }
+                }
+            }
+            if(Physics.Raycast(transform.position,transform.forward * 1000f,out RaycastHit forwardHit))
+            {
+                if (forwardHit.transform.CompareTag("Wall") && attacks.forceAmount >= attacks.minFlyingForceReq)
                 {
                     Debug.Log("HitWall");
-                    float dis = Vector3.Distance(transform.position, hit.point);
+                    float dis = Vector3.Distance(transform.position, forwardHit.point);
                     if(dis <= 1f)
                     {
-                        transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        transform.rotation = Quaternion.LookRotation(-forwardHit.normal);
                         attacks.hitObject = true;
                         Debug.Log("StuckToWall");
                         myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
