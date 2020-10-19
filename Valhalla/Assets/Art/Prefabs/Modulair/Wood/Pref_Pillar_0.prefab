@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4339617898800205381}
   m_Layer: 10
   m_Name: Pref_Pillar_0
-  m_TagString: Enviorment
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Pillar_cover_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880459983349832142, guid: e993eab1cea763046befb60520f626b7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5256035926582428532, guid: e993eab1cea763046befb60520f626b7,
         type: 3}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 854359868724199712}
   m_Layer: 10
   m_Name: Pref_Wood_Wall_0
-  m_TagString: Enviorment
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Connect_Wall_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279105665866235373, guid: 0618c02f193f2df49b0fa1e89f7c3398,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     - target: {fileID: 1912793440380594007, guid: 0618c02f193f2df49b0fa1e89f7c3398,
         type: 3}

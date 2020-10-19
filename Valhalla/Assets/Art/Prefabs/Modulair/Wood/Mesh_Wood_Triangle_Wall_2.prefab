@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1489294405059528937}
   m_Layer: 10
   m_Name: Mesh_Wood_Triangle_Wall_2
-  m_TagString: Enviorment
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pref_Wood_Triangle_Wall_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7983535375580566684, guid: b141a1da8de9408418abcad2f28eb78a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b141a1da8de9408418abcad2f28eb78a, type: 3}
 --- !u!4 &8508828145906276877 stripped
@@ -222,6 +227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mesh_Connect_Triangle_Wall_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3428519089707883284, guid: 273671eb2e21bc8449969e794395b96b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enviorment
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273671eb2e21bc8449969e794395b96b, type: 3}
