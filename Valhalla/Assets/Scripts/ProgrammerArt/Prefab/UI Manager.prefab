@@ -3327,8 +3327,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.1642801}
   m_AnchorMax: {x: 1, y: 0.8173538}
-  m_AnchoredPosition: {x: 0.1802826, y: -9.229996}
-  m_SizeDelta: {x: 0.33062744, y: 18.424011}
+  m_AnchoredPosition: {x: 0.1802826, y: -22.979}
+  m_SizeDelta: {x: 0.33062744, y: 45.921204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6945766064264050644
 CanvasRenderer:
@@ -3370,23 +3370,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'I sent you this letter with great urgency, Valhalla is under attack by
-    the force of hell we need you to come back from your negotiantions to rid the
-    forces of hell from Valhalla.
-
-
-    Your objective is to take out all Draugr
-    in the hall and surrounding rooms of Valhalla.
-
-
-    This is an all out attack,
-    that''s why I''ve taken most of the Einherjar to defend Asgard where most of
-    the enemy forces are located, leaving Valhalla almost defenceless. This is why
-    we need your help.
-
-
-    I trust you will make a swift end to the Draugr, come
-    to Asgard when you''ve slain them all.'
+  m_Text: "I sent you this letter with great urgency, Asgard is under attack by the
+    force of hell we need you to come back from your negotiantions. Some of the forces
+    of hell broke trough our defenses and are holding themselves up in Valhalla.\n\nYour
+    objective is to take out all Draugr in the hall and surrounding rooms of Valhalla.\n\nThis
+    is an all out attack, that's why I've taken most of the Einherjar to the vanguard
+    where most of the enemy forces are located, leaving Valhalla almost defenceless.
+    This is why we need your help.\n\nI trust you will make a swift end to the Draugr.
+    \n\nFight well my son !"
 --- !u!1 &2237447801709300314
 GameObject:
   m_ObjectHideFlags: 0
