@@ -7,7 +7,6 @@ public class SC_HammerStats : MonoBehaviour
     public bool aboveGround;
     public bool melee;
     public Animator myHammerAnimation;
-
     [Range(0.1f,40f)]
     [SerializeField] float meleeForceAmount = 5f;
 
@@ -25,11 +24,42 @@ public class SC_HammerStats : MonoBehaviour
     {
         if (!attacks.inHand)
         {
-            if (!Physics.Raycast(transform.position, transform.forward * 1000f))
+            if (!Physics.Raycast(transform.position, -transform.up * 1000f))
             {
                 aboveGround = false;
             }
+            if(Physics.Raycast(transform.position,transform.forward * 1000f,out RaycastHit hit))
+            {
+                if (hit.transform.CompareTag("Wall") && attacks.forceAmount >= attacks.minFlyingForceReq)
+                {
+                    Debug.Log("HitWall");
+                    float dis = Vector3.Distance(transform.position, hit.point);
+                    if(dis <= 1f)
+                    {
+                        transform.rotation = Quaternion.LookRotation(-hit.normal);
+                        attacks.hitObject = true;
+                        Debug.Log("StuckToWall");
+                        myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+                        myRB.isKinematic = true;
+                        myRB.useGravity = false;
+                        myRB.velocity = Vector3.zero;
+                        Collider[] myColliders = GetComponents<Collider>();
+                        for (int i = 0; i < myColliders.Length; i++)
+                        {
+                            if (!myColliders[i].enabled)
+                            {
+                                myColliders[i].enabled = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * 1000f);
     }
 
     public void ResetPos()
@@ -53,23 +83,6 @@ public class SC_HammerStats : MonoBehaviour
         {
             if (!attacks.hitObject && !attacks.inHand)
             {
-                if (other.gameObject.CompareTag("Wall") && attacks.forceAmount >= attacks.minFlyingForceReq)
-                {
-                    attacks.hitObject = true;   
-                    Debug.Log("HitWall");
-                    myRB.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
-                    myRB.isKinematic = true;
-                    myRB.useGravity = false;
-                    myRB.velocity = Vector3.zero;
-                    Collider[] myColliders = GetComponents<Collider>();
-                    for (int i = 0; i < myColliders.Length; i++)
-                    {
-                        if (!myColliders[i].enabled)
-                        {
-                            myColliders[i].enabled = true;
-                        }
-                    }
-                }
                 if (other.gameObject.CompareTag("Enemy"))
                 {
                     SC_EnemyStats enemyHit = other.gameObject.GetComponent<SC_EnemyStats>();
