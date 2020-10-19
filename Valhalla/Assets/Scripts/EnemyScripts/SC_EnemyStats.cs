@@ -14,6 +14,8 @@ public class SC_EnemyStats : MonoBehaviour
     public float maxHealth = 20f;
     [Range(0.1f, 10f)]
     public float attackRadius;
+    [Range(0.5f,5f)]
+    public float stunTime;
 
     public Transform heightOffset;
     public LayerMask playerMask;
@@ -220,7 +222,7 @@ public class SC_EnemyStats : MonoBehaviour
         }
         if (!IsInvoking(nameof(ResetWalk)))
         {
-            Invoke(nameof(ResetWalk), 3f);
+            Invoke(nameof(ResetWalk), stunTime);
         }
     }
     private void OnDrawGizmosSelected()

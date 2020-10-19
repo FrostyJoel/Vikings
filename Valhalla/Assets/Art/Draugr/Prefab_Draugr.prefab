@@ -1725,7 +1725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   maxHealth: 20
-  attackRadius: 1.75
+  attackRadius: 3
+  stunTime: 1.2
   heightOffset: {fileID: 87266109020963568}
   playerMask:
     serializedVersion: 2
