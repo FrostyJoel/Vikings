@@ -598,6 +598,7 @@ MonoBehaviour:
   walking: 0
   maxHealth: 45
   invulnerableTimer: 1
+  hitEffect: {fileID: 0}
   curHealth: 0
   canMove: 1
 --- !u!114 &460795431
@@ -647,6 +648,7 @@ MonoBehaviour:
   delay: 0.645
   lightningCircleVisual: {fileID: 159196, guid: 37e803394624a5c48ae5f13fd212ac0b,
     type: 3}
+  lighningHammerTrail: {fileID: 0}
   damageOverTimeAmount: 3
   duration: 3.24
   ReturnType: 0
@@ -654,9 +656,9 @@ MonoBehaviour:
   targetHand: {fileID: 4034832949678788404}
   curvePoint: {fileID: 1476117240}
   meleeHammerDamageAmount: 10
-  maxhammerDamageAmount: 30
-  maxForce: 40
-  minFlyingForceReq: 20
+  maxhammerDamageAmount: 20
+  maxForce: 30
+  minFlyingForceReq: 15
   hammerDamageAmount: 10
   forceAmount: 0
   hitObject: 0
