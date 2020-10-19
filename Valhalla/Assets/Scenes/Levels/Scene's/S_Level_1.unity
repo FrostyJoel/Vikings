@@ -1355,6 +1355,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 578554908933199626, guid: bdcf4cd1eef63ba44a2dfef6b418b513,
+        type: 3}
+      propertyPath: m_ReceiveGI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578554908933199626, guid: bdcf4cd1eef63ba44a2dfef6b418b513,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 578554908933199626, guid: bdcf4cd1eef63ba44a2dfef6b418b513,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581012389677155577, guid: bdcf4cd1eef63ba44a2dfef6b418b513,
         type: 3}
       propertyPath: m_StaticEditorFlags
