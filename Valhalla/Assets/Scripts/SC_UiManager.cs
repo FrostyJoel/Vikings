@@ -285,7 +285,7 @@ public class SC_UiManager : MonoBehaviour
         }
     }
 
-    private void HealthBarUpdate()
+    public void HealthBarUpdate()
     {
         healthBar.minValue = 0;
         healthBar.value = SC_TopDownController.single.curHealth;
@@ -340,6 +340,7 @@ public class SC_UiManager : MonoBehaviour
 
     public void GetGameLostScreen()
     {
+        Debug.Log("Getting Lost Screen");
         if (!Cursor.visible)
         {
             Cursor.visible = true;

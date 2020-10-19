@@ -79,6 +79,8 @@ public class SC_TopDownController : MonoBehaviour
     {
         if(curHealth <= 0)
         {
+            curHealth = 0f;
+            SC_UiManager.single.HealthBarUpdate();
             Die();
         }
         if (gotHit)
@@ -257,11 +259,14 @@ public class SC_TopDownController : MonoBehaviour
 
     public void Die()
     {
-        SC_CharacterAnimation.single.Die();
-        SC_GameManager.single.gameStart = false;
         if (!SC_UiManager.single.IsInvoking(nameof(SC_UiManager.single.GetGameLostScreen)))
         {
-            SC_UiManager.single.Invoke(nameof(SC_UiManager.single.GetGameLostScreen), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
+            SC_CharacterAnimation.single.Die();
+            SC_GameManager.single.gameStart = false;
+            if (SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).IsTag("Die"))
+            {
+                SC_UiManager.single.Invoke(nameof(SC_UiManager.single.GetGameLostScreen), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
+            }
         }
     }
 
