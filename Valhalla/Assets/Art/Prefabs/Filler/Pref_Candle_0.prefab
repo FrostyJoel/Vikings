@@ -4796,7 +4796,6 @@ GameObject:
   - component: {fileID: 1924746109925783681}
   - component: {fileID: 6298392303027587199}
   - component: {fileID: 832522870922902150}
-  - component: {fileID: 307055375930281309}
   m_Layer: 10
   m_Name: Point Light
   m_TagString: Untagged
@@ -4956,9 +4955,9 @@ MonoBehaviour:
     m_Override: 512
     m_UseOverride: 0
     m_Level: 0
-  m_ShadowDimmer: 0.2
+  m_ShadowDimmer: 0.185
   m_VolumetricShadowDimmer: 1
-  m_ShadowFadeDistance: 8
+  m_ShadowFadeDistance: 10
   m_UseContactShadow:
     m_Override: 0
     m_UseOverride: 1
@@ -4989,18 +4988,6 @@ MonoBehaviour:
   showAdditionalSettings: 8
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
---- !u!114 &307055375930281309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5298306393257546437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88aa65529074e14b926efea3c717b0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &9162683088985167390
 GameObject:
   m_ObjectHideFlags: 0

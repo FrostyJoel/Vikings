@@ -1745,6 +1745,7 @@ MonoBehaviour:
   attachPoints:
   - point: {fileID: 5157115641719731737}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 0
     attached: 0
     canBeAttached: 0
@@ -4654,7 +4655,7 @@ PrefabInstance:
     - target: {fileID: 7639921563834652321, guid: 1aeae55d1affa6f4da94bb86c8523adf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aeae55d1affa6f4da94bb86c8523adf, type: 3}
@@ -4857,7 +4858,7 @@ PrefabInstance:
     - target: {fileID: 7639921563834652321, guid: 1aeae55d1affa6f4da94bb86c8523adf,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aeae55d1affa6f4da94bb86c8523adf, type: 3}
@@ -5955,7 +5956,7 @@ PrefabInstance:
     - target: {fileID: 7639921563834652321, guid: 1aeae55d1affa6f4da94bb86c8523adf,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7639921563834652321, guid: 1aeae55d1affa6f4da94bb86c8523adf,
         type: 3}
@@ -9266,7 +9267,7 @@ PrefabInstance:
     - target: {fileID: 6298392303027587199, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6298392303027587199, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
@@ -11240,40 +11241,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 565802770368891507}
     m_Modifications:
-    - target: {fileID: 4063880507230364901, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4063880507777157613, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298306393257546437, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298306393257546437, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6298392303027587199, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6298392303027587199, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_Lightmapping
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8386743836801551524, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.026088445
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 8386743836801551524, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
@@ -11330,13 +11306,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pref_Candle_0
       objectReference: {fileID: 0}
-    - target: {fileID: 9162683088985167390, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 307055375930281309, guid: 21e02bfb4372c6f4ca0a6d4af280668c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21e02bfb4372c6f4ca0a6d4af280668c, type: 3}
 --- !u!4 &5025948748733193934 stripped
 Transform:
@@ -13133,6 +13103,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 565802770368891507}
     m_Modifications:
+    - target: {fileID: 832522870922902150, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
+        type: 3}
+      propertyPath: m_ShadowNearPlane
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 832522870922902150, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
+        type: 3}
+      propertyPath: m_NormalBias
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 832522870922902150, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
+        type: 3}
+      propertyPath: m_PenumbraTint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 832522870922902150, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
+        type: 3}
+      propertyPath: m_UseContactShadow.m_Override
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 832522870922902150, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
+        type: 3}
+      propertyPath: m_UseContactShadow.m_UseOverride
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4063880507230364901, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13161,7 +13156,7 @@ PrefabInstance:
     - target: {fileID: 6298392303027587199, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8386743836801551524, guid: 21e02bfb4372c6f4ca0a6d4af280668c,
         type: 3}
@@ -27419,7 +27414,7 @@ PrefabInstance:
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
@@ -38321,7 +38316,7 @@ PrefabInstance:
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
@@ -45161,7 +45156,7 @@ PrefabInstance:
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5702848634571808936, guid: 2501407f416f64b45a0688faa731f56d,
         type: 3}
