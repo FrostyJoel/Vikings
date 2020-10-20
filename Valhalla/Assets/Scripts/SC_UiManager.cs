@@ -152,6 +152,7 @@ public class SC_UiManager : MonoBehaviour
         getAttackInput = false;
         SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
 
+        SC_AttackManager.single.ResetManager();
         SC_GameManager.single.ResetManager();
         SC_RoomPooler.single.ResetManager();
         SC_RoomManager.single.ResetManager();

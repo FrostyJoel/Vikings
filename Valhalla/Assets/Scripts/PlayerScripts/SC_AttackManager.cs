@@ -7,17 +7,23 @@ public class SC_AttackManager : MonoBehaviour
     public static SC_AttackManager single;
 
     public float maxLightningCooldown;
-    public bool isAttacking;
     [SerializeField] float hammerAnimationTimeDelay;
 
-    [HideInInspector]
+    [Header("HideInInspector")]
     public Vector3 attackPos;
+    public bool isAttacking;
     public float currLightningCooldown;
     private bool checkIfPressed = false;
 
     private void Awake()
     {
         single = this;
+    }
+
+    public void ResetManager()
+    {
+        currLightningCooldown = 0f;
+        isAttacking = false;
     }
     private void Update()
     {
