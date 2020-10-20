@@ -8,4 +8,10 @@ public class SC_EnemyAnimator : MonoBehaviour
     {
         GetComponentInParent<SC_EnemyStats>().DealDamage();
     }
+
+    public void EndHowl()
+    {
+        GetComponentInParent<SC_EnemyStats>().doneHowl = true;
+    }
+
 }

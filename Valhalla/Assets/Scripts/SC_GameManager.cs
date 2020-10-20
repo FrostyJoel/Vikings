@@ -41,6 +41,15 @@ public class SC_GameManager : MonoBehaviour
         }
     }
 
+    public void ResetManager()
+    {
+        gameStart = false;
+        enemyRoomAmount = 0;
+        playerSpawnPos.Clear();
+        enemies.Clear();
+        allEnemyRooms.Clear();
+    }
+
     public void RemoveFromEnemyList(SC_EnemyStats enemy)
     {
         if (enemies.Contains(enemy))

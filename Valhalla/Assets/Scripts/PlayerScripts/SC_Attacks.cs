@@ -210,4 +210,10 @@ public class SC_Attacks : MonoBehaviour
             hammerRB.GetComponent<SC_HammerStats>().melee = false;
         }
     }
+
+    public void DeathScreen()
+    {
+        SC_UiManager uiMan = SC_UiManager.single;
+        uiMan.Invoke(nameof(uiMan.GetGameLostScreen), 1f);
+    }
 }

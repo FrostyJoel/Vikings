@@ -40,7 +40,7 @@ public class SC_TopDownController : MonoBehaviour
     bool gotHit = false;
     bool grounded = false;
     public bool canMove = true;
-
+    bool dead;
     Rigidbody r;
     GameObject targetObject;
 
@@ -77,8 +77,9 @@ public class SC_TopDownController : MonoBehaviour
 
     private void Update()
     {
-        if(curHealth <= 0)
+        if(curHealth <= 0 && !dead)
         {
+            dead = true;
             curHealth = 0f;
             SC_UiManager.single.HealthBarUpdate();
             Die();
@@ -259,14 +260,12 @@ public class SC_TopDownController : MonoBehaviour
 
     public void Die()
     {
-        if (!SC_UiManager.single.IsInvoking(nameof(SC_UiManager.single.GetGameLostScreen)))
+        SC_UiManager uiMan = SC_UiManager.single;
+        SC_CharacterAnimation charAnim = SC_CharacterAnimation.single;
+        if (!uiMan.IsInvoking(nameof(uiMan.GetGameLostScreen)))
         {
-            SC_CharacterAnimation.single.Die();
+            charAnim.Die();
             SC_GameManager.single.gameStart = false;
-            if (SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).IsTag("Die"))
-            {
-                SC_UiManager.single.Invoke(nameof(SC_UiManager.single.GetGameLostScreen), SC_CharacterAnimation.single.anime.GetCurrentAnimatorStateInfo(0).length + 1f);
-            }
         }
     }
 

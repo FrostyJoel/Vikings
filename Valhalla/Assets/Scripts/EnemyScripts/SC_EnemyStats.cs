@@ -33,6 +33,7 @@ public class SC_EnemyStats : MonoBehaviour
     public Animator myAnimator;
     public bool roomClosed;
     public SC_TopDownController player;
+    public bool doneHowl;
     bool playerInRange;
     bool gotHit = false;
     float curHealth;
@@ -115,8 +116,20 @@ public class SC_EnemyStats : MonoBehaviour
 
         if (roomClosed)
         {
-            MovingAnim();
-            EnemyMovement();
+            if (!doneHowl)
+            {
+                if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Start"))
+                {
+                    FaceTarget();
+                    myAnimator.SetTrigger("Howl");
+                }
+            }
+            else
+            {
+                myAnimator.ResetTrigger("Howl");
+                MovingAnim();
+                EnemyMovement();
+            }   
         }
 
     }

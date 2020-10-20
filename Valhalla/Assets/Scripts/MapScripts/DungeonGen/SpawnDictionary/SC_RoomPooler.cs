@@ -21,10 +21,19 @@ public class SC_RoomPooler : MonoBehaviour
     public List<Pool> pools = new List<Pool>();
     public Dictionary<AvailableSlots, Queue<GameObject>> poolDictionary = new Dictionary<AvailableSlots, Queue<GameObject>>();
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject poolParent;
+
+    public void ResetManager()
     {
-        GameObject poolParent = new GameObject("PoolParent");
+        poolDictionary.Clear();
+        CreatePools();
+    }
+
+    public void CreatePools()
+    {
+       
+        poolParent = new GameObject("PoolParent");
+
         foreach (Pool pool in pools)
         {
             Queue<GameObject> roomPool = new Queue<GameObject>();
@@ -48,7 +57,6 @@ public class SC_RoomPooler : MonoBehaviour
             }
             poolDictionary.Add(pool.tag, roomPool);
         }
-        SC_RoomManager.single.CreateNewDungeon();
     }
 
     private void RandomizeRoomPrefabs(Pool pool)

@@ -1725,7 +1725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd092db5f52f4c842b8d125ad290d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 20
   maxHealth: 20
   attackRadius: 3
   stunTime: 0.8
@@ -1743,6 +1743,7 @@ MonoBehaviour:
   myAnimator: {fileID: 1602995835}
   roomClosed: 0
   player: {fileID: 0}
+  doneHowl: 0
 --- !u!54 &2552305352720141181
 Rigidbody:
   m_ObjectHideFlags: 0

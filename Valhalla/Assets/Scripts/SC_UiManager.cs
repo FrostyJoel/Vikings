@@ -22,7 +22,7 @@ public class SC_UiManager : MonoBehaviour
     public GameObject loadingScreen;
     public GameObject optionScreenMenu;
     public GameObject pauseScreenMenu;
-    public GameObject wonScreen;
+    public GameObject winScreen;
     public GameObject lostScreen;
 
     [Header("Sliders")]
@@ -135,6 +135,28 @@ public class SC_UiManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        if(endScreen.activeSelf == true)
+        {
+            endScreen.SetActive(false);
+            lostScreen.SetActive(false);
+            winScreen.SetActive(false);
+        }
+        if (!loading)
+        {
+            loading = true;
+            loadingScreen.SetActive(true);
+            loadingBar.gameObject.SetActive(true);
+        }
+        getAttackInput = false;
+        SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
+
+        SC_GameManager.single.ResetManager();
+        SC_RoomPooler.single.ResetManager();
+        SC_RoomManager.single.ResetManager();
+    }
+
     public void ResumeGame()
     {
         pauseScreenMenu.SetActive(false);
@@ -199,7 +221,7 @@ public class SC_UiManager : MonoBehaviour
         if (startScreen || loading) 
         {
             hud.SetActive(false);
-            if(lostScreen.activeSelf == false || wonScreen.activeSelf == false)
+            if(lostScreen.activeSelf == false || winScreen.activeSelf == false)
             {
                 SetLoadingBar();
             }
@@ -356,7 +378,7 @@ public class SC_UiManager : MonoBehaviour
             Cursor.visible = true;
         }
         endScreen.SetActive(true);
-        wonScreen.SetActive(true);
+        winScreen.SetActive(true);
     }
 
     public void GetGameLostScreen()
