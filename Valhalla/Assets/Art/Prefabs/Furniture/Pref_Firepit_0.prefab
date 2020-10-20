@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3112367984830030823}
   - component: {fileID: 924836033026545453}
   - component: {fileID: 4507558582140244890}
+  - component: {fileID: 5947478826565120814}
   m_Layer: 10
   m_Name: Pref_Firepit_0
   m_TagString: Enviorment
@@ -109,6 +110,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4222012, y: 0.76260704, z: 4.1190157}
   m_Center: {x: 0.007235827, y: 0.36978677, z: -0.0023565297}
+--- !u!114 &5947478826565120814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717367931717351160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88aa65529074e14b926efea3c717b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &906386054230180515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,11 +304,6 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2697711257182058970, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
-        type: 3}
-      propertyPath: m_Lightmapping
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3896585609124142376, guid: f7a29fb21ea009b42bb0eff1f4b5a23d,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -366,7 +374,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7293031024728722739, guid: f7a29fb21ea009b42bb0eff1f4b5a23d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f7a29fb21ea009b42bb0eff1f4b5a23d, type: 3}
 --- !u!4 &7421129889480797388 stripped
 Transform:

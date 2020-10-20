@@ -62,7 +62,39 @@ public class SC_Room : MonoBehaviour
             meshRenderers[i].gameObject.isStatic = true;
         }
     }
+
+    private void Update()
+    {
+        if(hasEnemies && enemiesInRoom.Count <= 0)
+        {
+            foreach (AttachPoint wallPoint in attachPoints)
+            {
+                if (wallPoint.wall.activeSelf == true && !wallPoint.mapWall)
+                {
+                    wallPoint.wall.SetActive(false);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.CompareTag("Player") && hasEnemies)
+        {
+            foreach (SC_EnemyStats enemyStats in enemiesInRoom)
+            {
+                enemyStats.roomClosed = true;
+            }
+
+            foreach(AttachPoint wallPoint in attachPoints)
+            {
+                wallPoint.wall.SetActive(true);
+            }
+        }
+    }
 }
+
+
 
 [System.Serializable]
 public class SpawnablePosAndRot
@@ -78,6 +110,7 @@ public class AttachPoint
     public Transform point;
     [HideInInspector]
     public GameObject wall;
+    public bool mapWall;
     [HideInInspector]
     public BoxCollider attachCollider
     {

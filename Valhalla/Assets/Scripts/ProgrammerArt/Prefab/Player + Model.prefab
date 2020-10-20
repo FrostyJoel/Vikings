@@ -572,7 +572,11 @@ PrefabInstance:
       objectReference: {fileID: 732623617694822142}
     - target: {fileID: 460795433, guid: 0180a67f2a2240a45b13ad2923bc7b07, type: 3}
       propertyPath: m_Constraints
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297650283, guid: 0180a67f2a2240a45b13ad2923bc7b07, type: 3}
+      propertyPath: far clip plane
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 97060582849294, guid: 0180a67f2a2240a45b13ad2923bc7b07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -9,14 +9,14 @@ public class SC_Attacks : MonoBehaviour
     public static SC_Attacks single;
 
     [Header("LightnigCircleAttack")]
-    [Range(0.5f,1f)]
-    public float delay = 1.5f;
+    //[Range(0.5f,1f)]
+    public float damageDelay = 1.5f;
     public GameObject lightningCircleVisual;
     public GameObject lighningHammerTrail;
 
-    [Range(2f, 10f)]
-    public float damageOverTimeAmount = 3f;
-    [Range(2f, 10f)]
+    //[Range(2f, 10f)]
+    public float damagePerTick = 3f;
+    //[Range(2f, 10f)]
     [SerializeField] float duration = 2f;
 
     [Header("HammerAttack")]
@@ -24,13 +24,13 @@ public class SC_Attacks : MonoBehaviour
     public Rigidbody hammerRB;
     public Transform targetHand, curvePoint;
 
-    [Range(5f, 40f)]
+    //[Range(5f, 40f)]
     public float meleeHammerDamageAmount = 5f;
-    [Range(5f, 40f)]
+    //[Range(5f, 40f)]
     public float maxhammerDamageAmount = 5f;
-    [Range(20f, 40f)]
+    //[Range(20f, 40f)]
     public float maxForce = 20f;
-    [Range(15f,40f)]
+    //[Range(15f,40f)]
     public float minFlyingForceReq = 20f;
 
     [HideInInspector]
@@ -41,10 +41,10 @@ public class SC_Attacks : MonoBehaviour
     public bool hitObject = false;
     public bool inHand = true;
 
-    [Range(1f,5f)]
+    //[Range(1f,5f)]
     [SerializeField] float minforceAmount = 1f;
 
-    [Range(5f, 20f)]
+    //[Range(5f, 20f)]
     [SerializeField] float hammerRangeOfFloating = 30f;
 
     private Vector3 oldPos;

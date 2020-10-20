@@ -4796,6 +4796,7 @@ GameObject:
   - component: {fileID: 1924746109925783681}
   - component: {fileID: 6298392303027587199}
   - component: {fileID: 832522870922902150}
+  - component: {fileID: 307055375930281309}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -4988,6 +4989,18 @@ MonoBehaviour:
   showAdditionalSettings: 0
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
+--- !u!114 &307055375930281309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5298306393257546437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88aa65529074e14b926efea3c717b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9162683088985167390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4999,6 +5012,7 @@ GameObject:
   - component: {fileID: 8386743836801551524}
   - component: {fileID: 4885394598661178113}
   - component: {fileID: 7217194088546645963}
+  - component: {fileID: 4272286281332786070}
   m_Layer: 10
   m_Name: Pref_Candle_0
   m_TagString: Enviorment
@@ -5069,3 +5083,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &4272286281332786070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9162683088985167390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88aa65529074e14b926efea3c717b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

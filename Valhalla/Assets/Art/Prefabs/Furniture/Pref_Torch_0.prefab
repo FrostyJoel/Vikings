@@ -4796,6 +4796,7 @@ GameObject:
   - component: {fileID: 4871857683325451338}
   - component: {fileID: 8373189331360281583}
   - component: {fileID: 6041433887505188645}
+  - component: {fileID: 155101566547435028}
   m_Layer: 10
   m_Name: Pref_Torch_0
   m_TagString: Enviorment
@@ -4866,6 +4867,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &155101566547435028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248805094894249712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88aa65529074e14b926efea3c717b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6950253406266896711
 GameObject:
   m_ObjectHideFlags: 0

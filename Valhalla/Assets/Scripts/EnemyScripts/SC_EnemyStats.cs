@@ -8,14 +8,14 @@ using UnityEngine.UI;
 public class SC_EnemyStats : MonoBehaviour
 {
     [Header("EnemyStats")]
-    [Range(5f, 10f)]
+    //[Range(5f, 10f)]
     public float damage = 5f;
-    [Range(20f,50f)]
+    //[Range(20f,50f)]
     public float maxHealth = 20f;
-    [Range(0.1f, 10f)]
-    public float attackRadius;
-    [Range(0.5f,5f)]
-    public float stunTime;
+    //[Range(0.1f, 10f)]
+    public float attackRadius = 0.1f;
+    //[Range(0.5f,5f)]
+    public float stunTime = 0.5f;
 
     public Transform heightOffset;
     public LayerMask playerMask;

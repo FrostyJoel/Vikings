@@ -55,9 +55,9 @@ public class SC_LightningAttack : MonoBehaviour
             {
                 foreach (SC_EnemyStats enemy in allEnemies)
                 {
-                    enemy.DealDamageToSelf(SC_Attacks.single.damageOverTimeAmount);
+                    enemy.DealDamageToSelf(SC_Attacks.single.damagePerTick);
                 }
-                yield return new WaitForSeconds(SC_Attacks.single.delay);
+                yield return new WaitForSeconds(SC_Attacks.single.damagePerTick);
             }
             else
             {

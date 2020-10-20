@@ -7,7 +7,7 @@ public class SC_HammerStats : MonoBehaviour
     public bool aboveGround;
     public bool melee;
     public Animator myHammerAnimation;
-    [Range(0.1f,40f)]
+    //[Range(0.1f,40f)]
     [SerializeField] float meleeForceAmount = 5f;
 
     SC_Attacks attacks;

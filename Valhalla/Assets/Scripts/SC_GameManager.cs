@@ -20,6 +20,7 @@ public class SC_GameManager : MonoBehaviour
     public int enemyRoomAmount;
     public List<Transform> playerSpawnPos = new List<Transform>();
     public List<SC_EnemyStats> enemies = new List<SC_EnemyStats>();
+    public List<GameObject> allEnemyRooms = new List<GameObject>();
     private void Awake()
     {
         if(single == null)
@@ -59,11 +60,20 @@ public class SC_GameManager : MonoBehaviour
                     break;
                 }
             }
+            for (int ia = 0; ia < allEnemyRooms.Count; ia++)
+            {
+                SC_Room currentEnemyRoom = allEnemyRooms[ia].GetComponent<SC_Room>();
+                if (currentEnemyRoom.enemiesInRoom.Contains(enemy))
+                {
+                    currentEnemyRoom.enemiesInRoom.Remove(enemy);
+                }
+            }
         }
     }
 
     public void GetRandomRoomToSpawnEnemies(List<GameObject> spawnedRooms)
     {
+        allEnemyRooms = spawnedRooms;
         enemyRoomAmount = Random.Range(minimumAmountOfEnemyRooms, spawnedRooms.Count);
         List<GameObject> enemySpawnedRooms = new List<GameObject>();
         for (int i = 0; i < enemyRoomAmount; i++)

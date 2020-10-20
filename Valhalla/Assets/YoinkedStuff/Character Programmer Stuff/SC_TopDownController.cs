@@ -28,10 +28,10 @@ public class SC_TopDownController : MonoBehaviour
     [SerializeField]bool walking = false;
 
     [Header("Player Stats")]
-    [Range(20f,60f)]
-    public float maxHealth;
-    [Range(1f,10f)]
-    public float invulnerableTimer;
+    //[Range(20f,60f)]
+    public float maxHealth = 20f;
+    //[Range(1f,10f)]
+    public float invulnerableTimer = 1f;
 
     public ParticleSystem hitEffect;
 

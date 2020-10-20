@@ -157,6 +157,7 @@ public class SC_RoomManager : MonoBehaviour
                         else
                         {
                             newRoomObject.SetActive(false);
+                            currAttachpoint.mapWall = true;
                             currAttachpoint.wall.SetActive(true);
                             currAttachpoint.attached = true;
                         }
@@ -182,6 +183,7 @@ public class SC_RoomManager : MonoBehaviour
                 {
                     if (!points.attached)
                     {
+                        points.mapWall = true;
                         points.wall.SetActive(true);
                         SetAttachment(test);
                     }
