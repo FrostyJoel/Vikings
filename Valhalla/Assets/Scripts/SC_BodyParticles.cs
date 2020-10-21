@@ -13,7 +13,7 @@ public class SC_BodyParticles : MonoBehaviour
         {
             rightFoot.Play();
         }
-        //Add Sound
+        SC_AudioManager.single.PlaySound(AudioType.RightFoot);
     }
 
     public void LeftFoot()
@@ -22,7 +22,17 @@ public class SC_BodyParticles : MonoBehaviour
         {
             leftFoot.Play();
         }
-        //Add Sound
+        SC_AudioManager.single.PlaySound(AudioType.LeftFoot);
+    }
+
+    public void PlayerAttack()
+    {
+        SC_AudioManager.single.PlaySound(AudioType.PlayerAttack);
+    }
+
+    public void EnemyAttack()
+    {
+        SC_AudioManager.single.PlaySound(AudioType.EnemyAttack);
     }
 
 }

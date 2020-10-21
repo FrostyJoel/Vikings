@@ -288,6 +288,7 @@ public class SC_TopDownController : MonoBehaviour
         if (!gotHit)
         {
             hitEffect.Play();
+            SC_AudioManager.single.PlaySound(AudioType.PlayerTakeDamage);
             curHealth -= damage;
             gotHit = true;
         }

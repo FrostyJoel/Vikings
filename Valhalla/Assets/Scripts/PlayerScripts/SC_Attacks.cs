@@ -96,8 +96,13 @@ public class SC_Attacks : MonoBehaviour
     public void LightningCircle()
     {
         GameObject lightningCircle = Instantiate(lightningCircleVisual, SC_AttackManager.single.attackPos, lightningCircleVisual.transform.rotation);
-        //Todo Add Fading Effect to Particle
+        SC_AudioManager.single.PlaySound(AudioType.Lightning);
+        Invoke(nameof(StopLightningSounds), duration);
         Destroy(lightningCircle, duration);
+    }
+    public void StopLightningSounds()
+    {
+        SC_AudioManager.single.StopSound(AudioType.Lightning);
     }
 
     //Hammer Throw
@@ -113,7 +118,7 @@ public class SC_Attacks : MonoBehaviour
                 hammerColliders[i].enabled = false;
             }
         }
-
+        SC_AudioManager.single.PlaySound(AudioType.PlayerThrow);
         HammerAddingForce();
         HammerRotation();
     }

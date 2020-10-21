@@ -75,6 +75,7 @@ public class SC_CharacterAnimation : MonoBehaviour
     {
         Debug.Log("Triggerd: Die");
         anime.SetTrigger("Death");
+        SC_AudioManager.single.PlaySound(AudioType.PlayerDeath);
     }
 
 }

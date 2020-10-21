@@ -172,7 +172,6 @@ public class SC_UiManager : MonoBehaviour
 
     public void OptionScreen()
     {
-        ResetResolutions();
         if (startScreen)
         {
             if (startScreenMenu.activeSelf)
@@ -247,6 +246,12 @@ public class SC_UiManager : MonoBehaviour
         }
         if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
         {
+            SC_AudioManager aMan = SC_AudioManager.single;
+
+            if (!aMan.IsPlaying(MusicType.CombatTheme))
+            {
+                aMan.PlayMusic(MusicType.CombatTheme);
+            }
             if (Input.GetButtonDown("Cancel"))
             {
                 if (!pauseScreenMenu.activeSelf)
@@ -262,6 +267,22 @@ public class SC_UiManager : MonoBehaviour
 
             if (pauseScreenMenu.activeSelf || optionScreenMenu.activeSelf)
             {
+                if (pauseScreenMenu.activeSelf)
+                {
+                    if (aMan.IsPlaying(MusicType.CombatTheme) && !aMan.volumeHalfed)
+                    {
+                        aMan.HalfCurrentMusic(MusicType.CombatTheme);
+                    }
+                }
+                else
+                {
+                    if (aMan.IsPlaying(MusicType.CombatTheme) && aMan.volumeHalfed)
+                    {
+                        aMan.DoubleCurrentMusic(MusicType.CombatTheme);
+                    }
+                }
+
+
                 Time.timeScale = 0;
                 getAttackInput = false;
                 if (!Cursor.visible)
@@ -275,6 +296,12 @@ public class SC_UiManager : MonoBehaviour
             }
             else
             {
+                if (aMan.IsPlaying(MusicType.CombatTheme) && aMan.volumeHalfed)
+                {
+                    aMan.DoubleCurrentMusic(MusicType.CombatTheme);
+                }
+
+
                 Time.timeScale = 1f;
                 if (!IsInvoking(nameof(ResetAttackInput)))
                 {
@@ -353,36 +380,30 @@ public class SC_UiManager : MonoBehaviour
     //For The Options
 
     Resolution[] resolutions;
-    public void ResetResolutions()
+    public void Start()
     {
         resolutions = Screen.resolutions;
         resolutionOptions.ClearOptions();
+
         List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
-            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
-            {
-                currentResolutionIndex = i;
-            }
         }
+
         resolutionOptions.AddOptions(options);
-        resolutionOptions.value = currentResolutionIndex;
-        resolutionOptions.RefreshShownValue();
     }
 
-    public void ToggleFullScreen()
+    public void SetResolution(int resolutionIndex)
     {
-        if (Screen.fullScreen)
-        {
-            Screen.fullScreenMode = FullScreenMode.Windowed;
-        }
-        else
-        {
-            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-        }
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void ToggleFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
     }
    
     public void GetGameWonScreen()

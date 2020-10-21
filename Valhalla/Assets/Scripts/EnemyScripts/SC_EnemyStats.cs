@@ -230,6 +230,7 @@ public class SC_EnemyStats : MonoBehaviour
         if (!IsInvoking(nameof(InvulnerableReset)))
         {
             hitEffect.Play();
+            SC_AudioManager.single.PlaySound(AudioType.EnemyTakeDamage);
             curHealth -= damage;
             Invoke(nameof(InvulnerableReset), invulnerableTimer);
         }
