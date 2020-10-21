@@ -21,8 +21,6 @@ public class SC_RoomPooler : MonoBehaviour
     public List<Pool> pools = new List<Pool>();
     public Dictionary<AvailableSlots, Queue<GameObject>> poolDictionary = new Dictionary<AvailableSlots, Queue<GameObject>>();
 
-    public GameObject poolParent;
-
     public void ResetManager()
     {
         poolDictionary.Clear();
@@ -32,7 +30,7 @@ public class SC_RoomPooler : MonoBehaviour
     public void CreatePools()
     {
        
-        poolParent = new GameObject("PoolParent");
+        GameObject poolParent = new GameObject("PoolParent");
 
         foreach (Pool pool in pools)
         {

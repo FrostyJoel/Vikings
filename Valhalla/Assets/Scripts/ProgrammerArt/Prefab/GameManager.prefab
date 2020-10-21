@@ -128,6 +128,9 @@ MonoBehaviour:
     - {fileID: 2593217339244404547, guid: ad526784f777a0541abe32cee28c5b8b, type: 3}
     - {fileID: 2593217339244404547, guid: 8af1b70609387de49bae9e4f758be190, type: 3}
     - {fileID: 2593217339244404547, guid: 05b2ee1786c9f8a4aa068f1ff8d0de01, type: 3}
+    - {fileID: 776805953275246657, guid: 03ed9133fa732d646810baacf1a12c19, type: 3}
+    - {fileID: 2593217339244404547, guid: 90786145b584ad44ab841b211391cab0, type: 3}
+  poolParent: {fileID: 0}
 --- !u!1 &4794369072102690048
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,9 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLightningCooldown: 5
-  isAttacking: 0
   hammerAnimationTimeDelay: 1
   attackPos: {x: 0, y: 0, z: 0}
+  isAttacking: 0
   currLightningCooldown: 0
 --- !u!1 &4794369072193153264
 GameObject:
@@ -236,3 +239,4 @@ MonoBehaviour:
   enemyRoomAmount: 5
   playerSpawnPos: []
   enemies: []
+  allEnemyRooms: []

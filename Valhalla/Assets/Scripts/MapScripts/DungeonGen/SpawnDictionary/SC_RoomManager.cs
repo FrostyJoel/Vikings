@@ -33,13 +33,7 @@ public class SC_RoomManager : MonoBehaviour
 
     public void ResetManager()
     {
-        allspawnedRooms.Clear();
-        allFinishedSpawningRooms.Clear();
         currRoomToCheck = null;
-        if (customDungeonParent != null)
-        {
-            DestroyDungeon();
-        }
         currentAmountOfRooms = 0;
         dungeonDone = false;
         CreateNewDungeon();
@@ -47,6 +41,8 @@ public class SC_RoomManager : MonoBehaviour
 
     public void CreateNewDungeon()
     {
+        allspawnedRooms.Clear();
+        allFinishedSpawningRooms.Clear();
         if (customDungeonParent != null)
         {
             DestroyDungeon();
