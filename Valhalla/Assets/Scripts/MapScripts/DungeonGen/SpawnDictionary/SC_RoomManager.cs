@@ -28,21 +28,30 @@ public class SC_RoomManager : MonoBehaviour
 
     private void Awake()
     {
-        single = this;
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
     }
 
     public void ResetManager()
     {
-        currRoomToCheck = null;
-        currentAmountOfRooms = 0;
-        dungeonDone = false;
         CreateNewDungeon();
     }
 
     public void CreateNewDungeon()
     {
+        currRoomToCheck = null;
+        currentAmountOfRooms = 0;
+        dungeonDone = false;
         allspawnedRooms.Clear();
         allFinishedSpawningRooms.Clear();
+
         if (customDungeonParent != null)
         {
             DestroyDungeon();

@@ -53,8 +53,16 @@ public class SC_Attacks : MonoBehaviour
 
     private void Awake()
     {
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
         forceAmount = minforceAmount;
-        single = this;
     }
 
     private void Update()

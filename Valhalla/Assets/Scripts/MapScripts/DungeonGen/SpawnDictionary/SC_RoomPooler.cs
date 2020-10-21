@@ -14,7 +14,15 @@ public class SC_RoomPooler : MonoBehaviour
 
     private void Awake()
     {
-        single = this;
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
     }
     #endregion
 

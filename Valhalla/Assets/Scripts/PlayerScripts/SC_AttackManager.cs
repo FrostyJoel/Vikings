@@ -17,7 +17,15 @@ public class SC_AttackManager : MonoBehaviour
 
     private void Awake()
     {
-        single = this;
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
     }
 
     public void ResetManager()

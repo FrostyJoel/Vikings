@@ -10,7 +10,16 @@ public class SC_CharacterAnimation : MonoBehaviour
     float xDir, zDir;
     private void Awake()
     {
-        single = this;
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
+
         anime = GetComponentInChildren<Animator>();
     }
 

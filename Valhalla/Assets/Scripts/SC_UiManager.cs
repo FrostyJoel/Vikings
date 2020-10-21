@@ -45,14 +45,14 @@ public class SC_UiManager : MonoBehaviour
 
     private void Awake()
     {
-        if (single == null)
+        if (single != null)
         {
-            single = this;
-            DontDestroyOnLoad(this);
+            Destroy(this.gameObject);
         }
         else
         {
-            Destroy(single.gameObject);
+            single = this;
+            DontDestroyOnLoad(this);
             return;
         }
 
@@ -122,9 +122,17 @@ public class SC_UiManager : MonoBehaviour
         startScreen = false;
         startScreenMenu.SetActive(false);
         GetNextRoom();
+        SetUpLoading();
+    }
+
+    private void SetUpLoading()
+    {
         loading = true;
         loadingScreen.SetActive(true);
+        loadingBar.minValue = 0;
+        loadingBar.gameObject.SetActive(true);
     }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -137,25 +145,23 @@ public class SC_UiManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if(endScreen.activeSelf == true)
+        if (!startScreen)
         {
-            endScreen.SetActive(false);
-            lostScreen.SetActive(false);
-            winScreen.SetActive(false);
-        }
-        if (!loading)
-        {
-            loading = true;
-            loadingScreen.SetActive(true);
-            loadingBar.gameObject.SetActive(true);
-        }
-        getAttackInput = false;
-        SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
+            if(endScreen.activeSelf == true)
+            {
+                endScreen.SetActive(false);
+                lostScreen.SetActive(false);
+                winScreen.SetActive(false);
+            }
 
-        SC_AttackManager.single.ResetManager();
-        SC_GameManager.single.ResetManager();
-        SC_RoomPooler.single.ResetManager();
-        SC_RoomManager.single.ResetManager();
+            getAttackInput = false;
+            SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
+
+            SC_AttackManager.single.ResetManager();
+            SC_GameManager.single.ResetManager();
+            SC_RoomPooler.single.ResetManager();
+            SC_RoomManager.single.ResetManager();
+        }
     }
 
     public void ResumeGame()
@@ -212,6 +218,10 @@ public class SC_UiManager : MonoBehaviour
         }
         else
         {
+            startScreen = true;
+            Time.timeScale = 1f;
+            pauseScreenMenu.SetActive(false);
+            startScreenMenu.SetActive(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
@@ -222,7 +232,7 @@ public class SC_UiManager : MonoBehaviour
         if (startScreen || loading) 
         {
             hud.SetActive(false);
-            if(lostScreen.activeSelf == false || winScreen.activeSelf == false)
+            if(loading)
             {
                 SetLoadingBar();
             }
@@ -289,7 +299,6 @@ public class SC_UiManager : MonoBehaviour
     {
         if (SC_RoomPooler.single != null && SC_RoomManager.single != null)
         {
-            loadingBar.minValue = 0;
             loadingBar.value = SC_RoomManager.single.currentAmountOfRooms;
             loadingBar.maxValue = SC_RoomManager.single.maxAmountOfRooms;
 
@@ -301,6 +310,10 @@ public class SC_UiManager : MonoBehaviour
                     loading = false;
                     loadingScreen.SetActive(false);
                 }
+            }
+            else if(loadingBar.gameObject.activeSelf == false)
+            {
+                loadingBar.gameObject.SetActive(true);
             }
         }
     }

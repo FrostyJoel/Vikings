@@ -54,11 +54,20 @@ public class SC_TopDownController : MonoBehaviour
 
     //Animator and AttackManager
     Vector3 targetVelocity;
-    
+
 
     void Awake()
     {
-        single = this;
+        if (single != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            single = this;
+        }
+
         if(playerCamera.transform.parent != null)
         {
             playerCamera.transform.parent = null;

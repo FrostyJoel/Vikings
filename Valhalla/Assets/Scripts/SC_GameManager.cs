@@ -23,14 +23,15 @@ public class SC_GameManager : MonoBehaviour
     public List<GameObject> allEnemyRooms = new List<GameObject>();
     private void Awake()
     {
-        if(single == null)
+        if (single != null)
         {
-            single = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
+            return;
         }
         else
         {
-            Destroy(single);
+            single = this;
+            DontDestroyOnLoad(this);
         }
 
         //tempStarterCam = FindObjectOfType<Camera>();
