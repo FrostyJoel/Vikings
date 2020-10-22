@@ -33,6 +33,8 @@ public class SC_Attacks : MonoBehaviour
     //[Range(15f,40f)]
     public float minFlyingForceReq = 20f;
 
+    public float hammerAttackSpeed = 1f;
+
     [HideInInspector]
     public float hammerDamageAmount = 0f;
     [HideInInspector]

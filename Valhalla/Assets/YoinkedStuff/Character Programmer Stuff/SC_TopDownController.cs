@@ -40,7 +40,7 @@ public class SC_TopDownController : MonoBehaviour
     bool gotHit = false;
     bool grounded = false;
     public bool canMove = true;
-    bool dead;
+    public bool dead;
     Rigidbody r;
     GameObject targetObject;
 

@@ -8,7 +8,7 @@ public class SC_MinimapArrow : MonoBehaviour
     public float turnSpeed;
     public float arrowDistance;
     public GameObject actualArrow;
-
+    public SC_EnemyStats nearestEnemy;
     // Update is called once per frame
     void Update()
     {
@@ -20,8 +20,12 @@ public class SC_MinimapArrow : MonoBehaviour
 
     private void RotateToNearestEnemy()
     {
-        Vector3 nearestEnemyPos = GetNearestEnemy().transform.position;
-        Debug.Log(nearestEnemyPos);
+        if(nearestEnemy == null)
+        {
+            nearestEnemy = GetNearestEnemy();
+        }
+        
+        Vector3 nearestEnemyPos = nearestEnemy.transform.position;
         Vector3 playerPos = SC_TopDownController.single.transform.position;
 
         float dis = Vector3.Distance(nearestEnemyPos, playerPos);

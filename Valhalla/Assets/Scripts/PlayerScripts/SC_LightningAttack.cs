@@ -57,7 +57,7 @@ public class SC_LightningAttack : MonoBehaviour
                 {
                     enemy.DealDamageToSelf(SC_Attacks.single.damagePerTick);
                 }
-                yield return new WaitForSeconds(SC_Attacks.single.damagePerTick);
+                yield return new WaitForSeconds(SC_Attacks.single.damageDelay);
             }
             else
             {

@@ -83,9 +83,18 @@ public class SC_EnemyStats : MonoBehaviour
         if (died) { return; }
         if (SC_GameManager.single.gameStart)
         {
-            if(player == null)
+            if (player == null)
             {
                 player = SC_TopDownController.single;
+            }
+            if (player.dead)
+            {
+                myAgent.enabled = false;
+                myRB.velocity = Vector3.zero;
+                if (myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+                {
+                    myAnimator.ResetTrigger("Attack");
+                }
             }
             if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
             {

@@ -37,6 +37,7 @@ public class SC_CharacterAnimation : MonoBehaviour
 
     public void MeleeAttack()
     {
+        anime.SetFloat("MeleeAttackSpeed", SC_Attacks.single.hammerAttackSpeed);
         Debug.Log("Triggerd: MeleeAttack");
         anime.SetTrigger("Attack(Melee)");
     }
