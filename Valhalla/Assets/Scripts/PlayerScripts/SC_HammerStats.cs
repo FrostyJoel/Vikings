@@ -77,6 +77,13 @@ public class SC_HammerStats : MonoBehaviour
     //    Gizmos.DrawRay(transform.position, transform.forward * 1000f);
     //}
 
+    public void HammerSpinning()
+    {
+        if (!SC_AttackManager.single.spinning)
+        {
+            SC_AttackManager.single.spinning = true;
+        }
+    }
     public void ResetPos()
     {
         Debug.Log("Reset Pos");

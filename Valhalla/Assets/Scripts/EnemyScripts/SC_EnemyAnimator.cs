@@ -16,6 +16,10 @@ public class SC_EnemyAnimator : MonoBehaviour
 
     public void Die()
     {
+        if (!SC_AudioManager.single.IsPlayingSound(AudioType.EnemyDeath))
+        {
+            SC_AudioManager.single.PlaySound(AudioType.EnemyDeath);
+        }
         GetComponentInParent<SC_EnemyStats>().poof.Play();
         GetComponentInParent<Rigidbody>().useGravity = true;
     }

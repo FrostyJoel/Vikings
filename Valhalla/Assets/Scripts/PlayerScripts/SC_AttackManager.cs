@@ -14,6 +14,7 @@ public class SC_AttackManager : MonoBehaviour
     public bool isAttacking;
     public float currLightningCooldown;
     private bool checkIfPressed = false;
+    public bool spinning;
 
     private void Awake()
     {
@@ -85,6 +86,11 @@ public class SC_AttackManager : MonoBehaviour
             Animator hammerAnime = SC_Attacks.single.hammerRB.GetComponent<Animator>();
             if (hammerAnime.enabled == true)
             {
+                if (SC_AudioManager.single.IsPlayingSound(AudioType.PlayerCharge))
+                {
+                    spinning = false;
+                    SC_AudioManager.single.StopSound(AudioType.PlayerCharge);
+                }
                 SC_Attacks.single.hammerRB.transform.localPosition = Vector3.zero;
                 SC_Attacks.single.hammerRB.transform.localRotation = Quaternion.identity;
                 hammerAnime.SetFloat("SpeedIncreasing", 1.0f);
@@ -140,6 +146,7 @@ public class SC_AttackManager : MonoBehaviour
         float forceAdd = 0.5f;
         float forceDelay = 0.5f;
         float speedIncrease = 1.0f;
+        float audioPitchIncrease = 0.01f;
         Animator hammerAnimator = SC_Attacks.single.hammerRB.GetComponent<Animator>();
         hammerAnimator.enabled = true;
         yield return new WaitForSeconds(hammerAnimationTimeDelay);
@@ -162,6 +169,18 @@ public class SC_AttackManager : MonoBehaviour
                     SC_Attacks.single.hammerDamageAmount = SC_Attacks.single.maxhammerDamageAmount;
                 }
                 SC_Attacks.single.hammerRB.GetComponent<SC_HammerStats>().myHammerAnimation.SetFloat("SpeedIncreasing", speedIncrease);
+                if (spinning)
+                {
+                    if (!SC_AudioManager.single.IsPlayingSound(AudioType.PlayerCharge))
+                    {
+                        SC_AudioManager.single.PlaySound(AudioType.PlayerCharge);
+                    }
+                    if (SC_AudioManager.single.IsPlayingSound(AudioType.PlayerCharge)&& audioPitchIncrease <= 2.5f)
+                    {
+                        SC_AudioManager.single.GetSoundSource(AudioType.PlayerCharge).pitch = audioPitchIncrease;
+                        audioPitchIncrease += 0.75f;
+                    }
+                }
                 speedIncrease++;
                 yield return new WaitForSeconds(forceDelay/2f);
             }

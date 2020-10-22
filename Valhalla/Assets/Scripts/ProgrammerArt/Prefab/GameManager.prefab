@@ -82,7 +82,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - audioType: 11
     mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
-    audioClip: {fileID: 8300000, guid: ae85bbd4d638bd94f9bc7cc56eac2726, type: 3}
+    audioClip: {fileID: 8300000, guid: 0e28509aeb2cbde4bb9eebd27de12863, type: 3}
     volume: 0.25
     pitch: 1
     loop: 0
@@ -118,6 +118,27 @@ MonoBehaviour:
   - audioType: 3
     mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
     audioClip: {fileID: 8300000, guid: ea38150742f0ffd458ad90b76f87c99b, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - audioType: 1
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 32eae1a589892af46a604973d16b87d9, type: 3}
+    volume: 0.25
+    pitch: 0.5
+    loop: 1
+    source: {fileID: 0}
+  - audioType: 8
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: e054a083f2317564e8489efd050ee152, type: 3}
+    volume: 0.25
+    pitch: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - audioType: 13
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 3470919776506a941ac83234f13a5494, type: 3}
     volume: 0.25
     pitch: 1
     loop: 0
@@ -332,6 +353,7 @@ MonoBehaviour:
   attackPos: {x: 0, y: 0, z: 0}
   isAttacking: 0
   currLightningCooldown: 0
+  spinning: 0
 --- !u!1 &4794369072193153264
 GameObject:
   m_ObjectHideFlags: 0

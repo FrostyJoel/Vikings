@@ -122,7 +122,7 @@ public class SC_Attacks : MonoBehaviour
         HammerAddingForce();
         HammerRotation();
     }
-
+   
     //Adding force to Hammer
     private void HammerAddingForce()
     {

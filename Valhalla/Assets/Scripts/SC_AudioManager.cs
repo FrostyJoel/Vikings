@@ -46,6 +46,7 @@ public class SC_AudioManager : MonoBehaviour
             m.source.loop = true;
             m.source.outputAudioMixerGroup = m.mixer;
         }
+        UpdateVolume(SC_UiManager.single.volumeSlider.value);
     }
 
     #region Sounds
@@ -73,6 +74,11 @@ public class SC_AudioManager : MonoBehaviour
         {
             sound.source.Stop();
         }
+    }
+    public AudioSource GetSoundSource(AudioType typeSound)
+    {
+        Sound s = Array.Find(sounds, sound => sound.audioType == typeSound);
+        return s.source;
     }
 
     #endregion
@@ -103,35 +109,18 @@ public class SC_AudioManager : MonoBehaviour
         Music m = Array.Find(music, music => music.musicType == typeMusic);
         return m.source.isPlaying;
     }
-
-    public void HalfAllMusic()
-    {
-        foreach (Music music in music)
-        {
-            music.source.volume /= 2f;
-            volumeHalfed = true;
-        }
-    }
-
-    public void DoubleAllMusic()
-    {
-        foreach (Music music in music)
-        {
-            music.source.volume *= 2f;
-            volumeHalfed = true;
-        }
-    }
     #endregion
 
     public void UpdateVolume(float volumeAmount)
     {
         MasterMixer.SetFloat("MasterVol", Mathf.Log10 (volumeAmount)*20);
     }
-    public AudioSource GetAudioSource(MusicType typeMusic)
+    public AudioSource GetMusicSource(MusicType typeMusic)
     {
         Music m = Array.Find(music, music=> music.musicType == typeMusic);
         return m.source;
     }
+    
 }
 
 [System.Serializable]
@@ -169,7 +158,8 @@ public enum AudioType
     EnemyTakeDamage,
     EnemyDeath,
 
-    Lightning
+    Lightning,
+    ButtonSound
 }
 
 [System.Serializable]

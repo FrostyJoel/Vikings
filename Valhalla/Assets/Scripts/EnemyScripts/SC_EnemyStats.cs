@@ -127,6 +127,10 @@ public class SC_EnemyStats : MonoBehaviour
                 {
                     FaceTarget();
                     myAnimator.SetTrigger("Howl");
+                    if (!SC_AudioManager.single.IsPlayingSound(AudioType.EnemyHowl))
+                    {
+                        Invoke(nameof(PlayHowl), 0.75f);
+                    }
                 }
             }
             else
@@ -136,7 +140,11 @@ public class SC_EnemyStats : MonoBehaviour
                 EnemyMovement();
             }   
         }
+    }
 
+    public void PlayHowl()
+    {
+        SC_AudioManager.single.PlaySound(AudioType.EnemyHowl);
     }
 
     private void MovingAnim()

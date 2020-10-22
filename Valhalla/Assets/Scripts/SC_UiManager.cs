@@ -29,6 +29,7 @@ public class SC_UiManager : MonoBehaviour
     public Slider healthBar;
     public Slider loadingBar;
     public Slider lightningStrike;
+    public Slider volumeSlider;
 
     [Header("Texts")]
     public Text lightningStrikeCoolDown;
@@ -116,6 +117,12 @@ public class SC_UiManager : MonoBehaviour
         }
 
     }
+
+    public void ButtonSound()
+    {
+        SC_AudioManager.single.PlaySound(AudioType.ButtonSound);
+    }
+
 
     public void StartGame()
     {
@@ -279,22 +286,6 @@ public class SC_UiManager : MonoBehaviour
 
             if (pauseScreenMenu.activeSelf || optionScreenMenu.activeSelf)
             {
-                if (pauseScreenMenu.activeSelf)
-                {
-                    if (aMan.IsPlayingMusic(MusicType.CombatTheme) && !aMan.volumeHalfed)
-                    {
-                        aMan.HalfAllMusic();
-                    }
-                }
-                else
-                {
-                    if (aMan.IsPlayingMusic(MusicType.CombatTheme) && aMan.volumeHalfed)
-                    {
-                        aMan.DoubleAllMusic();
-                    }
-                }
-
-
                 Time.timeScale = 0;
                 getAttackInput = false;
                 if (!Cursor.visible)
@@ -308,12 +299,6 @@ public class SC_UiManager : MonoBehaviour
             }
             else
             {
-                if (aMan.IsPlayingMusic(MusicType.CombatTheme) && aMan.volumeHalfed)
-                {
-                    aMan.DoubleAllMusic();
-                }
-
-
                 Time.timeScale = 1f;
                 if (!IsInvoking(nameof(ResetAttackInput)))
                 {
