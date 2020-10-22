@@ -67,6 +67,14 @@ public class SC_AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public void StopAllSound()
+    {
+        foreach (Sound sound in sounds)
+        {
+            sound.source.Stop();
+        }
+    }
+
     #endregion
 
     #region Music

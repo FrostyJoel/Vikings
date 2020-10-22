@@ -157,6 +157,8 @@ public class SC_UiManager : MonoBehaviour
             getAttackInput = false;
             SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
 
+            SC_AudioManager.single.StopAllSound();
+            SC_AudioManager.single.StopAllMusic();
             SC_AttackManager.single.ResetManager();
             SC_GameManager.single.ResetManager();
             SC_RoomPooler.single.ResetManager();
@@ -259,7 +261,7 @@ public class SC_UiManager : MonoBehaviour
         {
             if (!aMan.IsPlayingMusic(MusicType.CombatTheme))
             {
-                aMan.StopAllMusic();
+                aMan.StopMusic(MusicType.MainMenuTheme);
                 aMan.PlayMusic(MusicType.CombatTheme);
             }
             if (Input.GetButtonDown("Cancel"))

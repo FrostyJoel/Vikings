@@ -14,4 +14,10 @@ public class SC_EnemyAnimator : MonoBehaviour
         GetComponentInParent<SC_EnemyStats>().doneHowl = true;
     }
 
+    public void Die()
+    {
+        GetComponentInParent<SC_EnemyStats>().poof.Play();
+        GetComponentInParent<Rigidbody>().useGravity = true;
+    }
+
 }

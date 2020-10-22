@@ -20,6 +20,7 @@ public class SC_EnemyStats : MonoBehaviour
     public Transform heightOffset;
     public LayerMask playerMask;
     public ParticleSystem hitEffect;
+    public ParticleSystem poof;
     public Slider healthbar;
 
     [Header("EnemyMovement")]
@@ -36,6 +37,7 @@ public class SC_EnemyStats : MonoBehaviour
     public bool doneHowl;
     bool playerInRange;
     bool gotHit = false;
+    bool died;
     float curHealth;
     RaycastHit hit;
     Camera maincam;
@@ -68,6 +70,17 @@ public class SC_EnemyStats : MonoBehaviour
     private void FixedUpdate()
     {
         if(SC_GameManager.single == null) { return; }
+
+        healthbar.value = curHealth;
+
+        if(maincam == null)
+        {
+            maincam = FindObjectOfType<Camera>();
+        }
+
+        healthbar.transform.LookAt(maincam.transform);
+
+        if (died) { return; }
         if (SC_GameManager.single.gameStart)
         {
             if(player == null)
@@ -97,14 +110,6 @@ public class SC_EnemyStats : MonoBehaviour
         {
             myAgent.isStopped = true;
         }
-
-        healthbar.value = curHealth;
-        
-        if(maincam == null)
-        {
-            maincam = FindObjectOfType<Camera>();
-        }
-        healthbar.transform.LookAt(maincam.transform);
     }
 
     private void SetRotationAndMovement()
@@ -214,9 +219,11 @@ public class SC_EnemyStats : MonoBehaviour
 
     private void Die()
     {
+        died = true;
+        myRB.velocity = Vector3.zero;
         myAgent.enabled = false;
         GetComponent<Collider>().enabled = false;
-
+        myRB.useGravity = false;
         SC_GameManager.single.RemoveFromEnemyList(this);
         myAnimator.SetTrigger("Death");
         Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
