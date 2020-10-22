@@ -974,7 +974,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 80
+    m_MaxSize: 30
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -986,7 +986,9 @@ MonoBehaviour:
     Mjolnir around for a mighty throw! \n\nAfter a brief charging period release
     the left mouse button and Thor will throw Mjolnir.\n\nOnce Mjolnir is thrown
     you can recall it by pressing left mouse button.\n\nPress the right mouse button
-    to call down a mighty thunder storm from the heavens."
+    to call down a mighty thunder storm from the heavens.\n\nIn the top right of
+    your screen there is a minimap with an arrow pointing at the remaining enemies.
+    Use it when you get lost!"
 --- !u!1 &1018302567
 GameObject:
   m_ObjectHideFlags: 0
