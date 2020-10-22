@@ -1451,11 +1451,6 @@ PrefabInstance:
       propertyPath: lighningHammerTrail
       value: 
       objectReference: {fileID: 3969285118674525397}
-    - target: {fileID: 8543569041953916009, guid: 0180a67f2a2240a45b13ad2923bc7b07,
-        type: 3}
-      propertyPath: hammerRangeOfFloating
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8565710328026097851, guid: 0180a67f2a2240a45b13ad2923bc7b07,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
