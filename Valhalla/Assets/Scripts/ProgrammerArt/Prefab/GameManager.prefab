@@ -115,10 +115,41 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - audioType: 3
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: ea38150742f0ffd458ad90b76f87c99b, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   music:
-  - musicType: 1
+  - musicType: 0
     mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
     audioClip: {fileID: 8300000, guid: 569a43f5dc23a6847ba70468fb3f72a5, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - musicType: 1
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 18d7c2bb6a9b9b743b81c1729660a000, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - musicType: 2
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 6ef7874482996414996a35c2441d883d, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - musicType: 3
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 1f7226f769f41d543a86c2cf062fdbfb, type: 3}
+    volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - musicType: 4
+    mixer: {fileID: 24300002, guid: fdbecf3c188c18a4fafd5a27a5442ff4, type: 2}
+    audioClip: {fileID: 8300000, guid: 02651dfa7c09bc04d857ba36054cac55, type: 3}
     volume: 0.25
     pitch: 1
     source: {fileID: 0}

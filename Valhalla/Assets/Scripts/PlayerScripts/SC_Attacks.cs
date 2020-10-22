@@ -139,7 +139,7 @@ public class SC_Attacks : MonoBehaviour
     //Rotate in the correct Rotation
     private void HammerRotation()
     {
-        Quaternion lookRotation = Quaternion.LookRotation(hammerRB.transform.forward);
+        Quaternion lookRotation = Quaternion.LookRotation(SC_TopDownController.single.transform.forward);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 10f).eulerAngles;
         hammerRB.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
@@ -159,6 +159,7 @@ public class SC_Attacks : MonoBehaviour
     //Reset Hammer
     void ResetHammer()
     {
+        SC_AudioManager.single.PlaySound(AudioType.PlayerCatch);
         ReattachToHand();
         ResetPostionHammer();
         TakeOffHammerCollider();

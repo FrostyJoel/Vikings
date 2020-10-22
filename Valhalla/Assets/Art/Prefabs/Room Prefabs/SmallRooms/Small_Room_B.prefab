@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 2807049525089725266}
   m_Layer: 10
   m_Name: Colliders
-  m_TagString: Enviorment
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   attachPoints:
   - point: {fileID: 6947682897035773414}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 0
     attached: 0
     canBeAttached: 0
@@ -457,6 +458,7 @@ MonoBehaviour:
     off: {x: 0, y: 0, z: 0}
   - point: {fileID: 7141900924938024981}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 0
     attached: 0
     canBeAttached: 0
@@ -464,6 +466,7 @@ MonoBehaviour:
     off: {x: 0, y: 0, z: 0}
   - point: {fileID: 7310759833856168404}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 0
     attached: 0
     canBeAttached: 0
@@ -1021,7 +1024,7 @@ GameObject:
   - component: {fileID: 4120760337899374637}
   m_Layer: 10
   m_Name: Colliders
-  m_TagString: Enviorment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -55,7 +55,7 @@ public class SC_AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    public bool IsPlaying(AudioType typeSound)
+    public bool IsPlayingSound(AudioType typeSound)
     {
         Sound s = Array.Find(sounds, sound => sound.audioType == typeSound);
         return s.source.isPlaying;
@@ -76,31 +76,49 @@ public class SC_AudioManager : MonoBehaviour
         m.source.Play();
     }
 
-    public bool IsPlaying(MusicType typeMusic)
+    public void StopMusic(MusicType typeMusic)
+    {
+        Music m = Array.Find(music, music => music.musicType == typeMusic);
+        m.source.Stop();
+    }
+
+    public void StopAllMusic()
+    {
+        foreach (Music music in music)
+        {
+            music.source.Stop();
+        }
+    }
+
+    public bool IsPlayingMusic(MusicType typeMusic)
     {
         Music m = Array.Find(music, music => music.musicType == typeMusic);
         return m.source.isPlaying;
     }
-    #endregion
 
+    public void HalfAllMusic()
+    {
+        foreach (Music music in music)
+        {
+            music.source.volume /= 2f;
+            volumeHalfed = true;
+        }
+    }
+
+    public void DoubleAllMusic()
+    {
+        foreach (Music music in music)
+        {
+            music.source.volume *= 2f;
+            volumeHalfed = true;
+        }
+    }
+    #endregion
 
     public void UpdateVolume(float volumeAmount)
     {
         MasterMixer.SetFloat("MasterVol", Mathf.Log10 (volumeAmount)*20);
     }
-
-    public void HalfCurrentMusic(MusicType typeMusic)
-    {
-        GetAudioSource(typeMusic).volume /= 2f;
-        volumeHalfed = true;
-    }
-
-    public void DoubleCurrentMusic(MusicType typeMusic)
-    {
-        GetAudioSource(typeMusic).volume *= 2f;
-        volumeHalfed = false;
-    }
-
     public AudioSource GetAudioSource(MusicType typeMusic)
     {
         Music m = Array.Find(music, music=> music.musicType == typeMusic);
@@ -167,5 +185,6 @@ public enum MusicType
     MainMenuTheme,
     CombatTheme,
     GameOverScreenTheme,
-    VictoryScreenTheme
+    VictoryScreenTheme,
+    LoadingScreenAmbient
 }

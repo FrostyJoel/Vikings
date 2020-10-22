@@ -115,6 +115,7 @@ MonoBehaviour:
   attachPoints:
   - point: {fileID: 5846229015232848919}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
@@ -122,6 +123,7 @@ MonoBehaviour:
     off: {x: 0, y: 0, z: 0}
   - point: {fileID: 1618243705787028115}
     wall: {fileID: 0}
+    mapWall: 0
     nextSpawn: 2
     attached: 0
     canBeAttached: 0
@@ -132,6 +134,7 @@ MonoBehaviour:
   roomCollider: {fileID: 338557564769299924}
   roomType: 0
   propsGeo: {fileID: 6968600221432427711}
+  enemiesInRoom: []
   hasEnemies: 0
   spawnablePosAndRots: []
   fullyAttached: 0
@@ -214,7 +217,7 @@ GameObject:
   - component: {fileID: 4858605378656444627}
   m_Layer: 10
   m_Name: Collider
-  m_TagString: Enviorment
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +462,7 @@ GameObject:
   - component: {fileID: 927476375339880285}
   m_Layer: 10
   m_Name: Collider
-  m_TagString: Enviorment
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

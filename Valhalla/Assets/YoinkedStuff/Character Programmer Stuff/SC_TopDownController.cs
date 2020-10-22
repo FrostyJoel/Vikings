@@ -105,7 +105,7 @@ public class SC_TopDownController : MonoBehaviour
     void FixedUpdate()
     {
         if(SC_GameManager.single == null) { return; }
-        if (!SC_GameManager.single.gameStart) 
+        if (!SC_GameManager.single.gameStart || SC_UiManager.single.loading) 
         {
             SC_CharacterAnimation.single.SetHorizontalAnime(0);
             SC_CharacterAnimation.single.SetVerticalAnime(0);

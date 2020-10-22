@@ -228,11 +228,22 @@ public class SC_UiManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SC_AudioManager aMan = SC_AudioManager.single;
         if (startScreen || loading) 
         {
+            if (startScreen && !aMan.IsPlayingMusic(MusicType.MainMenuTheme))
+            {
+                aMan.StopAllMusic();
+                aMan.PlayMusic(MusicType.MainMenuTheme);
+            }
+
             hud.SetActive(false);
             if(loading)
             {
+                if (!aMan.IsPlayingMusic(MusicType.LoadingScreenAmbient))
+                {
+                    aMan.PlayMusic(MusicType.LoadingScreenAmbient);
+                }
                 SetLoadingBar();
             }
             startScreenBackGround.gameObject.SetActive(true);
@@ -246,10 +257,9 @@ public class SC_UiManager : MonoBehaviour
         }
         if (SC_GameManager.single != null && SC_GameManager.single.gameStart)
         {
-            SC_AudioManager aMan = SC_AudioManager.single;
-
-            if (!aMan.IsPlaying(MusicType.CombatTheme))
+            if (!aMan.IsPlayingMusic(MusicType.CombatTheme))
             {
+                aMan.StopAllMusic();
                 aMan.PlayMusic(MusicType.CombatTheme);
             }
             if (Input.GetButtonDown("Cancel"))
@@ -269,16 +279,16 @@ public class SC_UiManager : MonoBehaviour
             {
                 if (pauseScreenMenu.activeSelf)
                 {
-                    if (aMan.IsPlaying(MusicType.CombatTheme) && !aMan.volumeHalfed)
+                    if (aMan.IsPlayingMusic(MusicType.CombatTheme) && !aMan.volumeHalfed)
                     {
-                        aMan.HalfCurrentMusic(MusicType.CombatTheme);
+                        aMan.HalfAllMusic();
                     }
                 }
                 else
                 {
-                    if (aMan.IsPlaying(MusicType.CombatTheme) && aMan.volumeHalfed)
+                    if (aMan.IsPlayingMusic(MusicType.CombatTheme) && aMan.volumeHalfed)
                     {
-                        aMan.DoubleCurrentMusic(MusicType.CombatTheme);
+                        aMan.DoubleAllMusic();
                     }
                 }
 
@@ -296,9 +306,9 @@ public class SC_UiManager : MonoBehaviour
             }
             else
             {
-                if (aMan.IsPlaying(MusicType.CombatTheme) && aMan.volumeHalfed)
+                if (aMan.IsPlayingMusic(MusicType.CombatTheme) && aMan.volumeHalfed)
                 {
-                    aMan.DoubleCurrentMusic(MusicType.CombatTheme);
+                    aMan.DoubleAllMusic();
                 }
 
 
@@ -412,6 +422,11 @@ public class SC_UiManager : MonoBehaviour
         {
             Cursor.visible = true;
         }
+        if (!SC_AudioManager.single.IsPlayingMusic(MusicType.VictoryScreenTheme))
+        {
+            SC_AudioManager.single.StopAllMusic();
+            SC_AudioManager.single.PlayMusic(MusicType.VictoryScreenTheme);
+        }
         endScreen.SetActive(true);
         winScreen.SetActive(true);
     }
@@ -422,6 +437,11 @@ public class SC_UiManager : MonoBehaviour
         if (!Cursor.visible)
         {
             Cursor.visible = true;
+        }
+        if (!SC_AudioManager.single.IsPlayingMusic(MusicType.GameOverScreenTheme))
+        {
+            SC_AudioManager.single.StopAllMusic();
+            SC_AudioManager.single.PlayMusic(MusicType.GameOverScreenTheme);
         }
         endScreen.SetActive(true);
         lostScreen.SetActive(true);
