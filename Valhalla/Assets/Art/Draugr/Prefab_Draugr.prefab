@@ -1724,10 +1724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd092db5f52f4c842b8d125ad290d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  maxHealth: 20
+  damage: 10
+  maxHealth: 30
   attackRadius: 3
-  stunTime: 0.8
+  stunTime: 0.9
   heightOffset: {fileID: 87266109020963568}
   playerMask:
     serializedVersion: 2
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   poof: {fileID: 5935980520052942972}
   healthbar: {fileID: 1086743542}
   moveSpeed: 2
-  invulnerableTimer: 1
+  invulnerableTimer: 0.5
   rotSpeed: 7
   myAgent: {fileID: 0}
   myRB: {fileID: 0}
