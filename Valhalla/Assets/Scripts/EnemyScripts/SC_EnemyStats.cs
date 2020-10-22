@@ -240,10 +240,8 @@ public class SC_EnemyStats : MonoBehaviour
         myRB.velocity = Vector3.zero;
         myAgent.enabled = false;
         GetComponent<Collider>().enabled = false;
-        myRB.useGravity = false;
         SC_GameManager.single.RemoveFromEnemyList(this);
         myAnimator.SetTrigger("Death");
-        Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);
     }
 
     public void TurnOffHealthbar()

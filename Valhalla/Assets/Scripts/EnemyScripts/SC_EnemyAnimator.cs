@@ -24,4 +24,9 @@ public class SC_EnemyAnimator : MonoBehaviour
         GetComponentInParent<Rigidbody>().useGravity = true;
     }
 
+    public void Dissapear()
+    {
+        Destroy(GetComponentInParent<SC_EnemyStats>().gameObject);
+    }
+
 }
