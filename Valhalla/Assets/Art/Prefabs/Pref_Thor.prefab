@@ -602,6 +602,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   curHealth: 0
   canMove: 1
+  dead: 0
 --- !u!114 &460795431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,20 +737,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0833348289f1dc44094160698952d7fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDelay: 0.1
+  damageDelay: 0.3
   lightningCircleVisual: {fileID: 159196, guid: 37e803394624a5c48ae5f13fd212ac0b,
     type: 3}
   lighningHammerTrail: {fileID: 0}
-  damagePerTick: 25
-  duration: 3
+  damagePerTick: 10
+  duration: 5
   ReturnType: 0
   hammerRB: {fileID: 570965774947969703}
   targetHand: {fileID: 4034832949678788404}
   curvePoint: {fileID: 1476117240}
   meleeHammerDamageAmount: 25
   maxhammerDamageAmount: 75
-  maxForce: 30
-  minFlyingForceReq: 15
+  maxForce: 70
+  minFlyingForceReq: 20
+  hammerAttackSpeed: 1.7
   hammerDamageAmount: 10
   forceAmount: 0
   hitObject: 0
@@ -5772,6 +5774,7 @@ MonoBehaviour:
   turnSpeed: 7
   arrowDistance: 5
   actualArrow: {fileID: 0}
+  nearestEnemy: {fileID: 0}
 --- !u!1001 &1155389099524347458
 PrefabInstance:
   m_ObjectHideFlags: 0
