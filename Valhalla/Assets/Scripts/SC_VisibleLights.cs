@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class SC_VisibleLights : MonoBehaviour
 {
-    public Light[] source { get { return GetComponentsInChildren<Light>(); } }
+    public Light[] lightSource { get { return GetComponentsInChildren<Light>(); } }
 
     private void Start()
     {
@@ -13,9 +13,8 @@ public class SC_VisibleLights : MonoBehaviour
         //MeshRenderer meshRend = gameObject.AddComponent(typeof(MeshRenderer)) as MeshRenderer;
         //meshFilt.mesh = SC_LightManager.single.sphereMesh;
 
-        foreach (Light light in source)
+        foreach (Light light in lightSource)
         {
-            light.lightmapBakeType = LightmapBakeType.Realtime;
             light.enabled = false;
         }
     }
@@ -23,7 +22,7 @@ public class SC_VisibleLights : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        foreach (Light light in source)
+        foreach (Light light in lightSource)
         {
             light.enabled = true;
         }
@@ -31,7 +30,7 @@ public class SC_VisibleLights : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        foreach (Light light in source)
+        foreach (Light light in lightSource)
         {
             light.enabled = false;
         }

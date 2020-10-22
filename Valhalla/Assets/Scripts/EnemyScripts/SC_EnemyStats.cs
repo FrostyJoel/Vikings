@@ -214,7 +214,9 @@ public class SC_EnemyStats : MonoBehaviour
 
     private void Die()
     {
-        myAgent.isStopped = true;
+        myAgent.enabled = false;
+        GetComponent<Collider>().enabled = false;
+
         SC_GameManager.single.RemoveFromEnemyList(this);
         myAnimator.SetTrigger("Death");
         Destroy(gameObject, myAnimator.GetCurrentAnimatorStateInfo(0).length + 1f);

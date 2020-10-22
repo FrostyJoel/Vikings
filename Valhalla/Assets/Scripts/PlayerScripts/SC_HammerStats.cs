@@ -71,11 +71,11 @@ public class SC_HammerStats : MonoBehaviour
             }
         }
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 1000f);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawRay(transform.position, transform.forward * 1000f);
+    //}
 
     public void ResetPos()
     {
