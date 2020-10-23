@@ -41,6 +41,12 @@ public class SC_UiManager : MonoBehaviour
     public Image startScreenBackGround;
     public Image pauseScreenBackGround;
 
+    [Header("Extra")]
+    public GameObject devModeText;
+    public GameObject invulnerableText;
+    public GameObject killingAllEnemies;
+    public GameObject enemyHpDrop;
+
     [Header("HideInInspector")]
     public bool getAttackInput;
 
@@ -143,6 +149,8 @@ public class SC_UiManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        loading = true;
+        loadingScreen.SetActive(true);
     }
 
     public  void GetNextRoom()
@@ -164,10 +172,10 @@ public class SC_UiManager : MonoBehaviour
             getAttackInput = false;
             SC_GameManager.single.tempStarterCam = FindObjectOfType<Camera>();
 
+            SC_GameManager.single.ResetManager();
             SC_AudioManager.single.StopAllSound();
             SC_AudioManager.single.StopAllMusic();
             SC_AttackManager.single.ResetManager();
-            SC_GameManager.single.ResetManager();
             SC_RoomPooler.single.ResetManager();
             SC_RoomManager.single.ResetManager();
         }
@@ -251,6 +259,7 @@ public class SC_UiManager : MonoBehaviour
             {
                 if (!aMan.IsPlayingMusic(MusicType.LoadingScreenAmbient))
                 {
+                    aMan.StopAllMusic();
                     aMan.PlayMusic(MusicType.LoadingScreenAmbient);
                 }
                 SetLoadingBar();
@@ -268,7 +277,7 @@ public class SC_UiManager : MonoBehaviour
         {
             if (!aMan.IsPlayingMusic(MusicType.CombatTheme))
             {
-                aMan.StopMusic(MusicType.MainMenuTheme);
+                aMan.StopAllMusic();
                 aMan.PlayMusic(MusicType.CombatTheme);
             }
             if (Input.GetButtonDown("Cancel"))

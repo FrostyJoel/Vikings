@@ -109,7 +109,7 @@ public class AttachPoint
     public GameObject wall;
     public bool mapWall;
     [HideInInspector]
-    public BoxCollider attachCollider
+    public BoxCollider AttachCollider
     {
         get
         {

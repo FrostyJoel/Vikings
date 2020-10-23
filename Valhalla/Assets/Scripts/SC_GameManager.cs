@@ -18,9 +18,13 @@ public class SC_GameManager : MonoBehaviour
     [Header ("HideInInspector")]
     public bool gameStart = false;
     public int enemyRoomAmount;
+    public bool devMode;
+    public bool enemyHpDropActivated;
+    public bool killingenemyActivated;
     public List<Transform> playerSpawnPos = new List<Transform>();
     public List<SC_EnemyStats> enemies = new List<SC_EnemyStats>();
     public List<GameObject> allEnemyRooms = new List<GameObject>();
+
     private void Awake()
     {
         if (single != null)
@@ -42,6 +46,43 @@ public class SC_GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!gameStart) { return; }
+        if (Input.GetButtonDown("DevMode"))
+        {
+            devMode = !devMode;
+            SC_UiManager.single.devModeText.SetActive(devMode);
+        }
+        if (devMode)
+        {
+            if (Input.GetButtonDown("KillEnemies") && !killingenemyActivated)
+            {
+                foreach (SC_EnemyStats enemy in enemies)
+                {
+                    enemy.curHealth = 0;
+                }
+                SC_UiManager.single.killingAllEnemies.SetActive(true);
+            }
+
+            if (Input.GetButtonDown("Invulnerability"))
+            {
+                SC_TopDownController.single.invulnerable = !SC_TopDownController.single.invulnerable;
+                SC_UiManager.single.invulnerableText.SetActive(!SC_UiManager.single.invulnerableText.activeSelf);
+            }
+
+            if (Input.GetButtonDown("OneShot") && !enemyHpDropActivated)
+            {
+                foreach (SC_EnemyStats enemy in enemies)
+                {
+                    enemy.maxHealth = 1f;
+                    enemy.curHealth = enemy.maxHealth;
+                }
+                SC_UiManager.single.enemyHpDrop.SetActive(true);
+            }
+        }
+    }
+
     public void ResetManager()
     {
         gameStart = false;
@@ -49,6 +90,8 @@ public class SC_GameManager : MonoBehaviour
         playerSpawnPos.Clear();
         enemies.Clear();
         allEnemyRooms.Clear();
+        enemyHpDropActivated = false;
+        killingenemyActivated = false;
     }
 
     public void RemoveFromEnemyList(SC_EnemyStats enemy)

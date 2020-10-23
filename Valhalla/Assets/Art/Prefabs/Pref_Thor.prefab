@@ -642,7 +642,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788286934236326644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2400007, z: 0}
+  m_LocalPosition: {x: 0, y: 4.25, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 5648975903594929443}
@@ -908,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5395258312797143124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.2400007, z: 0}
+  m_LocalPosition: {x: 0, y: 4.25, z: -0.001}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 5648975903594929443}
@@ -5773,7 +5773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeed: 7
   arrowDistance: 5
-  actualArrow: {fileID: 0}
+  actualArrow: {fileID: 4164795817253126483}
   nearestEnemy: {fileID: 0}
 --- !u!1001 &1155389099524347458
 PrefabInstance:

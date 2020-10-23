@@ -41,6 +41,8 @@ public class SC_TopDownController : MonoBehaviour
     bool grounded = false;
     public bool canMove = true;
     public bool dead;
+    public bool invulnerable;
+
     Rigidbody r;
     GameObject targetObject;
 
@@ -285,7 +287,7 @@ public class SC_TopDownController : MonoBehaviour
 
     public void DealDamage(float damage)
     {
-        if (!gotHit)
+        if (!gotHit && !invulnerable)
         {
             hitEffect.Play();
             SC_AudioManager.single.PlaySound(AudioType.PlayerTakeDamage);
@@ -294,7 +296,7 @@ public class SC_TopDownController : MonoBehaviour
         }
         else
         {
-            Debug.Log("invulnerable");
+            //Debug.Log("invulnerable");
         }
     }
 }

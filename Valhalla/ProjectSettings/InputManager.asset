@@ -517,3 +517,67 @@ InputManager:
     type: 0
     axis: 0
     joyNum: 0
+  - serializedVersion: 3
+    m_Name: DevMode
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: q
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: KillEnemies
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: k
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Invulnerability
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: i
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: OneShot
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: l
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0

@@ -281,11 +281,11 @@ public class SC_RoomManager : MonoBehaviour
     {
         bool canBeAttached = false;
 
-        string oldTag = currentAttachPoint.attachCollider.tag;
-        currentAttachPoint.attachCollider.tag = "Ignore";
+        string oldTag = currentAttachPoint.AttachCollider.tag;
+        currentAttachPoint.AttachCollider.tag = "Ignore";
 
-        Collider[] col = Physics.OverlapBox(currentAttachPoint.point.position + currentAttachPoint.attachCollider.center,
-            currentAttachPoint.attachCollider.size * 0.5f,
+        Collider[] col = Physics.OverlapBox(currentAttachPoint.point.position + currentAttachPoint.AttachCollider.center,
+            currentAttachPoint.AttachCollider.size * 0.5f,
             Quaternion.identity,
             attachPointsLayer);
 
@@ -294,7 +294,7 @@ public class SC_RoomManager : MonoBehaviour
             canBeAttached = true;
         }
 
-        currentAttachPoint.attachCollider.tag = oldTag;
+        currentAttachPoint.AttachCollider.tag = oldTag;
 
         return canBeAttached;
     }
@@ -328,11 +328,11 @@ public class SC_RoomManager : MonoBehaviour
         {
             AttachPoint ownersAttachPoint = attach;
 
-            string oldTag = ownersAttachPoint.attachCollider.tag;
-            ownersAttachPoint.attachCollider.tag = "Ignore";
+            string oldTag = ownersAttachPoint.AttachCollider.tag;
+            ownersAttachPoint.AttachCollider.tag = "Ignore";
 
-            Collider[] col = Physics.OverlapBox(ownersAttachPoint.point.position + ownersAttachPoint.attachCollider.center,
-                ownersAttachPoint.attachCollider.size * 0.5f,
+            Collider[] col = Physics.OverlapBox(ownersAttachPoint.point.position + ownersAttachPoint.AttachCollider.center,
+                ownersAttachPoint.AttachCollider.size * 0.5f,
                 Quaternion.identity, attachPointsLayer);
 
             //Debug.Log(ownerRoom.name + " Has " + col.Length + " Collisions In Total ");
@@ -347,7 +347,7 @@ public class SC_RoomManager : MonoBehaviour
                     for (int iB = 0; iB < otherRoom.attachPoints.Length; iB++)
                     {
                         AttachPoint otherAttachPoint = otherRoom.attachPoints[iB];
-                        if(otherAttachPoint.attachCollider == col[iA])
+                        if(otherAttachPoint.AttachCollider == col[iA])
                         {
                             if (!otherAttachPoint.attached && !ownersAttachPoint.attached)
                             {
@@ -372,7 +372,7 @@ public class SC_RoomManager : MonoBehaviour
                     }
                 }
             }
-            ownersAttachPoint.attachCollider.tag = oldTag;
+            ownersAttachPoint.AttachCollider.tag = oldTag;
         }
     }
     bool CheckIfFullyAttached(SC_Room roomToCheck)

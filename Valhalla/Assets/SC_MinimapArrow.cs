@@ -20,11 +20,7 @@ public class SC_MinimapArrow : MonoBehaviour
 
     private void RotateToNearestEnemy()
     {
-        if(nearestEnemy == null)
-        {
-            nearestEnemy = GetNearestEnemy();
-        }
-        
+        nearestEnemy = GetNearestEnemy();
         Vector3 nearestEnemyPos = nearestEnemy.transform.position;
         Vector3 playerPos = SC_TopDownController.single.transform.position;
 

@@ -37,8 +37,8 @@ public class SC_EnemyStats : MonoBehaviour
     public bool doneHowl;
     bool playerInRange;
     bool gotHit = false;
-    bool died;
-    float curHealth;
+    public bool died;
+    public float curHealth;
     RaycastHit hit;
     Camera maincam;
 
@@ -49,12 +49,13 @@ public class SC_EnemyStats : MonoBehaviour
         myAnimator = GetComponentInChildren<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
         myAgent.updateRotation = true;
-        healthbar.maxValue = maxHealth;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if(curHealth <= 0)
         {
             if (healthbar.gameObject.activeSelf)
@@ -70,7 +71,7 @@ public class SC_EnemyStats : MonoBehaviour
     private void FixedUpdate()
     {
         if(SC_GameManager.single == null) { return; }
-
+        healthbar.maxValue = maxHealth;
         healthbar.value = curHealth;
 
         if(maincam == null)
