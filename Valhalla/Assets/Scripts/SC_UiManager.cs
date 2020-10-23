@@ -395,10 +395,20 @@ public class SC_UiManager : MonoBehaviour
         for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            if (!options.Contains(option))
+            {
+                options.Add(option);
+            }
         }
-
         resolutionOptions.AddOptions(options);
+
+        for (int ia = 0; ia < options.Count; ia++)
+        {
+            if(options[ia] == Screen.width + " x " + Screen.height)
+            {
+                resolutionOptions.value = ia;
+            }
+        }
     }
 
     public void SetResolution(int resolutionIndex)
